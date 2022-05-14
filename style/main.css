@@ -1,0 +1,38 @@
+main .cover {
+  /* margin: 0.5rem; */
+  color: var(--color16);
+  text-align: center;
+  background-image: url("../img/bg-medium.jpg"), url(https://i.ibb.co/h9fDphh/bg-medium.jpg);
+  background-color: var(--color00);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  /* margin: 0; */
+}
+main .cover::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  background-color: var(--color00);
+  opacity: 0.7;
+}
+main .cover > * {
+  z-index: 100;
+}
+main .cover p {
+  color: var(--color16);
+  font-weight: 100;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+main .cover .title-cover {
+  line-height: 2;
+  font-size: calc(4vh + 4vw / 2);
+}

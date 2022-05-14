@@ -1,0 +1,20 @@
+html {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--color00);
+}
+body {
+  margin: 0;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--color00);
+  /* opacity: 0.5; */
+  max-width: 80rem;
+  margin: 0 auto;
+  color: var(--color00);
+}
+section {
+  /* margin: 1rem; */
+  background-color: var(--color16);
+  padding: 1rem;
+}
