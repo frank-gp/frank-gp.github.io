@@ -2,7 +2,7 @@ main .cover {
   /* margin: 0.5rem; */
   color: var(--color16);
   text-align: center;
-  background-image: url("../img/bg-medium.jpg"), url(https://i.ibb.co/h9fDphh/bg-medium.jpg);
+  background-image: url(https://asset.fgp.one/file/fgp-bg.webp);
   background-color: var(--color00);
   background-position: center;
   background-repeat: no-repeat;

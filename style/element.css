@@ -41,6 +41,7 @@ span {
   /* border-radius: 2rem; */
   text-transform: uppercase;
   position: relative;
+  margin: 1rem auto;
 }
 .btn:hover {
   background-color: var(--color16);
@@ -68,4 +69,8 @@ code {
 }
 p {
   color: var(--color08);
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
