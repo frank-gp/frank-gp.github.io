@@ -12,6 +12,7 @@ body {
   max-width: 80rem;
   margin: 0 auto;
   color: var(--color00);
+  text-align: center;
 }
 section {
   /* margin: 1rem; */

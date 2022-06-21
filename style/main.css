@@ -2,7 +2,7 @@ main .cover {
   /* margin: 0.5rem; */
   color: var(--color16);
   text-align: center;
-  background-image: url(https://asset.fgp.one/file/fgp-bg.webp);
+  background-image: url(https://i0.wp.com/asset.fgp.one/file/fgp-bg.webp);
   background-color: var(--color00);
   background-position: center;
   background-repeat: no-repeat;
@@ -35,4 +35,9 @@ main .cover p {
 main .cover .title-cover {
   line-height: 2;
   font-size: calc(4vh + 4vw / 2);
+}
+.img-profile {
+  display: block;
+  margin: auto;
+  max-width: 120px;
 }

@@ -9,6 +9,7 @@ header.innerHTML = `
 <a class="menu" href="app.html">App</a>
 <a class="menu" href="lib.html">Lib</a>
 <a class="menu" href="doc.html">Doc</a>
+<a class="menu" href="services">Services</a>
 <a class="menu" href="contact">Contact</a>
 </nav>
 `;
