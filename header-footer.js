@@ -1,3 +1,6 @@
+// import {} from "https://frankgp.com/lib/fgp/fgp_ig.js";
+import * as instagram from "https://frankgp.com/lib/fgp/fgp_ig.js";
+
 let header = document.querySelector("header");
 let footer = document.querySelector("footer");
 
