@@ -1,0 +1,16 @@
+header img {
+    max-width: 200px;
+}
+header p {
+    font-size: 1.5em;
+    font-weight: 300;
+    /* color: peru; */
+    /* width: 100%; */
+    /* display: block; */
+    /* margin: 0; */
+}
+header section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}

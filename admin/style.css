@@ -1,0 +1,39 @@
+/* ========== external online ========== */
+@import url(https://fgp.one/icon-fgp.css);
+@import url(https://fgp.one/bs5.css);
+/* @import url(https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap-grid.min.css); */
+/* @import url(https://unpkg.com/@icon/elegant-icons/elegant-icons.css); */
+/* @import url(https://unpkg.com/aos@2.3.1/dist/aos.css); */
+/* @import url(https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css); */
+
+/* ========== external offline ========== */
+/* @import url(http://asset.com/icon-fgp/style.css); */
+/* @import url(http://asset.com/bs5/bootstrap.min.css); */
+/* @import url(http://asset.com/bs5/bootstrap-grid.css); */
+/* @import url(http://asset.com/bs5/bootstrap-reboot.min.css); */
+/* @import url(http://asset.com/fonts-icon-divi/fonts-icon-divi.css); */
+/* @import url(http://asset.com/bs5/bootstrap-grid.css); */
+
+/* ========== local ========== */
+@import url(../includes/format.css);
+@import url(../includes/btn-fgp.css);
+@import url(../includes/navbar.css);
+@import url(../includes/header.css);
+@import url(../includes/main.css);
+@import url(../includes/footer.css);
+@import url(../includes/code.css);
+/* @import url(content/font-icon/elegant-icons/style.css); */
+
+/* @import url(fonts-icon-divi/fonts-icon-divi.css); */
+/* @import url(boxicons-2.1.2/css/boxicons.min.css); */
+/* @import url(aos-master/dist/aos.css); */
+
+:root {
+  --fgp_gradient_2: linear-gradient(to left, #3eb57a, #3c6ac8);
+}
+* {
+  /* border: 1px dashed #080; */
+  /* margin: 1rem; */
+  /* padding: 1rem; */
+  box-sizing: border-box;
+}

@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title Site</title>
+    <link rel="stylesheet" href="./admin/style.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> -->
+  </head>
+  <body>
+    <!-- ========== #nav... ========== -->
+      <nav class="nav_fpg">
+        <h2><a href="/">Frank GP</a></h2>
+        <!-- ========== .ul_grid ========== -->
+        <!-- <ul class="ul_grid"> -->
+        <ul>
+          <li><a onclick="route()" href="/">inicio</a></li>
+          <li><a onclick="route()" href="/about">acerca de</a></li>
+          <li><a onclick="route()" href="/project">Proyectos</a></li>
+        </ul>
+        <button class="nav_btn_fgp"><i class="fa fa-bars"></i></button>
+      </nav>
 
-<head>
-  <title>Frank GP Web Architect</title>
-  <meta name="description" content="I’m a front-end developer, designer, and educator. " />
-  <link rel="stylesheet" href="style.css" />
-</head>
+    <!-- ========== #nav. ========== -->
 
-<body>
-  <header></header>
 
-  <main>
-    <section class="cover">
-      <h2 class="title-cover">Frank GP <span> Web Architect </span></h2>
-      <h1>Index</h1>
-      <h6>Moquegua - PERU</h6>
-    </section>
-  </main>
+    <!-- ========== #main... ========== -->
+    <main id="main-page"></main>
+    <!-- ========== #main. ========== -->
 
-  <footer></footer>
-  <script src="header-footer.js" type="module"></script>
-  <!-- <script src="//fgp.one/fgp_ig.js"></script> -->
-
-</body>
-
+    <!-- ========== #footer... ========== -->
+    <footer>
+      <div class="container py-4">
+        <div class="row flex-row-reverse">
+          <div class="col md-6 text-md-end">
+            <div class="d-flex justify-content-md-end">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-youtube-play"></i></a>
+              <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+          </div>
+          <div class="col-md-6 text-md-start d-flex align-items-center ">
+            <p class="mb-2 mt-0 pt-0">Copyright 2022 &copy;</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ========== #footer. ========== -->
+    <script src="./admin/script.js" type="module"></script>
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+  </body>
 </html>
