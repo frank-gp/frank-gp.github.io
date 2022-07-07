@@ -1,3 +1,4 @@
+
 const nav_ul_fgp = document.querySelector("ul");
 const nav_btn_fgp = document.querySelector(".nav_btn_fgp");
 const nav_faBars_fgp = document.querySelector(".fa-bars");
