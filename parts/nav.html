@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <!-- icono o nombre -->
+
+  <a class="navbar-brand" href="/">
+    <span class="text-warning display-6">🧑‍💻 Frank GP</span>
+  </a>
+
+  <!-- boton del menu -->
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#menu"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- elementos del menu colapsable -->
+
+  <div class="collapse navbar-collapse" id="menu">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="/services"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Proyectos
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/blog">blog</a></li>
+          <li><a class="dropdown-item" href="/cursos">cursos</a></li>
+          <li><a class="dropdown-item" href="/librerias">librerias</a></li>
+          <li>
+            <a class="dropdown-item" href="/documentacion">documentacion</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/servicios">Servicios</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contacto">Contacto</a>
+      </li>
+    </ul>
+
+    <hr class="d-md-none text-white-50" />
+
+    <!-- enlaces redes sociales -->
+
+    <style>
+      nav ul li a i {
+        color: white;
+      }
+      nav ul li a i:hover {
+        color: peru;
+      }
+    </style>
+
+    <ul class="navbar-nav flex-row flex-wrap text-light">
+      <li class="nav-item col-6 col-md-auto p-3">
+        <a href="http://example.com" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-youtube"></i>
+          <small class="d-md-none ms-2">YouTube</small></a
+        >
+      </li>
+
+      <li class="nav-item col-6 col-md-auto p-3">
+        <i class="bi bi-github"></i>
+        <small class="d-md-none ms-2">GitHub</small>
+      </li>
+
+      <li class="nav-item col-6 col-md-auto p-3">
+        <i class="bi bi-whatsapp"></i>
+        <small class="d-md-none ms-2">WhatsApp</small>
+      </li>
+
+      <li class="nav-item col-6 col-md-auto p-3">
+        <i class="bi bi-facebook"></i>
+        <small class="d-md-none ms-2">Facebook</small>
+      </li>
+    </ul>
+
+    <!--boton Informacion -->
+
+    <form class="d-flex">
+      <button
+        class="btn btn-outline-warning d-none d-md-inline-block"
+        type="submit"
+      >
+        Informacion
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,110 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Untitled</title>
-    <!-- <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
-    /> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+    <meta name="robots" content="index" />
+    <meta property="fb:app_id" content="1526445401046904" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:type" content="Website" />
+    <meta property="og:site_name" content="Frank GP®" />
+    <meta property="og:url" content="https://frankgp.com/" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <link rel="apple-touch-icon" href="https://fgp.one/favicon.webp" />
 
-    <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
-    <!-- <script async>
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+
+    <link rel="stylesheet" href="https://fgp.one/bs5.css" />
+    <link rel="stylesheet" href="https://fgp.one/bs-icons.css" />
+
+    <title>Frank GP | Web Architect</title>
+    <meta name="description" content="Research, Design Development Web" />
+    <!-- ========== Custom Style... ========== -->
+    <script async>
       const dateNowCss = Date.now();
       document.head.innerHTML += `
-      <link rel="stylesheet" href="./admin/style.css?${dateNowCss}" />
+      <link rel="stylesheet" href="./parts/style.css?${dateNowCss}" />
       `;
-    </script> -->
+    </script>
+    <!-- ========== Custom Style... ========== -->
   </head>
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark"></nav>
-    <header></header>
-    <main>
-      <h1 class="error404">Error 404 of index.html</h1>
-      <style>
-        .error404 {
-          animation: 3s ease 0s normal forwards 1 fadein;
-        }
 
-        @keyframes fadein {
-          0% {
-            opacity: 0;
-          }
-          30% {
-            opacity: 0;
-          }
-        }
-
-      </style>
+    <main class="container">
+      <section class="py-4 py-xl-5">
+        <div class="container h-100">
+          <div class="row h-100">
+            <div
+              class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center"
+            >
+              <div>
+                <h2 class="text-uppercase fw-bold mb-3">
+                  Frank GP<br />Web Architect
+                </h2>
+                <p class="mb-4">
+                  Hola soy Frank, me emociona crear cosas con codigo, ven y acompañame en esta gran aventura de la programacion
+                </p>
+                <button
+                  class="btn btn-primary fs-5 me-2 py-2 px-4"
+                  type="button"
+                >
+                  Contactame</button
+                ><button
+                  class="btn btn-outline-primary fs-5 py-2 px-4"
+                  type="button"
+                >
+                  Mis Servicios
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-
-
-    <section>
-      <script>
-        const pathName = window.location.pathname;
-        console.log(pathName);
-
-        let main = document.querySelector("main");
-
-        const mainFunction = async () => {
-          main.innerHTML = await fetch(`home.html?${Date.now()}`).then((data) =>
-            data.text()
-          );
-        };
-
-        const mainFunction1 = async () => {
-          main.innerHTML = await fetch(`home.html?${Date.now()}`).then((data) =>
-            data.text()
-          );
-        };
-
-        const mainFunction2 = async () => {
-          main.innerHTML = await fetch(`${pathName}.html?${Date.now()}`).then(
-            (data) => data.text()
-          );
-        };
-
-        if (pathName === "/") {
-          mainFunction();
-        } else if (pathName === "/index.html") {
-          mainFunction1();
-        } else {
-          mainFunction2();
-        }
-      </script>
-
-      <script>
-        // let main = document.querySelector("main");
-        // const mainFunction = async () => {
-        //   main.innerHTML = await fetch(`test.html?${Date.now()}`).then((data) =>
-        //     data.text()
-        //   );
-        // };
-        // mainFunction();
-      </script>
-    </section>
 
     <footer class="text-center bg-dark"></footer>
 
-    <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
-    <!-- <script src="dom.js?222"></script> -->
-
-    <!-- <script async>
-      // Get HTML body element
+    <!-- ========== Scripts.. ========== -->
+    <script src="https://fgp.one/bs5.js"></script>
+    <!-- ========== Custom Script... ========== -->
+    <script async>
       var body = document.getElementsByTagName("BODY")[0];
-      // Create new link Element
       var script = document.createElement("script");
-      // set the attributes for script element
       script.type = "module";
-      script.src = `./dom.js?${Date.now()}`;
-      // Append script element to HTML body
+      script.src = `./parts/script.js?${Date.now()}`;
       body.appendChild(script);
-    </script> -->
+    </script>
+    <!-- ========== Custom Script. ========== -->
   </body>
 </html>
