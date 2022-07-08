@@ -4,9 +4,9 @@
 
 #main .hero {
   /* background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit; */
-  background: #000 url(../assets/img/header-bg.jpg) center/cover no-repeat
+  background: #000 url(https://i0.wp.com/asset.fgp.one/file/header-bg.jpg) center/cover no-repeat
     content-box border-box fixed;
-  padding: 40vh;
+  padding: 30vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,12 +30,13 @@
 
 .hero h1 {
   color: var(--color1);
-  font-size: 5em;
+  /* font-size: calc 5vw; */
+  font-size: calc(5vw + 5vh);
   font-weight: 700;
 }
 .hero p {
   max-width: 55ch;
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
   margin: 2em auto;
   font-weight: 300;
   color: #fffc;

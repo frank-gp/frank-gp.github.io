@@ -1,3 +1,19 @@
+
 nav ul li {
     text-transform: capitalize;
 }
+
+nav ul li a i {
+  color: white;
+}
+nav ul li a i:hover {
+  color: var(--color1);
+}
+
+/* ========== @media mobile... ========== */
+@media (max-width: 55rem){
+  nav .hide-mobile {
+    display: none;
+  }
+}
+/* ========== @media mobile. ========== */

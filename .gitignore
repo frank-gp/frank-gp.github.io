@@ -5,6 +5,7 @@
 *.svg
 *.rar
 *.zip
+*.bat
 /img
 /lib
 /backup

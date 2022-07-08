@@ -6,6 +6,7 @@ const navFunction = async () => {
 navFunction();
 // ========== nav... ==========
 
+
 // ========== footer... ==========
 let footer = document.querySelector("footer");
 const footerFunction = async () => {
