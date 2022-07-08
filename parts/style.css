@@ -1,1 +1,11 @@
+@import url(atomic_design.css);
+@import url(system_design.css);
+@import url(buttons.css);
 @import url(nav.css);
+@import url(main_hero.css);
+@import url(footer.css);
+
+* {
+    /* border: 1px dashed #080; */
+    box-sizing: border-box;
+}

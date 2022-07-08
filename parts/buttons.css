@@ -1,0 +1,39 @@
+.btn-fgp {
+  background: var(--l-gradient1);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  color: white;
+  /* max-width: 20em; */
+  padding: 1em 3em;
+  border-radius: 0;
+  border: none;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #005c97 0%,
+    #363795 51%,
+    #005c97 100%
+  );
+  margin: 30px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 5px #eee;
+  border-radius: 10px;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
