@@ -1,0 +1,26 @@
+*.config
+*.jpg
+*.webp
+*.png
+*.svg
+*.rar
+*.zip
+*.bat
+*.sh
+.vite
+/img
+/lib
+/backup
+/.vscode
+/temp
+/dev
+
+prepros.config
+dev.html
+*dev.*
+
+# cpanel
+error_log
+
+# except for a specific file named "demo.zip," 
+!icomoon-v1.0.zip

@@ -1,0 +1,41 @@
+/* 
+
+https://frank-gp.github.io/contact/contact.css 
+
+*/
+.contact {
+  text-align: center;
+  margin: 10vh auto;
+}
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  max-width: 30em;
+  margin: auto;
+}
+.contact form :is(input, textarea) {
+  border: 0.3em solid #567;
+  padding: 1em;
+}
+.contact form textarea {
+  overflow: hidden;
+  /* padding: 1em 1em 2em 1em; */
+  padding-bottom: 2em;
+  /* border: 0.3em solid #567; */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.contact :is(input[type="submit"], input[type="checkbox"], label) {
+  cursor: pointer;
+}
+.contact .social {
+  margin: 5vh auto;
+}
+.contact .social a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0.5em;
+  font-size: 1.5em;
+  display: inline-block;
+}
