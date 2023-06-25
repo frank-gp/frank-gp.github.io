@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frankgp.com/component/global.css" />
+    <link rel="stylesheet" href="https://frankgp.com/wp-assets/style/wp-content.css" />
+
+    <!-- JS -->
+    <script src="https://frankgp.com/component/head.js"></script>
+    <script src="https://frankgp.com/component/header.js"></script>
+    <script src="https://frankgp.com/component/social.js" defer></script>
+    <script src="https://frankgp.com/component/contact.js" defer></script>
+    <script src="https://frankgp.com/component/footer.js"></script>
+
+    <!-- stat -->
     <script src="https://frankgp.com/stats/send.js" type="module"></script>
 
-    <script src="../script-head.js"></script>
-    <script src="../script-defer.js" defer></script>
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="description" content="Design and Developer Android" />
+    <meta property="og:image" content="https://i0.wp.com/fgp.one/media/fgp-fb-cover.webp" />
   </head>
+
   <body>
-    <script src="https://fgp.one/loader.js"></script>
-    <main>
+    <header-component></header-component>
+
+    <main class="wp-content">
+      <style>
+        body {
+          /* color: var(--color1); */
+          text-align: center;
+          /* background-color: var(--color2); */
+          /* margin: a auto; */
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+          max-width: 120rem;
+        }
+        ol {
+          max-width: 30rem;
+          margin: auto;
+          text-align: left;
+        }
+        li {
+          text-align: left;
+        }
+      </style>
+      <script src="https://frankgp.com/lib/js/loader.js"></script>
       <section class="meta">
-        <h1 class="title">Frank GP - Web Architect</h1>
+        <h1 class="">Frank GP - Web Architect</h1>
         <p class="description">Diseño y desarrollo de paginas web.</p>
       </section>
       <section class="services">
@@ -45,8 +81,13 @@
       </section>
     </main>
 
-    <!-- mouse animation component... -->
-    <script src="https://frank-gp.github.io/lib/js/mouse.js" defer></script>
-    <!-- mouse animation component. -->
+    <section class="social"></section>
+    <!-- <section class="contact"></section> -->
+    <footer-component></footer-component>
+    <fgp-lib>
+      <!-- <script src="https://frankgp.com/lib/js/clipboard.js" defer></script> -->
+      <!-- <script src="https://f-gp.github.io/js/highlight.js" type="module"></script> -->
+      <!-- <script src="https://frankgp.com/lib/social/youtube_embed.js"></script> -->
+    </fgp-lib>
   </body>
 </html>

@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frankgp.com/component/global.css" />
+    <link rel="stylesheet" href="https://frankgp.com/wp-assets/style/wp-content.css" />
 
-<head>
-  <script src="https://frankgp.com/stats/send.js" type="module"></script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Frank GP</title>
-
-  <link rel="stylesheet" href="https://frank-gp.github.io/web-components/global.css">
-  <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
-  <script src="https://frank-gp.github.io/lib/js/head.js" defer></script>
-  <script src="https://frank-gp.github.io/web-components/header-component.js"></script>
-  <script src="https://frank-gp.github.io/web-components/footer-component.js"></script>
-  <style>
-    .meta {
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5em;
-    }
-  </style>
-</head>
-
-<body>
-  <script src="https://frank-gp.github.io/lib/loader.js"></script>
-
-  <header-component></header-component>
-
-  <main>
-    <section class="meta">
-      <h1 class="title">Contact</h1>
-      <p class="description">Contact and social media.</p>
-    </section>
-    <section class="social"></section>
-    <script src="https://frank-gp.github.io/lib/social/social.js"></script>
-
-    <section class="contact"></section>
+    <!-- JS -->
+    <script src="https://frankgp.com/component/head.js"></script>
+    <script src="https://frankgp.com/component/header.js"></script>
+    <script src="https://frankgp.com/component/social.js" defer></script>
     <script src="https://frankgp.com/component/contact.js" defer></script>
-  </main>
+    <script src="https://frankgp.com/component/footer.js"></script>
 
-  <footer-component></footer-component>
+    <!-- stat -->
+    <script src="https://frankgp.com/stats/send.js" type="module"></script>
 
-</body>
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="description" content="Design and Developer Android" />
+    <meta property="og:image" content="https://i0.wp.com/fgp.one/media/fgp-fb-cover.webp" />
+  </head>
 
+  <body>
+    <script src="https://frankgp.com/lib/js/loader.js"></script>
+
+    <header-component></header-component>
+
+    <main class="wp-content ">
+      <section class="meta">
+        <h1 class="title">Contact</h1>
+        <p class="description">Contact and social media.</p>
+      </section>
+      <section class="social"></section>
+      <script src="https://frank-gp.github.io/lib/social/social.js"></script>
+
+      <section class="contact"></section>
+      <script src="https://frankgp.com/component/contact.js" defer></script>
+    </main>
+
+    <section class="social"></section>
+    <!-- <section class="contact"></section> -->
+    <footer-component></footer-component>
+    <fgp-lib>
+      <!-- <script src="https://f-gp.github.io/js/highlight.js" type="module"></script> -->
+      <!-- <script src="https://frankgp.com/lib/js/clipboard.js" defer></script> -->
+      <!-- <script src="https://frankgp.com/web-component/youtube-embed.js"></script> -->
+    </fgp-lib>
+  </body>
 </html>
