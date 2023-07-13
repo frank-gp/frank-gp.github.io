@@ -25,13 +25,12 @@
     <!-- <script src="https://frankgp.com/lib/js/youtube-embed.js"></script> -->
 
     <!-- SEO -->
-    <title>Frank GP — Developer</title>
+    <title>Frank GP — Android Developer</title>
     <meta name="robots" content="index" />
     <meta name="description" content="Research, design and development" />
 
     <!-- Open Graph tags -->
-    <meta property="og:title" content="Frank GP — Developer" />
-    <meta property="og:site_name" content="Frank GP — Developer | PERU" />
+    <meta property="og:title" content="Frank GP — Android Developer" />
     <meta property="og:description" content="Research, design and development" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://frankgp.com" />
@@ -44,50 +43,56 @@
   <body>
     <script src="https://frankgp.com/component/loader.js"></script>
 
-    <main class="tac">
+    <main class="wp-content dark">
+      <h1>Web Component</h1>
       <style>
-        ol {
+        .linkContainer {
           max-width: 30rem;
           margin: auto;
-          text-align: left;
-        }
-        li {
-          text-align: left;
+          /* text-align: left; */
+          display: flex;
+          flex-direction: column;
+          gap: 0.5em;
         }
       </style>
-      <section class="meta">
-        <h1 class="">Frank GP - Web Architect</h1>
-        <p class="description">Diseño y desarrollo de paginas web.</p>
-      </section>
-      <section class="services">
-        <p>Creación completa de sitio web</p>
-        <p>Personalización</p>
-        <p>Landing page</p>
-        <p>Corrección de errores</p>
-        <p>Ayuda/Consulta</p>
-      </section>
-      <section class="services">
-        <h3>
-          Desarrollo y Diseño de Paginas Web con <u><strong>WordPress</strong></u>
-        </h3>
-        <ol>
-          <li>Instalación y Configuración de <u>WordPress</u></li>
-          <li>Rendimiento y SEO</li>
-          <li>Copia de seguridad y migración</li>
-          <li>Paginas web en <u>WordPress</u></li>
-          <li>Temas Personalizados para <u>WordPress</u></li>
-          <li>Plugins para <u>WordPress</u></li>
-          <li>Landing Page Responsive con <u>WordPress</u></li>
-          <li>Mobile Responsive</li>
-          <li>Hero Slider, Opt-in Form, Popup Forms</li>
-        </ol>
-      </section>
-      <section class="services">
-        <h3>Desarrollo y Diseño Web en <u>HTML CSS Y JavaScript</u></h3>
-        <ol>
-          <li>Paginas web en <u>HTML, CSS Y JavaScript</u></li>
-          <li>Landing Page Responsive con <u>HTML y CSS</u></li>
-        </ol>
+      <section class="linkContainer"></section>
+      <script>
+        // Assuming you have an array of links
+        const array = [
+          // "style",
+          "btn.css",
+          "dark.css",
+          "essential.css",
+          "global.css",
+          // "Javascript",
+          "404.js",
+          "contact.js",
+          "footer.js",
+          "head.js",
+          "header.js",
+          "layout.js",
+          "social.js",
+          // Add more files here
+        ];
+
+        let base_url = "https://frankgp.com/component/";
+        array.forEach((item) => {
+          // Create the <a> element using template string
+          let url = base_url + item;
+          const anchor = `<a href="` + url + `">` + url + `</a>`;
+
+          // Append the <a> element to the container
+          document.querySelector(".linkContainer").insertAdjacentHTML("beforeend", anchor);
+        });
+      </script>
+      <hr />
+      <br />
+      <section class="share_container">
+        <!-- <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" /> -->
+        <facebook-button> Share on Facebook <i class="icon-facebook"></i> </facebook-button>
+        <twitter-button> Share on Twitter <i class="icon-twitter"></i> </twitter-button>
+        <whatsapp-button> WhatsApp <i class="icon-whatsapp"></i> </whatsapp-button>
+        <script src="https://frankgp.com/component/share.js"></script>
       </section>
     </main>
   </body>

@@ -18,6 +18,7 @@
 prepros.config
 dev.html
 *dev.*
+*backup*
 
 # cpanel
 error_log
