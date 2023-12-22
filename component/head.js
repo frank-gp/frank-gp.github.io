@@ -1,3 +1,12 @@
+// Check if the element with id "title" exists
+var titleTag = document.title;
+
+// If the element doesn't exist, create it and set innerHTML
+if (!titleTag) {
+  var title = "<title>Frank GP — Developer</title>";
+  document.head.insertAdjacentHTML("beforeend", title);
+}
+
 document.head.innerHTML += /* html */ `<!-- Meta -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +16,6 @@ document.head.innerHTML += /* html */ `<!-- Meta -->
 <meta name="site_locale" content="en_PE" />
 
 <!-- SEO -->
-<title>Frank GP — Developer</title>
 <meta name="robots" content="index" />
 <meta name="description" content="Research, design and development" />
 

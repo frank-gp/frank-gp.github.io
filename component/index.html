@@ -59,27 +59,25 @@
       <script>
         // Assuming you have an array of links
         const array = [
-          // "style",
-          "btn.css",
-          "dark.css",
-          "essential.css",
+          //
           "global.css",
-          // "Javascript",
           "404.js",
           "contact.js",
           "footer.js",
           "head.js",
           "header.js",
           "layout.js",
+          "loader.js",
+          "loader.v1.js",
           "social.js",
-          // Add more files here
+          "stat.js",
         ];
 
         let base_url = "https://frankgp.com/component/";
         array.forEach((item) => {
           // Create the <a> element using template string
           let url = base_url + item;
-          const anchor = `<a href="` + url + `">` + url + `</a>`;
+          const anchor = `<a href="` + url + `" target="_blank">` + url + `</a>`;
 
           // Append the <a> element to the container
           document.querySelector(".linkContainer").insertAdjacentHTML("beforeend", anchor);

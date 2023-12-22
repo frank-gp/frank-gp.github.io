@@ -1,71 +1,56 @@
 /* 
-<img src="https://source.unsplash.com/1080x1080" alt="" />
+    <link rel="preload" as="image" id="loaderImg" href="https://fgp.one/img/favicon.webp" />
+    <script src="https://frankgp.com/component/loader.js"></script>
+    <img src="https://source.unsplash.com/1080x1080" alt="" />
 */
 
-const createLoader = () => {
-  const loader = document.createElement("fgp-loader");
-  loader.innerHTML = /* html */ `
-    <style>
-      fgp-loader {
-        display: none;
-        display: block;
-        font: calc((100vh + 100vw) / 100) verdana;
-        z-index: 9;
-        color: #777;
-        position: fixed;
-        width: 100%;
-        left: 0;
-        height: 100%;
-        top: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        backdrop-filter: blur(1.5em);
-        background: #fff8;
-      }
-      fgp-loader > .spinner {
-        font-size: calc(1vw / 2);
-        border: 1em solid;
-        border-top: 1em solid transparent;
-        border-radius: 50%;
-        width: 30em;
-        max-width: 5rem;
-        height: 30em;
-        max-height: 5rem;
-        animation: rotate 1s ease infinite;
-      }
-      @keyframes rotate {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      fgp-loader .title {
-        animation: opacity 2s infinite;
-      }
-      @keyframes opacity {
-        50% {
-          opacity: 0.2;
-        }
-      }
-    </style>
-    <div class="spinner"></div>
-    <h2 class="title">loader...</h2>
-  `;
-  return loader;
-};
+var loaderImgElement = document.getElementById("loaderImg");
+var loaderImg = loaderImgElement ? loaderImgElement.href : "https://fgp.one/img/favicon.webp";
 
-const appendLoaderToBody = (loader) => {
-  document.body.appendChild(loader);
-};
+document.addEventListener("DOMContentLoaded", function () {
+  let loaderHTML = /* html */ `<div class="loader">
+<div class="img"></div>
 
-const removeLoaderOnLoad = (loader) => {
-  window.addEventListener("load", () => {
-    loader.remove();
-  });
-};
+<style>
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+}
 
-const fgpLoader = createLoader();
-appendLoaderToBody(fgpLoader);
-removeLoaderOnLoad(fgpLoader);
+.loader > .img {
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  background-image: url(${loaderImg});
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: opacity 1s linear infinite;
+}
+
+.loader {
+  content: "";
+  inset: 0;
+  background-color: #fffe;
+  position: fixed;
+  z-index: 0;
+}
+
+@keyframes opacity {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+img {
+  width: 10rem;
+}
+</style>
+</div>
+`;
+  document.body.insertAdjacentHTML("beforeend", loaderHTML);
+
+  window.onload = function () {
+    document.querySelector(".loader").style.display = "none";
+  };
+});

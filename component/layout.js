@@ -10,7 +10,7 @@ const jsFiles = [
   "https://frankgp.com/component/head.js",
   "https://frankgp.com/component/header.js",
   "https://frankgp.com/component/footer.js",
-  "https://frankgp.com/lib/js/youtube-embed.js",
+  // "https://frankgp.com/lib/js/youtube-embed.js",
   // Add more optional JS files here
 ];
 
