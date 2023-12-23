@@ -1,15 +1,15 @@
 /*
-    <script src="https://frankgp.com/component/footer.js"></script>
+    <script src="https://frankgp.com/component/fgp_footer.js"></script>
     <header-component></header-component>
 */
 
-let footer_html = /*html */ `
+let fgp_footer_html = /*html */ `
 <!-- html... -->
 <p>Create by Frank GP</p>
 <!-- html. -->
 `;
 
-let footer_css = /*html */ `<style>
+let fgp_footer_css = /*html */ `<style>
   html,
   body {
     height: 100%;
@@ -26,12 +26,12 @@ let footer_css = /*html */ `<style>
   }
 
   header,
-  footer {
+  fgp_footer {
     background-color: indigo;
     color: white;
     padding: 1rem 5vw;
   }
-  footer {
+  fgp_footer {
     text-align: center;
     min-height: 5rem;
     display: flex;
@@ -42,13 +42,13 @@ let footer_css = /*html */ `<style>
 <!-- html. -->
 `;
 
-// ========== footer ==========
-var footer = document.querySelector("footer");
+// ========== fgp_footer ==========
+var fgp_footer = document.querySelector("fgp_footer");
 
-if (!footer) {
-  footer = document.createElement("footer");
-  footer.id = "footer";
-  document.body.insertAdjacentElement("beforeend", footer);
+if (!fgp_footer) {
+  fgp_footer = document.createElement("fgp_footer");
+  fgp_footer.id = "fgp_footer";
+  document.body.insertAdjacentElement("beforeend", fgp_footer);
 }
 
-footer.innerHTML = footer_css + footer_html;
+fgp_footer.innerHTML = fgp_footer_css + fgp_footer_html;
