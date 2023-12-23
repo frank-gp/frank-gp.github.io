@@ -1,8 +1,8 @@
 /*
-    <script src="https://frankgp.com/component/header.js"></script>
-    <header-component></header-component>
+    <script src="https://frankgp.com/component/fgp_header.js"></script>
+    <fgp_header-component></fgp_header-component>
 */
-let header_html = /*html */ `
+let fgp_header_html = /*html */ `
 <section>
     <div class="btn_container">
         <div class="logo">
@@ -20,9 +20,9 @@ let header_html = /*html */ `
           <li><a href="https://frankgp.com/app/">Web App</a></li>
           <li><a href="https://frankgp.com/lib/">Web Lib</a></li>
           <li><a href="https://frankgp.com/component/">Web Component</a></li>
-          <li><a href="https://asset.fgp.one/">Image CDN</a></li>
           <li><a href="https://fgp.one/">URL Shortener</a></li>
           <li><a href="https://fgp555.github.io/app">Windows Apps</a></li>
+          <li><a href="https://frankgp.com/soyhenry/">Portafolio SoyHenry</a></li>
             <li><a href="https://frankgp.com/about/">About</a></li>
             <li><a href="https://frankgp.com/contact/">Contact</a></li>
         </ul>
@@ -32,12 +32,12 @@ let header_html = /*html */ `
 </section>
 <!-- html. -->`;
 
-let header_css = /* html */ `
+let fgp_header_css = /* html */ `
 <style>
 @import url(https://frankgp.com/icon/icomoon/style.css);
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-header {
+fgp_header {
   display: block;
   color: white;
   background: indigo;
@@ -120,16 +120,16 @@ ul li {
 </style>
 `;
 
-// ========== header ==========
-var header = document.querySelector("header");
+// ========== fgp_header ==========
+var fgp_header = document.querySelector("fgp_header");
 
-if (!header) {
-  header = document.createElement("header");
-  header.id = "header";
-  document.body.insertAdjacentElement("afterbegin", header);
+if (!fgp_header) {
+  fgp_header = document.createElement("fgp_header");
+  fgp_header.id = "fgp_header";
+  document.body.insertAdjacentElement("afterbegin", fgp_header);
 }
 
-header.innerHTML = header_css + header_html;
+fgp_header.innerHTML = fgp_header_css + fgp_header_html;
 
 // ========== button nav ==========
 const btn_navbar = document.querySelector(".btn_navbar");

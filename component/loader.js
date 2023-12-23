@@ -1,11 +1,11 @@
 /* 
-    <link rel="preload" as="image" id="loaderImg" href="https://fgp.one/img/favicon.webp" />
+    <link rel="preload" as="image" id="loaderImg" href="https://frankgp.com/favicon.ico" />
     <script src="https://frankgp.com/component/loader.js"></script>
     <img src="https://source.unsplash.com/1080x1080" alt="" />
 */
 
 var loaderImgElement = document.getElementById("loaderImg");
-var loaderImg = loaderImgElement ? loaderImgElement.href : "https://fgp.one/img/favicon.webp";
+var loaderImg = loaderImgElement ? loaderImgElement.href : "https://frankgp.com/favicon.ico";
 
 document.addEventListener("DOMContentLoaded", function () {
   let loaderHTML = /* html */ `<div class="loader">
