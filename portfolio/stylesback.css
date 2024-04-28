@@ -1,0 +1,43 @@
+.container_card {
+  justify-content: center;
+  gap: 1em;
+  margin: 1em;
+}
+.card {
+  border: 1px solid #fff;
+}
+.card_footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+.card_footer i {
+  font-size: 2em;
+}
+.card_footer_left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.container_card img {
+  width: 100%;
+}
+.container_card h2 {
+  font-weight: 300;
+  font-size: 3em;
+}
+.container_card h4 {
+  font-weight: normal;
+  font-size: 1.2em;
+  color: #888;
+}
+
+/* ========== iframe... ========== */
+.container_card .github {
+  position: relative;
+}
+.container_card iframe {
+  width: 30rem;
+  aspect-ratio: 16/9;
+  background-color: #fff;
+}
