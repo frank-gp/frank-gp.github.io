@@ -2,35 +2,35 @@
     <script src="https://frankgp.com/component/fgp_header.js"></script>
     <fgp_header-component></fgp_header-component>
 */
-let fgp_header_html = /*html */ `
-<section>
-    <div class="btn_container">
-        <div class="logo">
-            <i class="btn_navbar icon-menu"></i>
-            <h2><a href="/" >Frank<span class="mobile-none"> GP</span></a></h2>
-        </div>
-        <div class="search_container">
-            <input type="text" placeholder="Search blog" class="searchInput" autofocus>
-            <i class="icon-search"></i>
-        </div>
+let fgp_header_html = /*html */ `<section>
+  <div class="btn_container">
+    <div class="logo">
+      <i class="btn_navbar icon-menu"></i>
+      <h2>
+        <a href="/">Frank<span class="mobile-none"> GP</span></a>
+      </h2>
     </div>
-    <nav>
-        <ul id="navbar" class="display_none">
-          <li><a href="https://frankgp.com/">Home</a></li>
-          <li><a href="https://frankgp.com/app/">Web App</a></li>
-          <li><a href="https://frankgp.com/lib/">Web Lib</a></li>
-          <li><a href="https://frankgp.com/component/">Web Component</a></li>
-          <li><a href="https://fgp.one/">URL Shortener</a></li>
-          <li><a href="https://fgp555.github.io/app">Windows Apps</a></li>
-          <li><a href="https://frankgp.com/soyhenry/">Portafolio SoyHenry</a></li>
-            <li><a href="https://frankgp.com/about/">About</a></li>
-            <li><a href="https://frankgp.com/contact/">Contact</a></li>
-        </ul>
-    </nav>
-
-
+    <div class="search_container">
+      <input type="text" placeholder="Search blog" class="searchInput" autofocus />
+      <i class="icon-search"></i>
+    </div>
+  </div>
+  <nav>
+    <ul id="navbar" class="display_none">
+      <li><a href="https://frankgp.com/">Home</a></li>
+      <li><a href="https://frankgp.com/app/">Web App</a></li>
+      <li><a href="https://frankgp.com/lib/">Web Lib</a></li>
+      <li><a href="https://frankgp.com/component/">Web Component</a></li>
+      <li><a href="https://fgp.one/">URL Shortener</a></li>
+      <li><a href="https://fgp555.github.io/app">Windows Apps</a></li>
+      <li><a href="https://frankgp.com/portfolio">Portfolio</a></li>
+      <li><a href="https://frankgp.com/about/">About</a></li>
+      <li><a href="https://frankgp.com/contact/">Contact</a></li>
+    </ul>
+  </nav>
 </section>
-<!-- html. -->`;
+<!-- html. -->
+`;
 
 let fgp_header_css = /* html */ `
 <style>

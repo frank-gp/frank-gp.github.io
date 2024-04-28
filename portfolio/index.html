@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Developer Portfolio Projects, Examples & Ideas</title>
+    <meta name="description" content="Project Ideas for Your Developer Portfolio, inspiring web developer portfolio examples you have never seen before" />
+
+    <script src="https://frankgp.com/component/stat.js" type="module"></script>
+    <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" />
+    <script type="module" src="https://frankgp.com/component/layout.js"></script>
+    <meta property="og:image" content="https://i.postimg.cc/gjtKsBKw/portfolio.webp" />
+
+    <style>
+      .markupContainer {
+        display: grid;
+        & .category_title {
+          font-size: 2em;
+          margin: 2.5em 0 1em;
+        }
+      }
+      .articles_container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        /* justify-content: center; */
+        /* flex-direction: column; */
+      }
+      .article_card {
+        border: 1px solid #fff;
+        flex: 0 1 32em;
+
+        & iframe {
+          /* width: 30rem; */
+          width: 100%;
+          aspect-ratio: 16/9;
+          background-color: #fff;
+        }
+        & .footer_card {
+          display: flex;
+          justify-content: space-between;
+          padding: 0.5em;
+          & .footer_card_right {
+            text-align: right;
+          }
+        }
+        & .iconLanguages {
+          font-size: 1.5em;
+        }
+        & .footer_card_title {
+          margin-bottom: 0.3em;
+        }
+        & .footer_card_description {
+          margin-bottom: 0.3em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Top Developer Portfolio Projects, Examples & Ideas</h1>
+      <img src="https://i.postimg.cc/gjtKsBKw/portfolio.webp" alt="portfolio frank gp" />
+      <a href="http://" target="_blank" rel="noopener noreferrer"></a>
+
+      <div class="markupContainer" id="markupContainerId"></div>
+    </main>
+    <script src="./database.js"></script>
+    <!-- <script src="./database_temp.js"></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const categories = [...new Set(dataBase.map((item) => item.category))]; // Extract unique categories
+
+        const markupContainerId = document.getElementById("markupContainerId");
+
+        categories.forEach((category) => {
+          const section = document.createElement("section");
+          section.innerHTML = `<h2 class="category_title">${category}</h2><hr><br><div class="articles_container"></div>`;
+          markupContainerId.appendChild(section);
+
+          const articlesmarkupContainer = section.querySelector(".articles_container");
+
+          const categoryData = dataBase.filter((item) => item.category === category);
+
+          categoryData.forEach((objectItem) => {
+            const iconLanguages = objectItem.language.map((language) => `<i class="${language.icon}" title="${language.name}"></i>`).join(" ");
+
+            const cardMarkup = /* html */ `
+            <article class="article_card">
+              <iframe src="${objectItem.url}" frameborder="0" loading="lazy"></iframe>
+              <aside class="footer_card">
+                <div class="footer_card_left">
+                  <h3 class="footer_card_title">${objectItem.title}</h3>
+                  ${objectItem.description ? `<p class="footer_card_description">${objectItem.description}</p>` : ""}
+                  <p class="iconLanguages">${iconLanguages}</p>
+                </div>
+                <div class="footer_card_right">
+                  ${objectItem.github ? `<a target="_blank" href="${objectItem.github}" ><i class="icon-github" title="github"></i></a>` : ""}
+                  <a target="_blank" href="${objectItem.url}" class="btn">View Project</a>
+                </div>
+              </aside>
+            </article>
+          `;
+            articlesmarkupContainer.insertAdjacentHTML("beforeend", cardMarkup);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

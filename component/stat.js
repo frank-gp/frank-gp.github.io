@@ -68,6 +68,10 @@ function statFn() {
     });
 }
 
-if (window.location.hostname !== "localhost" || window.location.hostname !== "127.0.0.1") {
+// if (window.location.hostname !== "localhost" || window.location.hostname !== "127.0.0.1") {
+//   statFn();
+// }
+
+if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
   statFn();
 }
