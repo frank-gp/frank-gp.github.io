@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://frankgp.com/component/stat.js" type="module"></script>
+    <title>Pregunta</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+      }
+      .question {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      .button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        transition: transform 0.3s;
+      }
+      .yes {
+        background-color: #4caf50;
+        color: white;
+      }
+      .no {
+        background-color: #ff6347;
+        color: white;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="question">¿Quieres ser mi novia?</p>
+      <div class="buttons">
+        <button class="button yes">Sí</button>
+        <button class="button no" id="noButton">No</button>
+      </div>
+    </div>
+
+    <script>
+      const noButton = document.getElementById("noButton");
+
+      noButton.addEventListener("mouseenter", () => {
+        // Movimiento moderado alrededor de su posición original
+        const offsetX = Math.random() * 400 - 200; // Movimiento horizontal entre -20px y +20px
+        const offsetY = Math.random() * 400 - 200; // Movimiento vertical entre -20px y +20px
+        noButton.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      });
+
+      //   noButton.addEventListener("mouseenter", () => {
+      //     const x = Math.random() * (window.innerWidth - noButton.clientWidth);
+      //     const y = Math.random() * (window.innerHeight - noButton.clientHeight);
+      //     noButton.style.transform = `translate(${x}px, ${y}px)`;
+      //   });
+    </script>
+  </body>
+</html>

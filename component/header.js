@@ -21,10 +21,10 @@ let fgp_header_html = /*html */ `<section>
       <li><a href="https://frankgp.com/app/">Web App</a></li>
       <li><a href="https://frankgp.com/lib/">Web Lib</a></li>
       <li><a href="https://frankgp.com/component/">Web Component</a></li>
-      <li><a href="https://fgp.one/">URL Shortener</a></li>
-      <li><a href="https://fgp555.github.io/app">Windows Apps</a></li>
       <li><a href="https://frankgp.com/portfolio">Portfolio</a></li>
       <li><a href="https://frankgp.com/about/">About</a></li>
+      <li><a href="https://frankgp.com/cv/">CV</a></li>
+      <li><a href="https://frankgp.com/support/">Support</a></li>
       <li><a href="https://frankgp.com/contact/">Contact</a></li>
     </ul>
   </nav>

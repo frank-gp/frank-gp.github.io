@@ -1,25 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://frankgp.com/component/stat.js" type="module"></script>
-    <title>Frank GP — Android Developer</title>
-    <script src="https://frankgp.com/component/stat.js" type="module"></script>
-  </head>
-
-  <body>
-    <iframe src="https://docs.google.com/viewer?url=https://frankgp.com/cv/cv-franklin.pdf&embedded=true" frameborder="0"></iframe>
+    <script src="https://frankgp.com/component/layout.js" type="module"></script>
+    <title>Insertar Google Document con Botón de Descarga</title>
     <style>
+      /* Restablecer márgenes y bordes para ocupar toda la pantalla */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
+      /* Establecer el iframe para que ocupe el 100% del ancho y alto de la ventana */
+      html,
+      body {
+        height: 100%;
+      }
+
       iframe {
-        min-width: 100vw;
-        min-height: 100vh;
+        width: 100vw; /* 100% del ancho del viewport */
+        height: 100vh; /* 100% del alto del viewport */
+        border: none; /* Eliminar bordes del iframe */
+      }
+      .button_pdf {
+        position: absolute;
+        top: 5em;
+        right: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
       }
     </style>
+  </head>
+  <body>
+    <!-- Iframe para mostrar el documento de Google -->
+    <iframe src="https://docs.google.com/document/d/1BNcmtMnkNNY--GbI9g10oK6URP9_xBesQ2eM7lPP8Tk/preview" width="100%" height="600px"></iframe>
+
+    <!-- Botón de descarga en formato PDF -->
+    <a href="https://docs.google.com/document/d/1BNcmtMnkNNY--GbI9g10oK6URP9_xBesQ2eM7lPP8Tk/export?format=pdf" class="download-pdf-btn" target="_blank">
+      <button class="button_pdf">Descargar como PDF</button>
+    </a>
   </body>
 </html>

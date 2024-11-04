@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reservar Asesoría</title>
     <meta name="description" content="Proyecto: mas alla de las lectures, aprendiendo sobre el mundo de la programación partiendo desde las lectures del BootCamp de Soy Henry" />
-
     <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" />
     <script type="module" src="https://frankgp.com/component/layout.js"></script>
     <meta property="og:image" content="https://i.postimg.cc/286bqK9b/community.webp" />
@@ -40,14 +39,13 @@
         <h1>Reservar Asesoría</h1>
         <br />
         <p>Puedes reservar una asesoría profesional conmigo, para que te ayude a resolver tus dudas y problemas con el código.</p>
-
         <br />
         <a class="btn" href="https://wa.me/51918221790?text=Hola,%20Frank%20GP%0ADeseo%20una%20asesoria" target="_blank" rel="noopener noreferrer">
           <i class="icon-whatsapp"></i>
-          Reservar Asesoría</a>
-
+          Reservar Asesoría</a
+        >
         <br />
-        <p>desde <span title="$5.00 dolares">$5.00 la hora</span> </p>
+        <p id="price-info">desde <span title="$5.00 dolares">$5.00 la hora</span></p>
       </section>
 
       <section>
@@ -75,5 +73,17 @@
         </p>
       </section>
     </main>
+
+    <script>
+      document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && event.code === "Space") {
+          const priceInfo = document.getElementById("price-info");
+          if (priceInfo) {
+            priceInfo.style.display = priceInfo.style.display === "none" ? "block" : "none";
+          }
+          event.preventDefault(); // Evita el comportamiento predeterminado
+        }
+      });
+    </script>
   </body>
 </html>
