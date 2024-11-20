@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://frankgp.com/component/stat.js" type="module"></script>
     <script src="https://frankgp.com/component/layout.js" type="module"></script>
-    <title>Insertar Google Document con Botón de Descarga</title>
+    <title>Frank GP — Developer</title>
     <style>
       /* Restablecer márgenes y bordes para ocupar toda la pantalla */
       * {
@@ -25,9 +25,10 @@
         height: 100vh; /* 100% del alto del viewport */
         border: none; /* Eliminar bordes del iframe */
       }
-      .button_pdf {
+
+      .button_download_pdf {
         position: absolute;
-        top: 5em;
+        bottom: 0.5em;
         right: 10px;
         background-color: #007bff;
         color: #fff;
@@ -36,15 +37,79 @@
         cursor: pointer;
         border-radius: 5px;
       }
+
+      .language-buttons {
+        position: absolute;
+        top: 4em;
+        right: 0em;
+        z-index: 100;
+      }
+
+      .language-buttons button {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-left: 5px;
+      }
     </style>
   </head>
   <body>
-    <!-- Iframe para mostrar el documento de Google -->
-    <iframe src="https://docs.google.com/document/d/1BNcmtMnkNNY--GbI9g10oK6URP9_xBesQ2eM7lPP8Tk/preview" width="100%" height="600px"></iframe>
+    <!-- Contenedor para el contenido en español -->
+    <div id="content-es" class="language-content">
+      <iframe src="https://docs.google.com/document/d/1BNcmtMnkNNY--GbI9g10oK6URP9_xBesQ2eM7lPP8Tk/preview" width="100%" height="600px"></iframe>
+      <a href="https://docs.google.com/document/d/1BNcmtMnkNNY--GbI9g10oK6URP9_xBesQ2eM7lPP8Tk/export?format=pdf" target="_blank">
+        <button class="button_download_pdf">Descargar PDF</button>
+      </a>
+    </div>
 
-    <!-- Botón de descarga en formato PDF -->
-    <a href="https://docs.google.com/document/d/1BNcmtMnkNNY--GbI9g10oK6URP9_xBesQ2eM7lPP8Tk/export?format=pdf" class="download-pdf-btn" target="_blank">
-      <button class="button_pdf">Descargar como PDF</button>
-    </a>
+    <!-- Contenedor para el contenido en inglés -->
+    <div id="content-en" class="language-content" style="display: none">
+      <iframe src="https://docs.google.com/document/d/14uvaLIrI3uJllv6nirx6E8gSyf1w4zgFL-EcH7tpMHI/preview" width="100%" height="600px"></iframe>
+      <a href="https://docs.google.com/document/d/14uvaLIrI3uJllv6nirx6E8gSyf1w4zgFL-EcH7tpMHI/export?format=pdf" target="_blank">
+        <button class="button_download_pdf">Download PDF</button>
+      </a>
+    </div>
+
+    <!-- Botones de cambio de idioma -->
+    <div class="language-buttons">
+      <button id="btn-es" onclick="changeLanguage('es')">Español</button>
+      <button id="btn-en" onclick="changeLanguage('en')">English</button>
+    </div>
+
+    <script>
+      // Detectar idioma del navegador
+      const userLanguage = navigator.language || navigator.userLanguage;
+      const contentEs = document.getElementById("content-es");
+      const contentEn = document.getElementById("content-en");
+      const btnEs = document.getElementById("btn-es");
+      const btnEn = document.getElementById("btn-en");
+
+      // Función para cambiar el idioma
+      function changeLanguage(language) {
+        if (language === "es") {
+          contentEs.style.display = "block";
+          contentEn.style.display = "none";
+          btnEs.style.display = "none";
+          btnEn.style.display = "inline-block"; // Mostrar solo el botón de inglés
+          document.documentElement.lang = "es";
+        } else {
+          contentEs.style.display = "none";
+          contentEn.style.display = "block";
+          btnEs.style.display = "inline-block"; // Mostrar solo el botón de español
+          btnEn.style.display = "none";
+          document.documentElement.lang = "en";
+        }
+      }
+
+      // Cargar el idioma según la configuración del navegador
+      if (userLanguage.startsWith("en")) {
+        changeLanguage("en");
+      } else {
+        changeLanguage("es");
+      }
+    </script>
   </body>
 </html>
