@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservar Asesoría</title>
+    <meta name="description" content="Proyecto: mas alla de las lectures, aprendiendo sobre el mundo de la programación partiendo desde las lectures del BootCamp de Soy Henry" />
+    <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" />
+    <script type="module" src="https://frankgp.com/component/layout.js"></script>
+    <meta property="og:image" content="https://i.postimg.cc/286bqK9b/community.webp" />
+    <script src="https://frankgp.com/component/stat.js" type="module"></script>
+
+    <style>
+      main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .community {
+        text-align: center;
+        max-width: 55rem;
+      }
+      .community img {
+        /* max-width: 20rem; */
+        margin: 1em;
+      }
+      .community h3 {
+        margin-top: 1em;
+        border-bottom: 1px solid #fff8;
+        padding: 1em;
+        margin: 1em;
+      }
+      .container_youtube_embed {
+        margin: 1em auto;
+        /* border: 1px solid #fff; */
+        max-width: 50rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="community">
+      <section>
+        <div class="container_youtube_embed"></div>
+        <br />
+      </section>
+      <section>
+        <hr />
+        <br />
+        <h1>¿Buscas soluciones de código listas para usar?</h1>
+        <br />
+        <p>
+          ¡Descubre mi colección de códigos optimizados y funcionales! Cada proyecto está diseño para facilitar tu trabajo, mejorar tu productividad y adaptarse a tus necesidades.
+          Ya sea que necesites scripts backend, integraciones personalizadas o plantillas completas, tengo algo para ti.
+        </p>
+        <br />
+        <h3>✨ ¿Qué ofrezco?</h3>
+        <ul>
+          <li>✨ Códigos funcionales listos para implementar.</li>
+          <!-- <li>✨ Documentación detallada para una fácil integración.</li> -->
+          <li>✨ 40 minutos de Soporte por google meet / zoom.</li>
+        </ul>
+        <br />
+        <p>💻 Ideal para desarrolladores y estudiantes que buscan ahorrar tiempo y aprender con ejemplos prácticos.</p>
+      </section>
+
+      <section>
+        <h3>✨ Mis códigos</h3>
+        <a class="btn" href="https://www.youtube.com/hashtag/fgp_code" target="_blank" rel="noopener noreferrer">Ver lista de códigos</a>
+      </section>
+    </main>
+    <!-- oK3jROrz-CA -->
+
+    <script>
+      console.log("btoa 10", btoa("10")); // MTA=
+      console.log("btoa 20", btoa("20")); // MjA=
+      console.log("btoa 100", btoa("100")); // MTAw
+
+      console.log("atob 10", atob("MTA=")); // 10
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const url = new URL(window.location.href);
+        const container = document.querySelector(".container_youtube_embed");
+
+        if (url.search) {
+          const firstParam = url.search.split("&")[0];
+          const videoID = firstParam.replace("?", ""); // Extraer ID del video
+
+          console.log("Video ID:", videoID);
+          const price = atob(url.searchParams.get("p"));
+          console.log("p", price);
+
+          // Crear dinámicamente el componente youtube_embed
+          const youtubeEmbed = document.createElement("youtube_embed");
+          youtubeEmbed.setAttribute("data-url", `https://youtu.be/${videoID}`);
+          container.appendChild(youtubeEmbed);
+
+          // Agregar un botón de WhatsApp dinámicamente
+          const whatsappButton = document.createElement("div");
+
+          let whatsappMessage = `Hola Frank,
+
+Estoy interesado en hacer una donación para *recibir el código* asociado al video:
+https://youtu.be/${videoID}
+
+Una vez realizada la donación, ¿podrías proporcionarme más detalles sobre el proceso?
+
+¡Muchas gracias!`;
+
+          let buttonText = "Conseguir Código"; // Texto del botón por defecto
+          let donationMessage = `<p>Realiza una donación y consigue el código del video 🎥
+            <br>
+            ¡Tu apoyo es muy apreciado! 🚀</p>
+                               <h3>Donación: 3 dólares</h3>`; // Mensaje de donación
+
+          let purchaseMessage = `<p>Realiza una compra y consigue el código del video 🎥. ¡Tu apoyo es muy importante! 🚀</p>
+                               <h3>Compra: ${price} dólares</h3>`; // Mensaje de compra
+
+          // Si 'price' existe, cambiar a mensaje de compra
+          if (url.searchParams.get("p")) {
+            whatsappMessage = `Hola Frank,
+
+Estoy interesado en *comprar* el código asociado al video:
+https://youtu.be/${videoID}
+
+Precio: ${price} USD
+
+¿podrías proporcionarme más detalles sobre el proceso?
+
+¡Muchas gracias!`;
+            buttonText = "Comprar Código"; // Cambiar el texto del botón
+            // Mostrar mensaje de compra en lugar de donación
+            container.innerHTML += purchaseMessage;
+          } else {
+            // Si no hay price, mostrar mensaje de donación
+            container.innerHTML += donationMessage;
+          }
+
+          const whatsappLink = `https://wa.me/51918221790?text=${encodeURIComponent(whatsappMessage)}`;
+          whatsappButton.innerHTML = `
+            <a class="btn" href="${whatsappLink}" target="_blank" rel="noopener noreferrer">
+                <i class="icon-whatsapp"></i> ${buttonText}
+            </a>
+        `;
+
+          // Agregar el botón al contenedor
+          container.appendChild(whatsappButton);
+
+          // Cargar la biblioteca después de agregar el componente
+          const script = document.createElement("script");
+          script.src = "https://frankgp.com/lib/youtube-embed.js";
+          script.type = "module";
+          script.onload = () => console.log("Biblioteca cargada correctamente.");
+          document.body.appendChild(script);
+        } else {
+          console.log("No se proporcionó un ID de video en la URL.");
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && event.code === "Space") {
+          const priceInfo = document.getElementById("price-info");
+          if (priceInfo) {
+            priceInfo.style.display = priceInfo.style.display === "none" ? "block" : "none";
+          }
+          event.preventDefault(); // Evita el comportamiento predeterminado
+        }
+      });
+    </script>
+  </body>
+</html>
