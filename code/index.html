@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reservar Asesoría</title>
+    <title>¿Buscas soluciones de código listas para usar?</title>
     <meta name="description" content="Proyecto: mas alla de las lectures, aprendiendo sobre el mundo de la programación partiendo desde las lectures del BootCamp de Soy Henry" />
     <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" />
     <script type="module" src="https://frankgp.com/component/layout.js"></script>
-    <meta property="og:image" content="https://i.postimg.cc/286bqK9b/community.webp" />
+    <meta property="og:image" content="https://i.postimg.cc/K85MH7yL/code-store.webp" />
     <script src="https://frankgp.com/component/stat.js" type="module"></script>
 
     <style>
@@ -86,9 +86,7 @@
           const firstParam = url.search.split("&")[0];
           const videoID = firstParam.replace("?", ""); // Extraer ID del video
 
-          console.log("Video ID:", videoID);
           const price = atob(url.searchParams.get("p"));
-          console.log("p", price);
 
           // Crear dinámicamente el componente youtube_embed
           const youtubeEmbed = document.createElement("youtube_embed");
@@ -103,7 +101,7 @@
 Estoy interesado en hacer una donación para *recibir el código* asociado al video:
 https://youtu.be/${videoID}
 
-Una vez realizada la donación, ¿podrías proporcionarme más detalles sobre el proceso?
+¿podrías proporcionarme más detalles sobre el proceso?
 
 ¡Muchas gracias!`;
 
