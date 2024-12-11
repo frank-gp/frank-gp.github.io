@@ -66,50 +66,50 @@
     </div>
 
     <!-- Contenedor para el contenido en inglés -->
-    <div id="content-en" class="language-content" style="display: none">
+    <!-- <div id="content-en" class="language-content" style="display: none">
       <iframe src="https://docs.google.com/document/d/14uvaLIrI3uJllv6nirx6E8gSyf1w4zgFL-EcH7tpMHI/preview" width="100%" height="600px"></iframe>
       <a href="https://docs.google.com/document/d/14uvaLIrI3uJllv6nirx6E8gSyf1w4zgFL-EcH7tpMHI/export?format=pdf" target="_blank">
         <button class="button_download_pdf">Download PDF</button>
       </a>
-    </div>
+    </div> -->
 
     <!-- Botones de cambio de idioma -->
-    <div class="language-buttons">
+    <!-- <div class="language-buttons">
       <button id="btn-es" onclick="changeLanguage('es')">Español</button>
       <button id="btn-en" onclick="changeLanguage('en')">English</button>
-    </div>
+    </div> -->
 
     <script>
-      // Detectar idioma del navegador
-      const userLanguage = navigator.language || navigator.userLanguage;
-      const contentEs = document.getElementById("content-es");
-      const contentEn = document.getElementById("content-en");
-      const btnEs = document.getElementById("btn-es");
-      const btnEn = document.getElementById("btn-en");
+      // // Detectar idioma del navegador
+      // const userLanguage = navigator.language || navigator.userLanguage;
+      // const contentEs = document.getElementById("content-es");
+      // const contentEn = document.getElementById("content-en");
+      // const btnEs = document.getElementById("btn-es");
+      // const btnEn = document.getElementById("btn-en");
 
-      // Función para cambiar el idioma
-      function changeLanguage(language) {
-        if (language === "es") {
-          contentEs.style.display = "block";
-          contentEn.style.display = "none";
-          btnEs.style.display = "none";
-          btnEn.style.display = "inline-block"; // Mostrar solo el botón de inglés
-          document.documentElement.lang = "es";
-        } else {
-          contentEs.style.display = "none";
-          contentEn.style.display = "block";
-          btnEs.style.display = "inline-block"; // Mostrar solo el botón de español
-          btnEn.style.display = "none";
-          document.documentElement.lang = "en";
-        }
-      }
+      // // Función para cambiar el idioma
+      // function changeLanguage(language) {
+      //   if (language === "es") {
+      //     contentEs.style.display = "block";
+      //     contentEn.style.display = "none";
+      //     btnEs.style.display = "none";
+      //     btnEn.style.display = "inline-block"; // Mostrar solo el botón de inglés
+      //     document.documentElement.lang = "es";
+      //   } else {
+      //     contentEs.style.display = "none";
+      //     contentEn.style.display = "block";
+      //     btnEs.style.display = "inline-block"; // Mostrar solo el botón de español
+      //     btnEn.style.display = "none";
+      //     document.documentElement.lang = "en";
+      //   }
+      // }
 
-      // Cargar el idioma según la configuración del navegador
-      if (userLanguage.startsWith("en")) {
-        changeLanguage("en");
-      } else {
-        changeLanguage("es");
-      }
+      // // Cargar el idioma según la configuración del navegador
+      // if (userLanguage.startsWith("en")) {
+      //   changeLanguage("en");
+      // } else {
+      //   changeLanguage("es");
+      // }
     </script>
   </body>
 </html>
