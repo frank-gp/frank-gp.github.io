@@ -3,9 +3,6 @@
 `?oK3jROrz-CA&p=MjA=` // 20
 `?oK3jROrz-CA&p=MTAw` // 100
 
-// # demo
-// http://127.0.0.1:5501/code/index.html?oK3jROrz-CA&p=MjA= # 20
-
-// # qr code
-// https://frankgp.com/code/?fQutUXDp2U0
+// https://frankgp.com/code/?_okCMMfx1O4
+// https://frankgp.com/code/?_okCMMfx1O4&p=MTAw
 ```
