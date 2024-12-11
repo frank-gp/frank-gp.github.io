@@ -53,6 +53,9 @@
         & .footer_card_description {
           margin-bottom: 0.3em;
         }
+        .langNames{
+          margin: 0.3em 0 0 0.3em;
+        }
       }
     </style>
   </head>
@@ -64,7 +67,7 @@
 
       <div class="markupContainer" id="markupContainerId"></div>
     </main>
-    <script src="./database.js"></script>
+    <script src="./database.js?2412_001"></script>
     <!-- <script src="./database_temp.js"></script> -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -81,23 +84,24 @@
 
           const categoryData = dataBase.filter((item) => item.category === category);
 
-          categoryData.forEach((objectItem) => {
-            const iconLanguages = objectItem.language.map((language) => `<i class="${language.icon}" title="${language.name}"></i>`).join(" ");
+          categoryData.forEach((item) => {
+            const iconLanguages = item.language.map((language) => `<i class="${language.icon}" title="${language.name}"></i>`).join(" ");
+            const langNames = item.language.map((language) => `<span>${language.name}</span>`).join(" | ");
 
             const cardMarkup = /* html */ `
             <article class="article_card">
-              <iframe src="${objectItem.url}" frameborder="0" loading="lazy"></iframe>
+              <img src="${item.image}" alt="${item.title}" />
               <aside class="footer_card">
                 <div class="footer_card_left">
-                  <h3 class="footer_card_title">${objectItem.title}</h3>
-                  ${objectItem.description ? `<p class="footer_card_description">${objectItem.description}</p>` : ""}
-                  <p class="iconLanguages">${iconLanguages}</p>
+                  <h3 class="footer_card_title">${item.title}</h3>
+                  ${item.description ? `<p class="footer_card_description">${item.description}</p>` : ""}
                 </div>
                 <div class="footer_card_right">
-                  ${objectItem.github ? `<a target="_blank" href="${objectItem.github}" ><i class="icon-github" title="github"></i></a>` : ""}
-                  <a target="_blank" href="${objectItem.url}" class="btn">View Project</a>
+                  <a target="_blank" href="${item.github}" class="btn">Github</a>
+                  <a target="_blank" href="${item.url}" class="btn">View</a>
                 </div>
               </aside>
+              <aside class="langNames"><ul class="langNames">${langNames}</ul></aside>
             </article>
           `;
             articlesmarkupContainer.insertAdjacentHTML("beforeend", cardMarkup);
