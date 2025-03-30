@@ -36,21 +36,28 @@ const dataBase = [
       subtitle: "Freelancer Remoto - Enero 2025 - Marzo 2025",
       company: "Transportech",
       image: "https://i.postimg.cc/1XBWtQV7/mockup-desktop.webp",
-      descriptions: [
+      features: [
         ["design", "Servicio de Trasporte de Carga Pesada"],
         ["devop", "Sistema de tickets para la empresa Transpaservic"],
         ["other", "Sistema de tickets para la empresa Transpaservic"],
       ],
       category: "Full Stack Projects",
-      dates: [{ start: "2022-06-01" }, { end: "2022-06-01" }],
+      dates: [{ start: "2022-06-01" }, { end: "2022-06-01" }, { duration: "1 mes " }],
       colaborators: [
         {
-          name: "Giovanna",
-          role: ["frontend", "design"],
-          linkedin: "https://www.linkedin.com/in/giovanna-martinez-russo/",
+          roles: ["frontend", "design"],
+          user: {
+            name: "Giovanna",
+            links: {
+              linkedin: "https://www.linkedin.com/in/giovanna-martinez-russo/",
+              github: "https://github.com/GMRGIOVANNAMARTINEZRUSSO",
+              portfolio: "https://gmrgiovannamartinezrusso.github.io/",
+            },
+            image: "https://github.com/GMRGIOVANNAMARTINEZRUSSO.png",
+            title: "Full Stack Developer",
+            description: "Developer apasionada con experiencia en el desarrollo de interfaces intuitivas y atractivas.",
+          },
         },
-        { name: "Frank", role: ["backend"], linkedin: "https://www.linkedin.com/in/fgp555/" },
-        { name: "Vanesa", role: ["design"], linkedin: "https://www.linkedin.com/in/vanesa-bucher-623295245/" },
       ],
       technologies: {
         frontend: [

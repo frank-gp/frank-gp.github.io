@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fases de la Luna - Abril 2025</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1e1e2f;
+        color: #f0f0f0;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #fff;
+      }
+      table {
+        width: 70%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        background-color: #2e2e3e;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      }
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background-color: #444466;
+        color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #3a3a4a;
+      }
+      .fase {
+        font-size: 1.2em;
+      }
+      .semana-actual {
+        background-color: #2ecc71; /* Verde para la semana actual */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🌙 Fases de la Luna - 2025<br />Juliaca, Perú</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Fase</th>
+          <th>Ícono</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-fases">
+        <!-- Las filas se insertarán con JS -->
+      </tbody>
+    </table>
+
+    <!-- Incluir la librería lunarphase-js desde el CDN -->
+    <script type="module">
+      import { Moon, LunarPhase, Hemisphere } from "https://cdn.jsdelivr.net/npm/lunarphase-js@2.0.3/+esm";
+
+      const tabla = document.getElementById("tabla-fases");
+
+      // Definir el año (2025 en este caso)
+      const year = 2025;
+      const fasesLunares = [];
+
+      // Función para obtener el ícono de la fase lunar
+      const getIcono = (fase) => {
+        switch (fase) {
+          case LunarPhase.NEW:
+            return "🌑"; // Luna nueva
+          case LunarPhase.WAXING_CRESCENT:
+            return "🌒"; // Luna creciente
+          case LunarPhase.FIRST_QUARTER:
+            return "🌓"; // Cuarto creciente
+          case LunarPhase.WAXING_GIBBOUS:
+            return "🌔"; // Gibosa creciente
+          case LunarPhase.FULL:
+            return "🌕"; // Luna llena
+          case LunarPhase.WANING_GIBBOUS:
+            return "🌖"; // Gibosa menguante
+          case LunarPhase.LAST_QUARTER:
+            return "🌗"; // Cuarto menguante
+          case LunarPhase.WANING_CRESCENT:
+            return "🌘"; // Luna menguante
+          default:
+            return "";
+        }
+      };
+
+      // Calcular las fases lunares para cada día del año
+      for (let month = 0; month < 12; month++) {
+        for (let day = 1; day <= 31; day++) {
+          const fecha = new Date(year, month, day);
+          if (fecha.getMonth() !== month) continue; // Evitar días inválidos
+
+          // Calcular la fase lunar del día
+          const fase = Moon.lunarPhase(fecha);
+          const icono = getIcono(fase);
+
+          // Almacenar la fase lunar
+          fasesLunares.push({
+            fecha: fecha.toISOString().split("T")[0],
+            fase: LunarPhase[fase], // Nombre de la fase
+            icono: icono,
+            fechaObj: fecha,
+          });
+        }
+      }
+
+      // Función para verificar si la fecha está dentro de la semana actual
+      const isSemanaActual = (fecha) => {
+        const hoy = new Date();
+        const startOfWeek = hoy.getDate() - hoy.getDay();
+        const endOfWeek = startOfWeek + 6;
+        const fechaDeSemana = new Date(hoy.setDate(startOfWeek));
+
+        return fecha >= fechaDeSemana && fecha <= new Date(fechaDeSemana.setDate(endOfWeek));
+      };
+
+      // Insertar las fases lunares en la tabla HTML
+      fasesLunares.forEach((fase) => {
+        const row = document.createElement("tr");
+
+        const fechaCell = document.createElement("td");
+        fechaCell.textContent = fase.fecha;
+
+        const faseCell = document.createElement("td");
+        faseCell.textContent = fase.fase;
+
+        const iconoCell = document.createElement("td");
+        iconoCell.textContent = fase.icono;
+
+        // Resaltar la semana actual
+        if (isSemanaActual(fase.fechaObj)) {
+          row.classList.add("semana-actual");
+        }
+
+        row.appendChild(fechaCell);
+        row.appendChild(faseCell);
+        row.appendChild(iconoCell);
+
+        tabla.appendChild(row);
+      });
+    </script>
+  </body>
+</html>

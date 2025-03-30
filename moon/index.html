@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fases de la Luna - Juliaca, Perú</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1e1e2f;
+        color: #f0f0f0;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #fff;
+      }
+      table {
+        width: 70%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        background-color: #2e2e3e;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      }
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 12px;
+        text-align: center;
+      }
+      th {
+        background-color: #444466;
+        color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #3a3a4a;
+      }
+      .fase {
+        font-size: 1.2em;
+      }
+      .semana-actual {
+        background-color: #2f5e2f !important;
+        color: #b9fcb9;
+        font-weight: bold;
+      }
+      .links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+      }
+      .links a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🌙 Fases de la Luna 2025<br />Juliaca, Perú</h1>
+    <section class="links">
+      <a href="https://www.timeanddate.com/moon/phases/%403937513" target="_blank">timeanddate</a>
+      <a href="https://www.calendarr.com/peru/calendario-lunar-abril-2025/" target="_blank">calendarr</a>
+      <a href="dinamic.html">dinamic.html</a>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Fase</th>
+          <th>Ícono</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-fases"></tbody>
+    </table>
+
+    <script src="phases.js"></script>
+    <script>
+      const tabla = document.getElementById("tabla-fases");
+
+      // Calcular inicio (lunes) y fin (domingo) de la semana actual
+      const hoy = new Date();
+      const diaSemana = hoy.getDay(); // 0 = domingo, 1 = lunes, ..., 6 = sábado
+
+      const lunes = new Date(hoy);
+      lunes.setDate(hoy.getDate() - ((diaSemana + 6) % 7)); // lunes
+
+      const domingo = new Date(lunes);
+      domingo.setDate(lunes.getDate() + 6); // domingo
+
+      // Limpiar horas para comparar solo fechas
+      lunes.setHours(0, 0, 0, 0);
+      domingo.setHours(23, 59, 59, 999);
+
+      fasesLunares.forEach((fase) => {
+        const row = document.createElement("tr");
+        const fechaFase = new Date(fase.fecha);
+        fechaFase.setHours(12, 0, 0, 0); // evitar errores por huso horario
+
+        const fechaCell = document.createElement("td");
+        const fechaOpciones = { year: "numeric", month: "long", day: "numeric" };
+        fechaCell.textContent = fechaFase.toLocaleDateString("es-PE", fechaOpciones);
+
+        const faseCell = document.createElement("td");
+        faseCell.className = "fase";
+        faseCell.textContent = fase.fase;
+
+        const iconoCell = document.createElement("td");
+        iconoCell.textContent = fase.icono;
+
+        // Verifica si la fase está dentro de esta semana
+        if (fechaFase >= lunes && fechaFase <= domingo) {
+          row.classList.add("semana-actual");
+        }
+
+        row.appendChild(fechaCell);
+        row.appendChild(faseCell);
+        row.appendChild(iconoCell);
+        tabla.appendChild(row);
+      });
+    </script>
+  </body>
+</html>
