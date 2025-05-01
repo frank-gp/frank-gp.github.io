@@ -1,16 +1,16 @@
 /* 
-    <!-- <script src="https://frankgp.com/component/stat.js"></script> -->
-    <!-- <script src="https://frankgp.com/lib/js/loader.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/component/stat.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/loader.js"></script> -->
 */
 
 // import.js
 const jsFiles = [
-  // "https://frankgp.com/component/stat.js",
-  // "https://frankgp.com/component/loader.js",
-  "https://frankgp.com/component/head.js",
-  "https://frankgp.com/component/header.js",
-  "https://frankgp.com/component/footer.js",
-  // "https://frankgp.com/lib/js/youtube-embed.js",
+  // "https://frank-gp.github.io/component/stat.js",
+  // "https://frank-gp.github.io/component/loader.js",
+  "https://frank-gp.github.io/component/head.js",
+  "https://frank-gp.github.io/component/header.js",
+  "https://frank-gp.github.io/component/footer.js",
+  // "https://frank-gp.github.io/lib/js/youtube-embed.js",
   // Add more optional JS files here
 ];
 
@@ -26,9 +26,9 @@ jsFiles.forEach((jsFile) => {
 
 // Dynamically import CSS files
 const cssFiles = [
-  "https://frankgp.com/icon/icomoon/style.css",
-  "https://frankgp.com/component/global.css",
-  // "https://frankgp.com/wp-assets/style/wp-content.css",
+  "https://frank-gp.github.io/icon/icomoon/style.css",
+  "https://frank-gp.github.io/component/global.css",
+  // "https://frank-gp.github.io/wp-assets/style/wp-content.css",
   // Add more CSS files here
 ];
 

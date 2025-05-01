@@ -1,5 +1,5 @@
 /*
-    <script src="https://frankgp.com/component/fgp_footer.js"></script>
+    <script src="https://frank-gp.github.io/component/fgp_footer.js"></script>
     <header-component></header-component>
 */
 

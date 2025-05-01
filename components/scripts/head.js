@@ -10,7 +10,7 @@ if (!titleTag) {
 document.head.innerHTML += /* html */ `<!-- Meta -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="https://frankgp.com/favicon.ico" sizes="256x256" />
+<link rel="icon" href="https://frank-gp.github.io/favicon.ico" sizes="256x256" />
 <meta name="theme-color" content="#347" />
 <meta name="author" content="Frank GP" />
 <meta name="site_locale" content="en_PE" />
@@ -24,7 +24,7 @@ document.head.innerHTML += /* html */ `<!-- Meta -->
 <meta property="og:site_name" content="Frank GP — Developer | PERU" />
 <meta property="og:description" content="Research, design and development | PERU" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://frankgp.com" />
+<meta property="og:url" content="https://frank-gp.github.io" />
 <meta property="og:image" content="https://i.postimg.cc/TY98Prbd/fb-cover.webp" />
 <meta property="og:image:width" content="600" />
 <meta property="og:image:height" content="314" />

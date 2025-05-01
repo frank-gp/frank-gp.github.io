@@ -1,5 +1,5 @@
 /*
-    <script src="https://frankgp.com/component/fgp_header.js"></script>
+    <script src="https://frank-gp.github.io/component/fgp_header.js"></script>
     <fgp_header-component></fgp_header-component>
 */
 let fgp_header_html = /*html */ `<section>
@@ -17,16 +17,16 @@ let fgp_header_html = /*html */ `<section>
   </div>
   <nav>
     <ul id="navbar" class="display_none">
-      <li><a href="https://frankgp.com/">Home</a></li>
-      <!-- <li><a href="https://frankgp.com/app/">Web App</a></li> -->
-      <!-- <li><a href="https://frankgp.com/lib/">Web Lib</a></li> -->
-      <!-- <li><a href="https://frankgp.com/component/">Web Component</a></li> -->
-      <!-- <li><a href="https://frankgp.com/about/">About</a></li> -->
-      <!-- <li><a href="https://frankgp.com/support/">Support</a></li> -->
-      <li><a href="https://frankgp.com/team/">Team</a></li>
-      <li><a href="https://frankgp.com/cv/">CV</a></li>
-      <li><a href="https://frankgp.com/portfolio">Portfolio</a></li>
-      <li><a href="https://frankgp.com/contact/">Contact</a></li>
+      <li><a href="https://frank-gp.github.io/">Home</a></li>
+      <!-- <li><a href="https://frank-gp.github.io/app/">Web App</a></li> -->
+      <!-- <li><a href="https://frank-gp.github.io/lib/">Web Lib</a></li> -->
+      <!-- <li><a href="https://frank-gp.github.io/component/">Web Component</a></li> -->
+      <!-- <li><a href="https://frank-gp.github.io/about/">About</a></li> -->
+      <!-- <li><a href="https://frank-gp.github.io/support/">Support</a></li> -->
+      <li><a href="https://frank-gp.github.io/team/">Team</a></li>
+      <li><a href="https://frank-gp.github.io/cv/">CV</a></li>
+      <li><a href="https://frank-gp.github.io/portfolio">Portfolio</a></li>
+      <li><a href="https://frank-gp.github.io/contact/">Contact</a></li>
     </ul>
   </nav>
 </section>
@@ -35,7 +35,7 @@ let fgp_header_html = /*html */ `<section>
 
 let fgp_header_css = /* html */ `
 <style>
-@import url(https://frankgp.com/icon/icomoon/style.css);
+@import url(https://frank-gp.github.io/icon/icomoon/style.css);
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 fgp_header {

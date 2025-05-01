@@ -13,11 +13,11 @@ let fgp_header_html = /* html */ `<section>
   </div>
   <nav>
     <ul id="navbar" class="display_none">
-      <li><a href="https://frankgp.com/">Home</a></li>
-      <li><a href="https://frankgp.com/team/">Team</a></li>
-      <li><a href="https://frankgp.com/cv/">CV</a></li>
-      <li><a href="https://frankgp.com/portfolio">Portfolio</a></li>
-      <li><a href="https://frankgp.com/contact/">Contact</a></li>
+      <li><a href="https://frank-gp.github.io/">Home</a></li>
+      <li><a href="https://frank-gp.github.io/team/">Team</a></li>
+      <li><a href="https://frank-gp.github.io/cv/">CV</a></li>
+      <li><a href="https://frank-gp.github.io/portfolio">Portfolio</a></li>
+      <li><a href="https://frank-gp.github.io/contact/">Contact</a></li>
     </ul>
   </nav>
 </section>

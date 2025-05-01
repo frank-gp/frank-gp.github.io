@@ -179,12 +179,12 @@ const dataBase = [
   },
   {
     id: 201,
-    url: "https://frankgp.com/app/mini-postman/",
+    url: "https://frank-gp.github.io/app/mini-postman/",
     image: "https://i.postimg.cc/mkSNr70W/mini-postman.webp",
     title: "Mini-Postman App",
     description: "App Mini-Postman for Get Post and Put Request",
     category: "Tools",
-    github: "https://frankgp.com/app/mini-postman/",
+    github: "https://frank-gp.github.io/app/mini-postman/",
     language: [{ name: "HTML" }, { name: "CSS" }, { name: "JavaScript" }],
   },
 ];

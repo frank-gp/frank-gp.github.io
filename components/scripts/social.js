@@ -1,7 +1,7 @@
 /*
     <!-- ========== social component... ========== -->
     <section class="social"></section>
-    <script src="https://frankgp.com/component/social.js" defer></script>
+    <script src="https://frank-gp.github.io/component/social.js" defer></script>
     <!-- ========== social component. ========== -->
 
  */
@@ -13,7 +13,7 @@ if (socialClass) {
 function socialFunction() {
   let social = /*html*/ `
       <style>
-        @import url("https://frankgp.com/icon/icomoon/style.css");
+        @import url("https://frank-gp.github.io/icon/icomoon/style.css");
         .social div {
           display: flex;
           justify-content: center;

@@ -2,11 +2,11 @@
     
     <!-- contact component... -->
 
-    <!-- <link rel="stylesheet" href="https://frankgp.com/icon/icomoon/style.css" /> -->
+    <!-- <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" /> -->
     
     
     <section class="contact"></section>
-    <script src="https://frankgp.com/component/contact.js" defer></script>
+    <script src="https://frank-gp.github.io/component/contact.js" defer></script>
 
 
     <!-- contact component... -->
