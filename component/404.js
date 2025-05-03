@@ -4,14 +4,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://frank-gp.github.io/component/stat.js"></script>
     <title>404 Not Found</title>
     <script>
       // var data = {
+      //   instagram: "https://www.instagram.com/fgp555",
       //   google: "https://google.com",
-      //   google2: "https://google2.com",
       // };
     </script>
-    <script src="404.js" defer></script>
+    <script src="https://frank-gp.github.io/component/404.js" defer></script>
   </head>
   <body></body>
 </html>
@@ -19,8 +20,9 @@
 */
 
 // Ensure data is initialized as an array if it doesn't exist
-var data = data || [];
-// const data = data ? data : [];
+// var dataShortUrls = typeof dataShortUrls !== "undefined" ? dataShortUrls : [];
+var dataShortUrls = dataShortUrls || [];
+// var dataShortUrls = dataShortUrls ? dataShortUrls : [];
 
 const contentHtml = /* html */ `
     <style>
@@ -28,7 +30,9 @@ const contentHtml = /* html */ `
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        flex-direction: column;
+        gap: 3rem;
+        height: 100%;
       }
 
       .page_404 .text {
@@ -60,6 +64,14 @@ const contentHtml = /* html */ `
       .page_404 .text a:hover {
         background-color: #2980b9;
       }
+      
+      .page_404 .shorteners {
+        text-align: center;
+      }
+      
+      .page_404 .shorteners a{
+        color: cornflowerblue;
+      }
 
       @keyframes bounce {
         0%,
@@ -83,22 +95,28 @@ const contentHtml = /* html */ `
         <p>Page Not Found</p>
         <a href="/">Go Home</a>
       </div>
+      <div class="shorteners">
+        <p>Or go to:</p>
+        <ul>
+          ${Object.keys(dataShortUrls)
+            .map((key) => `<li><a href="${key}" target="_blank">${window.location.origin}/${key}</a></li>`)
+            .join("")}
+        </ul>
+      </div>
     </div>
 `;
 
 // Function to check if a key exists in the data array
 const redirectToValidPage = (key) => {
-  if (data.hasOwnProperty(key)) {
-    window.location.href = data[key];
+  console.log("Redirecting to", dataShortUrls[key]);
+  if (dataShortUrls.hasOwnProperty(key)) {
+    window.location.href = dataShortUrls[key];
   } else {
-    // document.querySelector("main").innerHTML = contentHtml;
-    // ========== main ==========
     var main = document.querySelector("main");
 
     if (!main) {
       main = document.createElement("main");
       main.id = "main";
-      // document.body.insertAdjacentElement("beforeend", main);
       document.body.appendChild(main);
     }
 
@@ -109,11 +127,12 @@ const redirectToValidPage = (key) => {
 // Function to parse the current URL and extract the page name
 const getPageName = () => {
   const pathArray = window.location.pathname.split("/");
-  return pathArray[pathArray.length - 1];
+  const pageName = pathArray[pathArray.length - 1];
+  return pageName;
 };
 
 // Check if the current page exists in the data array
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   const currentPage = getPageName();
   redirectToValidPage(currentPage);
-};
+});
