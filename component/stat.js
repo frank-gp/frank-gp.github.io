@@ -31,7 +31,8 @@ function statFn() {
 
       // Send data to the server
       // fetch("/stat/received_data", {
-      fetch("https://fgp.one/stat/received_data", {
+      // fetch("https://fgp.one/stat/received_data", {
+      fetch("https://fgp.one/api/stat/track", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
