@@ -36,40 +36,35 @@ const dataBase = [
       subtitle: "Freelancer Remoto - Enero 2025 - Marzo 2025",
       company: "Transportech",
       image: "https://i.postimg.cc/1XBWtQV7/mockup-desktop.webp",
+      category: "Full Stack Projects",
       features: [
         ["design", "Servicio de Trasporte de Carga Pesada"],
         ["devop", "Sistema de tickets para la empresa Transpaservic"],
         ["other", "Sistema de tickets para la empresa Transpaservic"],
       ],
-      category: "Full Stack Projects",
       dates: [{ start: "2022-06-01" }, { end: "2022-06-01" }, { duration: "1 mes " }],
-      colaborators: [
-        {
-          roles: ["frontend", "design"],
-          user: {
-            name: "Giovanna",
-            links: {
-              linkedin: "https://www.linkedin.com/in/giovanna-martinez-russo/",
-              github: "https://github.com/GMRGIOVANNAMARTINEZRUSSO",
-              portfolio: "https://gmrgiovannamartinezrusso.github.io/",
-            },
-            image: "https://github.com/GMRGIOVANNAMARTINEZRUSSO.png",
-            title: "Full Stack Developer",
-            description: "Developer apasionada con experiencia en el desarrollo de interfaces intuitivas y atractivas.",
-          },
+    },
+    colaborators: [
+      {
+        name: "Giovanna",
+        image: "https://github.com/GMRGIOVANNAMARTINEZRUSSO.png",
+        title: "Full Stack Developer",
+        description: "Developer apasionada con experiencia en el desarrollo de interfaces intuitivas y atractivas.",
+        roles: ["frontend", "design"],
+        links: {
+          linkedin: "https://www.linkedin.com/in/giovanna-martinez-russo/",
+          github: "https://github.com/GMRGIOVANNAMARTINEZRUSSO",
+          portfolio: "https://gmrgiovannamartinezrusso.github.io/",
         },
-      ],
-      technologies: {
-        frontend: [
-          { name: "Angular", icon: "fab fa-angular" },
-          { name: "Bootstrap", icon: "fab fa-bootstrap" },
-        ],
-        backend: [{ name: "NodeJS", icon: "fab fa-node-js" }],
-        database: [{ name: "MySQL", icon: "fas fa-database" }],
-        devops: [{ name: "CPanel", icon: "fas fa-server" }],
-        design: [{ name: "Figma", icon: "fab fa-figma" }],
-        other: [{ name: "Docker", icon: "fab fa-docker" }],
       },
+    ],
+    technologies: {
+      frontend: [{ name: "Angular", icon: "fab fa-angular" }],
+      backend: [{ name: "NodeJS", icon: "fab fa-node-js" }],
+      database: [{ name: "MySQL", icon: "fas fa-database" }],
+      devops: [{ name: "CPanel", icon: "fas fa-server" }],
+      design: [{ name: "Figma", icon: "fab fa-figma" }],
+      other: [{ name: "Docker", icon: "fab fa-docker" }],
     },
   },
 
