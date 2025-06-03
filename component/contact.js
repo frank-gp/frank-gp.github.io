@@ -157,7 +157,7 @@ function ContactFunction() {
   style_contact.innerHTML = contact_css;
   section_contact.insertAdjacentElement("beforebegin", style_contact);
 
-  let contact_html = /* html */ `<h1>Contact Form</h1>
+  let contact_html = `<h1>Contact Form</h1>
 <form id="contactForm">
   <section class="data">
     <aside>
@@ -192,7 +192,7 @@ function ContactFunction() {
   <br />
   <p>✅ Your form was submitted successfully! 📩</p>
   <br />
-  <div class="btn" onclick="reloadPage()">⬅️ Reload Page</div>
+  <div class="btn" onclick="reloadPage()">⬅️ Back</div>
 </section>
 `;
 
@@ -276,11 +276,13 @@ function submitForm() {
   var formData = {
     name: name,
     email: email,
+    subject: "Formulario de contacto",
     message: message,
     currentUrl: window.location.href, // Add current URL to formData
   };
-  // var url = "http://localhost:3000/contact/submit";
-  var url = "https://fgp.one/contact/submit";
+
+  // var url = "http://localhost:3000/api/email/submit";
+  var url = "https://fgp.one/api/email/submit";
 
   fetch(url, {
     method: "POST",

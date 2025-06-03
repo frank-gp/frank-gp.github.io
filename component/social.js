@@ -34,11 +34,9 @@ function socialFunction() {
       </style>
       <div>
         <a href="http://instagram.com/fgp555" class="icon icon-instagram" target="_blank"></a>
-        <!-- <a href="http://facebook.com/fgp555" class="icon icon-facebook" target="_blank"></a> -->
         <a href="http://youtube.com/fgp555" class="icon icon-youtube" target="_blank"></a>
         <a href="http://github.com/fgp555" class="icon icon-github" target="_blank"></a>
         <a href="http://codepen.io/fgp555" class="icon icon-codepen" target="_blank"></a>
-        <!-- <a href="http://discord.com/invite/TcyNQ49FVD" class="icon icon-discord" target="_blank"></a> -->
         <a href="http://paypal.me/fgp555" class="icon icon-paypal" target="_blank"></a>
         <a href="http://wa.me/51918221790?text=Hello,%20Frank%20GP%20" class="icon icon-whatsapp" target="_blank"></a>
       </div>
