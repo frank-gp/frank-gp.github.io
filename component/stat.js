@@ -7,57 +7,55 @@ function statFn() {
     minute: "numeric",
     hour12: false,
   });
-  var currentURL = window.location.href;
-  var referrerURL = document.referrer;
+
+  // Truncar URLs a un máximo de 1000 caracteres
+  const maxLength = 100;
+  var currentURL = window.location.href.substring(0, maxLength);
+  var referrerURL = document.referrer.substring(0, maxLength);
 
   console.log(time);
 
-  // Fetch data from https://ipapi.co/json/
   fetch("https://ipapi.co/json/")
     .then((response) => response.json())
     .then((ipData) => {
-      // Extract IP data
-      const ip = ipData.ip;
-      const city = ipData.city;
-      const countryName = ipData.country_name;
-      const timezone = ipData.timezone;
-      const utcOffset = ipData.utc_offset;
-      const countryCallingCode = ipData.country_calling_code;
-      const currency = ipData.currency;
-      const currencyName = ipData.currency_name;
-      const languages = ipData.languages;
-      const countryPopulation = ipData.country_population;
-      const org = ipData.org;
+      const {
+        ip,
+        city,
+        country_name: countryName,
+        timezone,
+        utc_offset: utcOffset,
+        country_calling_code: countryCallingCode,
+        currency,
+        currency_name: currencyName,
+        languages,
+        country_population: countryPopulation,
+        org,
+      } = ipData;
 
-      // Send data to the server
-      // fetch("/stat/received_data", {
-      // fetch("https://fgp.one/stat/received_data", {
       fetch("https://fgp.one/api/stat/track", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          time: time,
-          currentURL: currentURL,
-          referrerURL: referrerURL,
-          ip: ip,
-          city: city,
-          countryName: countryName,
-          timezone: timezone,
-          utcOffset: utcOffset,
-          countryCallingCode: countryCallingCode,
-          currency: currency,
-          currencyName: currencyName,
-          languages: languages,
-          countryPopulation: countryPopulation,
-          org: org,
+          time,
+          currentURL,
+          referrerURL,
+          ip,
+          city,
+          countryName,
+          timezone,
+          utcOffset,
+          countryCallingCode,
+          currency,
+          currencyName,
+          languages,
+          countryPopulation,
+          org,
         }),
       })
         .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
+          if (!response.ok) throw new Error("Network response was not ok");
           console.log("Data sent successfully!");
         })
         .catch((error) => {
@@ -68,10 +66,6 @@ function statFn() {
       console.error("Error fetching IP data:", error);
     });
 }
-
-// if (window.location.hostname !== "localhost" || window.location.hostname !== "127.0.0.1") {
-//   statFn();
-// }
 
 if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
   statFn();
