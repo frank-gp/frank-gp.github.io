@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <title>Pregunta Especial</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Dancing Script", cursive;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Corazones flotantes */
+      .heart {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 20px;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        z-index: 10;
+      }
+
+      .question {
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        line-height: 1.2;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        padding: 15px 30px;
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50px;
+        font-family: "Dancing Script", cursive;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+
+      .yes {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        color: white;
+        transform: scale(1);
+      }
+
+      .yes:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(238, 90, 82, 0.4);
+      }
+
+      .no {
+        background: linear-gradient(45deg, #74b9ff, #0984e3);
+        color: white;
+        transition: all 0.15s ease-out;
+      }
+
+      .no:hover {
+        transform: scale(0.95);
+      }
+
+      /* Efectos de celebración */
+      .celebration {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+      }
+
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #ff6b6b;
+        animation: confetti-fall 3s linear infinite;
+      }
+
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      .success-message {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        color: white;
+        padding: 30px;
+        border-radius: 20px;
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        z-index: 1001;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        animation: bounce-in 0.6s ease-out;
+      }
+
+      @keyframes bounce-in {
+        0% {
+          transform: translate(-50%, -50%) scale(0.3);
+          opacity: 0;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+        70% {
+          transform: translate(-50%, -50%) scale(0.9);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .attempts-counter {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px 15px;
+        border-radius: 15px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Responsivo */
+      @media (max-width: 600px) {
+        .question {
+          font-size: 24px;
+        }
+        .button {
+          font-size: 18px;
+          padding: 12px 25px;
+        }
+        .buttons {
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="attempts-counter">Intentos de escapar: <span id="attempts">0</span></div>
+
+    <div class="container">
+      <p class="question">¿Quieres ser mi novia? 💕</p>
+      <div class="buttons">
+        <button class="button yes" id="yesButton">¡Sí! 💖</button>
+        <button class="button no" id="noButton">No 😅</button>
+      </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+    <div class="success-message" id="successMessage">
+      ¡Sabía que dirías que sí! 💕<br />
+      <small>¡Eres la mejor! 🥰</small>
+    </div>
+
+    <script>
+      const noButton = document.getElementById("noButton");
+      const yesButton = document.getElementById("yesButton");
+      const attemptsSpan = document.getElementById("attempts");
+      const celebration = document.getElementById("celebration");
+      const successMessage = document.getElementById("successMessage");
+      const container = document.querySelector(".container");
+
+      let attempts = 0;
+      let escapeSpeed = 100; // Velocidad inicial de escape
+
+      // Crear corazones flotantes
+      function createFloatingHearts() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💕";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDelay = Math.random() * 3 + "s";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 8000);
+      }
+
+      // Crear corazones cada cierto tiempo
+      setInterval(createFloatingHearts, 1000);
+
+      // Función para mover el botón "No"
+      function moveNoButton() {
+        attempts++;
+        attemptsSpan.textContent = attempts;
+
+        // Área muy segura: solo 50% del centro de la pantalla
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const safeWidth = window.innerWidth * 0.5; // 50% del ancho
+        const safeHeight = window.innerHeight * 0.5; // 50% del alto
+
+        // Límites del área segura (25% desde cada borde hacia el centro)
+        const minX = window.innerWidth * 0.25;
+        const maxX = window.innerWidth * 0.75 - 120; // -120px para el botón
+        const minY = window.innerHeight * 0.25;
+        const maxY = window.innerHeight * 0.75 - 50; // -50px para el botón
+
+        // Generar posición aleatoria dentro del área del 50% central
+        let newX = minX + Math.random() * (maxX - minX);
+        let newY = minY + Math.random() * (maxY - minY);
+
+        // Distancia mínima del centro (más conservadora)
+        const minDistance = 80 + attempts * 5;
+        const currentDistance = Math.sqrt(Math.pow(newX - centerX, 2) + Math.pow(newY - centerY, 2));
+
+        // Si está muy cerca del centro, moverlo pero dentro del área segura
+        if (currentDistance < minDistance) {
+          const angle = Math.random() * 2 * Math.PI;
+          newX = centerX + Math.cos(angle) * minDistance;
+          newY = centerY + Math.sin(angle) * minDistance;
+
+          // Forzar que esté dentro del 50% central
+          newX = Math.max(minX, Math.min(maxX, newX));
+          newY = Math.max(minY, Math.min(maxY, newY));
+        }
+
+        // Mover el botón
+        noButton.style.position = "fixed";
+        noButton.style.left = newX + "px";
+        noButton.style.top = newY + "px";
+        noButton.style.transform = "scale(0.95)";
+        noButton.style.transition = `all 0.2s ease-out`;
+        noButton.style.zIndex = "1000";
+
+        // Cambiar texto del botón según intentos
+        const noTexts = [
+          "No 😅",
+          "¿En serio? 🤔",
+          "¡Vamos! 😏",
+          "No seas así 🙄",
+          "¡Dale! 😘",
+          "Sabes que quieres 😉",
+          "¡No me escapes! 😂",
+          "¿Por qué no? 💔",
+          "¡Última oportunidad! 😤",
+          "¡Te amo! 😍",
+        ];
+
+        if (attempts < noTexts.length) {
+          noButton.textContent = noTexts[attempts];
+        } else {
+          noButton.textContent = "¡Ya dime que sí! 😭";
+        }
+
+        // Hacer el botón "Sí" más grande después de algunos intentos
+        if (attempts > 3) {
+          yesButton.style.transform = `scale(${1 + attempts * 0.1})`;
+        }
+
+        // Después de muchos intentos, hacer el botón "No" más pequeño
+        if (attempts > 7) {
+          noButton.style.transform = `scale(${Math.max(0.3, 1 - (attempts - 7) * 0.1)})`;
+        }
+      }
+
+      // Event listeners para el botón "No"
+      noButton.addEventListener("mouseenter", moveNoButton);
+      noButton.addEventListener("mouseover", moveNoButton);
+      noButton.addEventListener("focus", moveNoButton);
+
+      // En dispositivos móviles, también mover al intentar tocar
+      noButton.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        moveNoButton();
+      });
+
+      // Función de celebración
+      function celebrate() {
+        // Mostrar mensaje de éxito
+        successMessage.style.display = "block";
+
+        // Crear confetti
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => {
+            const confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.left = Math.random() * 100 + "%";
+            confetti.style.backgroundColor = ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57"][
+              Math.floor(Math.random() * 5)
+            ];
+            confetti.style.animationDelay = Math.random() * 3 + "s";
+            celebration.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 3000);
+          }, i * 30);
+        }
+
+        // Cambiar el fondo
+        document.body.style.background = "linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)";
+
+        // Ocultar el botón "No"
+        noButton.style.display = "none";
+
+        // Cambiar el texto de la pregunta
+        document.querySelector(".question").innerHTML = "¡Sabía que dirías que sí! 💕";
+      }
+
+      // Event listener para el botón "Sí"
+      yesButton.addEventListener("click", celebrate);
+
+      // Crear corazones iniciales
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createFloatingHearts, i * 200);
+      }
+    </script>
+  </body>
+</html>

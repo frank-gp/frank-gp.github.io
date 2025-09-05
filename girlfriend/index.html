@@ -3,237 +3,330 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
-    <title>Pregunta</title>
-    <script>
-      function checkDevice() {
-        if (window.innerWidth < 512) {
-          // Cambia 1024 por el ancho deseado para detectar móviles
-          document.body.innerHTML = '<h1 style="color: white; text-align: center; margin-top: 20%;">Esta página solo está disponible en dispositivos de escritorio.</h1>';
-          document.body.style.background = "#333";
-        }
-      }
-
-      window.addEventListener("load", checkDevice);
-      window.addEventListener("resize", checkDevice);
-    </script>
-
+    <title>¿Quieres ser mi novia? 💕</title>
     <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        /* font-family: Arial, sans-serif; */
-        background-color: #f0f0f0;
-        overflow: hidden;
-        background-color: #21d4fd;
-        background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
-        color: white;
-      }
-      .container {
-        text-align: center;
-        position: relative;
-        z-index: 10;
-      }
-      .question {
-        font-size: 3em;
-        font-weight: 100;
-        margin-bottom: 20px;
-      }
-      .answer {
-        font-size: 2em;
-        font-weight: 100;
-        margin-bottom: 20px;
-      }
-      .buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-      }
-      .button {
-        padding: 10px 20px;
-        font-size: 18px;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        transition: transform 0.3s;
-      }
-      .yes {
-        /* background-color: #4caf50; */
-        color: white;
-      }
-      .yes:hover {
-        transition: transform 0.3s;
-        transform: scale(1.2);
-      }
-      .no {
-        background-color: #ff6347;
-        color: white;
-        position: relative;
-      }
-      .no:hover {
-        opacity: 0;
-        cursor: not-allowed;
-        transition: transform 0.3s;
-        transform: scale(0.2);
-      }
-
-      .confetti {
-        position: absolute;
-        top: 0;
-        width: 10px;
-        height: 10px;
-        background-color: #ffdd57;
-        border-radius: 50%;
-        animation: fall 1s linear infinite;
-        z-index: 5;
-      }
-      @keyframes fall {
-        to {
-          transform: translateY(100vh) rotate(360deg);
-          opacity: 0;
-        }
-      }
-      /* ========== ========== */
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
 
       body {
-        background-color: #f5f8ff;
-        font-family: "Roboto", sans-serif;
-        line-height: 1.5;
-        min-block-size: 100vh;
-        display: grid;
-        place-items: center;
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #ff9ff3);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+        min-height: 100vh;
+        overflow: hidden;
+        cursor: none;
       }
 
-      button {
-        cursor: pointer;
-        font: inherit;
-        margin: 0;
-        padding: 0;
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
       }
 
-      .button {
-        background-color: #404663;
-        color: #fff;
-        border: 0;
-        font-size: 2rem;
-        font-weight: 400;
-        padding: 0.5em 1.25em;
-        border-radius: 0.5em;
-        z-index: 999;
-        position: relative;
+      .container {
         display: flex;
-        gap: 0.5em;
-      }
-
-      .button {
-        background-image: linear-gradient(to right, #6441a5 0%, #2a0845 51%, #6441a5 100%);
-      }
-      .button {
-        margin: 10px;
-        padding: 15px 45px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
         text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        /* box-shadow: 0 0 20px #eee; */
-        border-radius: 10px;
-        display: block;
-        border: 1px solid #fff8;
+        position: relative;
+        padding: 20px;
       }
 
-      .button:hover {
-        background-position: right center; /* change the direction of the change here */
+      .hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .heart {
+        position: absolute;
         color: #fff;
-        text-decoration: none;
+        font-size: 20px;
+        animation: float 6s ease-in-out infinite;
       }
 
-      .button:active {
-        transform: scale(1.01);
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10%,
+        90% {
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-100px) rotate(180deg);
+        }
+      }
+
+      .question {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        margin-bottom: 50px;
+        position: relative;
+        z-index: 10;
+        max-width: 600px;
+      }
+
+      h1 {
+        color: #c44569;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 100px;
+        margin-top: 30px;
+        position: relative;
+        height: 80px;
+        align-items: center;
+      }
+
+      .btn {
+        padding: 15px 40px;
+        font-size: 1.4em;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: absolute;
+        z-index: 5;
+      }
+
+      .btn-yes {
+        background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+        color: white;
+        box-shadow: 0 8px 25px rgba(86, 171, 47, 0.4);
+      }
+
+      .btn-yes:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 15px 35px rgba(86, 171, 47, 0.6);
+      }
+
+      .btn-no {
+        background: linear-gradient(45deg, #ff416c, #ff4757);
+        color: white;
+        box-shadow: 0 8px 25px rgba(255, 65, 108, 0.4);
+        transition: all 0.1s ease;
+      }
+
+      .custom-cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, #ff6b9d, #c44569);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+      }
+
+      .success-message {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 50px;
+        border-radius: 25px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        max-width: 500px;
+      }
+
+      .success-message h2 {
+        color: #56ab2f;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+
+      .success-message p {
+        color: #666;
+        font-size: 1.3em;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .question {
+          padding: 30px 20px;
+          margin: 20px;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        .buttons-container {
+          gap: 80px;
+        }
+
+        .btn {
+          padding: 12px 25px;
+          font-size: 1.1em;
+        }
       }
     </style>
   </head>
   <body>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <div class="hearts" id="hearts"></div>
+
     <div class="container">
-      <p class="question">¿Quieres ser mi novia?</p>
-      <p class="answer" style="display: none">Sabia que aceptarias 🥳</p>
-      <div class="buttons">
-        <div id="root" class="yes"></div>
-        <!-- <button class="button yes" id="yesButton">Sí</button> -->
-        <button class="button no" id="noButton">No</button>
+      <div class="question">
+        <h1>💕 ¿Quieres ser mi novia? 💕</h1>
+        <p class="subtitle">Esta es la pregunta más importante de mi vida...</p>
+        <p>Mi corazón late solo por ti 💖</p>
+
+        <div class="buttons-container">
+          <button class="btn btn-yes" id="yesBtn">¡SÍ! 💕</button>
+          <button class="btn btn-no" id="noBtn">No 💔</button>
+        </div>
       </div>
     </div>
 
+    <div class="success-message" id="successMessage">
+      <h2>¡ERES INCREÍBLE! 🎉💕</h2>
+      <p>
+        ¡Acabas de hacerme la persona más feliz del mundo! 💖<br />
+        Te amo con todo mi corazón y no puedo esperar a vivir esta hermosa aventura juntos. 🌟
+      </p>
+    </div>
+
     <script>
-      const noButton = document.getElementById("noButton");
-      const yesButton = document.getElementById("root");
+      // Cursor personalizado
+      const cursor = document.getElementById("cursor");
+      let mouseX = 0,
+        mouseY = 0;
 
-      noButton.addEventListener("mouseenter", () => {
-        // Movimiento moderado alrededor de su posición original
-        const offsetX = Math.random() * 400 - 200; // Movimiento horizontal entre -20px y +20px
-        const offsetY = Math.random() * 400 - 200; // Movimiento vertical entre -20px y +20px
-        noButton.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + "px";
+        cursor.style.top = mouseY + "px";
       });
 
-      yesButton.addEventListener("click", () => {
-        for (let i = 0; i < 100; i++) {
-          createConfetti();
+      // Elementos de los botones
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const successMessage = document.getElementById("successMessage");
+
+      // Posición inicial del botón No
+      noBtn.style.left = "200px";
+      noBtn.style.top = "0px";
+
+      // Posición inicial del botón Sí
+      yesBtn.style.left = "0px";
+      yesBtn.style.top = "0px";
+
+      // Función para mover el botón No cuando el mouse se acerca
+      document.addEventListener("mousemove", (e) => {
+        const rect = noBtn.getBoundingClientRect();
+        const btnCenterX = rect.left + rect.width / 2;
+        const btnCenterY = rect.top + rect.height / 2;
+
+        const distance = Math.sqrt(Math.pow(e.clientX - btnCenterX, 2) + Math.pow(e.clientY - btnCenterY, 2));
+
+        // Si el mouse está cerca del botón No (dentro de 150px)
+        if (distance < 150) {
+          const angle = Math.random() * 2 * Math.PI;
+          const moveDistance = 100 + Math.random() * 100;
+
+          let newX = Math.cos(angle) * moveDistance;
+          let newY = Math.sin(angle) * moveDistance;
+
+          // Mantener el botón dentro de los límites de la pantalla
+          const maxX = window.innerWidth - rect.width - 50;
+          const maxY = window.innerHeight - rect.height - 50;
+
+          newX = Math.max(-200, Math.min(newX, maxX - btnCenterX + rect.width / 2));
+          newY = Math.max(-100, Math.min(newY, maxY - btnCenterY + rect.height / 2));
+
+          noBtn.style.transform = `translate(${newX}px, ${newY}px)`;
         }
-        const answer = document.querySelector(".answer");
-        answer.style.display = "block";
-        answer.style.animation = "answer 1s ease-in-out";
-        answer.style.animationFillMode = "forwards";
+
+        // Hacer que el botón Sí se acerque al mouse
+        const yesRect = yesBtn.getBoundingClientRect();
+        const yesCenterX = yesRect.left + yesRect.width / 2;
+        const yesCenterY = yesRect.top + yesRect.height / 2;
+
+        const yesDistance = Math.sqrt(Math.pow(e.clientX - yesCenterX, 2) + Math.pow(e.clientY - yesCenterY, 2));
+
+        if (yesDistance < 200 && yesDistance > 50) {
+          const attractionX = (e.clientX - yesCenterX) * 0.1;
+          const attractionY = (e.clientY - yesCenterY) * 0.1;
+
+          yesBtn.style.transform = `translate(${attractionX}px, ${attractionY}px)`;
+        }
       });
 
-      function createConfetti() {
-        const confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        document.body.appendChild(confetti);
+      // Evento click del botón Sí
+      yesBtn.addEventListener("click", () => {
+        document.body.style.background = "linear-gradient(135deg, #56ab2f, #a8e6cf, #ffeaa7, #fab1a0)";
+        successMessage.style.display = "block";
 
-        // Posición aleatoria
-        confetti.style.left = `${Math.random() * 100}vw`;
-        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-
-        // Duración y tamaño aleatorios
-        confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
-        confetti.style.width = `${Math.random() * 10 + 5}px`;
-        confetti.style.height = confetti.style.width;
-
-        // Eliminar confeti después de la animación
-        confetti.addEventListener("animationend", () => {
-          confetti.remove();
-        });
-      }
-    </script>
-
-    <!-- <script type="module" src="./index.js"></script> -->
-    <script type="module">
-      import React from "https://esm.run/react@18";
-      import { createRoot } from "https://esm.run/react-dom@18/client";
-      import confetti from "https://esm.run/canvas-confetti@1";
-
-      function App() {
-        function onClick() {
-          confetti({
-            particleCount: 150,
-            spread: 60,
-          });
+        // Crear más corazones para celebrar
+        for (let i = 0; i < 50; i++) {
+          setTimeout(() => createHeart(), i * 100);
         }
+      });
 
-        return /*#__PURE__*/ React.createElement(
-          "button",
-          { className: "button", onClick: onClick } /*#__PURE__*/,
-          // React.createElement("span", null, "\uD83C\uDF89") /*#__PURE__*/,
-          React.createElement("span", null, "Si")
-        );
+      // Crear corazones flotantes
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = ["💖", "💕", "💗", "💘", "💝", "💟"][Math.floor(Math.random() * 6)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 6 + "s";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+        document.getElementById("hearts").appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
       }
 
-      createRoot(document.getElementById("root")).render(/*#__PURE__*/ React.createElement(App, null));
+      // Crear corazones iniciales
+      setInterval(createHeart, 800);
+
+      // Intentar hacer clic en el botón No (será muy difícil)
+      noBtn.addEventListener("click", () => {
+        alert("¡Ups! Parece que el botón se movió justo a tiempo 😉");
+      });
     </script>
   </body>
 </html>

@@ -1,36 +1,29 @@
-/* 
-    <!-- <script src="https://frank-gp.github.io/component/stat.js"></script> -->
-    <!-- <script src="https://frank-gp.github.io/lib/js/loader.js"></script> -->
-*/
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
+let baseUrl;
+if (isLocal) {
+  baseUrl = "/"; // en local usa rutas relativas
+} else {
+  baseUrl = "https://frank-gp.github.io/"; // en producción usa URLs completas
+}
 
 // import.js
 const jsFiles = [
-  // "https://frank-gp.github.io/component/stat.js",
-  // "https://frank-gp.github.io/component/loader.js",
-  "https://frank-gp.github.io/component/head.js",
-  "https://frank-gp.github.io/component/header.js",
-  "https://frank-gp.github.io/component/footer.js",
-  // "https://frank-gp.github.io/lib/js/youtube-embed.js",
-  // Add more optional JS files here
-];
+  "component/head.js",
+  "component/header.js",
+  "component/footer.js", //
+].map((file) => baseUrl + file);
 
 jsFiles.forEach((jsFile) => {
-  import(jsFile)
-    // .then((module) => {
-    //   console.log(`Successfully imported: ${jsFile}`);
-    // })
-    .catch((error) => {
-      console.error(`Failed to import: ${jsFile}`, error);
-    });
+  import(jsFile).catch((error) => {
+    console.error(`Failed to import: ${jsFile}`, error);
+  });
 });
 
-// Dynamically import CSS files
+// CSS dinámico
 const cssFiles = [
-  "https://frank-gp.github.io/icon/icomoon/style.css",
-  "https://frank-gp.github.io/component/global.css",
-  // "https://frank-gp.github.io/wp-assets/style/wp-content.css",
-  // Add more CSS files here
-];
+  "component/global.css", //
+].map((file) => baseUrl + file);
 
 cssFiles.forEach((cssFile) => {
   const linkElement = document.createElement("link");

@@ -3,9 +3,571 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="0;url=https://fgp.one" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-    <title>Redirecting...</title>
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#007acc" />
+    <meta name="author" content="Frank GP" />
+
+    <!-- SEO -->
+    <title>Frank GP - Mobile App Development | React Native & Flutter Expert</title>
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="description"
+      content="Professional mobile app development with React Native & Flutter. 2+ years experience, 5+ apps published. Free consultation for startups & entrepreneurs."
+    />
+    <meta
+      name="keywords"
+      content="mobile app development, react native, flutter, app developer, startup apps, entrepreneur"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Frank GP - Mobile App Development Expert" />
+    <meta
+      property="og:description"
+      content="Transform your idea into a powerful mobile app with React Native & Flutter. Free consultation available."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+
+    <!-- External CSS and Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body></body>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="logo">
+          <div class="logo-icon">FGP</div>
+          Frank GP
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#technologies">Technologies</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#calculator">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="#contact" class="cta-header">Free Consultation</a>
+
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <ul class="mobile-nav-links">
+            <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
+            <li><a href="#technologies" onclick="closeMobileMenu()">Technologies</a></li>
+            <li><a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a></li>
+            <li><a href="#calculator" onclick="closeMobileMenu()">Pricing</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" onclick="closeMobileMenu()">
+            <i class="fas fa-phone"></i>
+            Free Consultation
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Transform Your Ideas Into Powerful Mobile Apps</h1>
+          <p>
+            Professional mobile app development with React Native & Flutter. From concept to App Store - I help startups
+            and entrepreneurs bring their vision to life.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Apps Published</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">2+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Client Satisfaction</span>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fas fa-phone"></i>
+              Start Your Project
+            </a>
+            <a href="#portfolio" class="btn btn-secondary">
+              <i class="fas fa-eye"></i>
+              View Portfolio
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="app-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h3 style="color: white; text-align: center">Your App Here</h3>
+              <p style="color: rgba(255, 255, 255, 0.8); text-align: center; font-size: 0.9rem">
+                Ready for iOS & Android
+              </p>
+            </div>
+          </div>
+
+          <div class="floating-elements">
+            <div class="floating-icon">
+              <i class="fab fa-react"></i>
+            </div>
+            <div class="floating-icon">
+              <i class="fab fa-google-play"></i>
+            </div>
+            <div class="floating-icon">
+              <i class="fab fa-app-store-ios"></i>
+            </div>
+            <div class="floating-icon">
+              <i class="fas fa-code"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Complete Mobile Development Services</h2>
+          <p class="section-subtitle">
+            From initial concept to App Store deployment, I provide end-to-end mobile app development solutions tailored
+            for startups and entrepreneurs.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 class="service-title">Complete App Development</h3>
+            <p class="service-description">
+              Full-stack mobile app development from wireframes to deployment. Native performance with cross-platform
+              efficiency using React Native and Flutter.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="service-title">Technical Consulting</h3>
+            <p class="service-description">
+              Strategic technical guidance to help you make informed decisions about architecture, technology stack, and
+              development roadmap for your mobile project.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3 class="service-title">Maintenance & Updates</h3>
+            <p class="service-description">
+              Ongoing support, bug fixes, feature updates, and performance optimization to keep your app running
+              smoothly and users engaged.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3 class="service-title">UI/UX Design</h3>
+            <p class="service-description">
+              User-centered design that converts. Clean interfaces, intuitive user flows, and delightful interactions
+              that users love and remember.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-store"></i>
+            </div>
+            <h3 class="service-title">App Store Publishing</h3>
+            <p class="service-description">
+              Complete App Store and Google Play deployment including optimization, compliance review, and launch
+              strategy to maximize your app's visibility.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="service-title">MVP Development</h3>
+            <p class="service-description">
+              Rapid MVP development to validate your idea quickly and cost-effectively. Get to market fast and iterate
+              based on real user feedback.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="technologies" id="technologies">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Cutting-Edge Technologies</h2>
+          <p class="section-subtitle">
+            I use the latest and most reliable technologies to build scalable, performant, and maintainable mobile
+            applications.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-card">
+            <div class="tech-logo">
+              <i class="fab fa-react"></i>
+            </div>
+            <h3 class="tech-name">React Native</h3>
+            <p class="tech-description">
+              Cross-platform development with native performance. Write once, deploy everywhere - iOS and Android.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-logo">
+              <i class="fas fa-wing"></i>
+            </div>
+            <h3 class="tech-name">Flutter</h3>
+            <p class="tech-description">
+              Google's UI toolkit for beautiful, natively compiled applications with lightning-fast development cycles.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-logo">
+              <i class="fab fa-js-square"></i>
+            </div>
+            <h3 class="tech-name">JavaScript</h3>
+            <p class="tech-description">
+              Modern ES6+ JavaScript for robust, scalable applications with excellent ecosystem support.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-logo">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3 class="tech-name">Dart</h3>
+            <p class="tech-description">
+              Optimized for UI development with features like hot reload for incredibly fast development iterations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Project: TranspaServic</h2>
+          <p class="section-subtitle">
+            A comprehensive transport and logistics management application showcasing advanced mobile development
+            capabilities.
+          </p>
+        </div>
+
+        <div class="portfolio-showcase">
+          <div class="portfolio-info">
+            <h3 class="app-title">TranspaServic</h3>
+            <p class="app-description">
+              A powerful transport and logistics management app that streamlines order management, real-time tracking,
+              and customer communications through integrated WhatsApp API and WebSocket technology.
+            </p>
+
+            <ul class="app-features">
+              <li>Real-time order management system</li>
+              <li>WebSocket integration for live tracking</li>
+              <li>WhatsApp API notifications</li>
+              <li>Cross-platform compatibility (iOS & Android)</li>
+              <li>Intuitive admin dashboard</li>
+              <li>Customer portal with real-time updates</li>
+            </ul>
+
+            <div class="app-links">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.fgp555.transpaservic"
+                target="_blank"
+                class="store-badge"
+              >
+                <i class="fab fa-google-play"></i>
+                Google Play
+              </a>
+            </div>
+          </div>
+
+          <div class="portfolio-visual">
+            <img
+              src="https://i.postimg.cc/k4jzDvGq/mega-io-iphone-se-1.webp"
+              alt="TranspaServic App Screenshot"
+              class="app-screenshot"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Project Cost Calculator</h2>
+          <p class="section-subtitle">
+            Get an instant estimate for your mobile app project. All prices are starting points - final quotes are
+            personalized based on your specific requirements.
+          </p>
+        </div>
+
+        <div class="calculator-container">
+          <form class="calculator-form" id="calculatorForm">
+            <div class="form-group">
+              <label class="form-label">App Type</label>
+              <select class="form-select" id="appType">
+                <option value="simple">Simple App (Basic CRUD)</option>
+                <option value="medium">Medium Complexity</option>
+                <option value="complex">Complex App (Advanced Features)</option>
+                <option value="enterprise">Enterprise Solution</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Platforms</label>
+              <select class="form-select" id="platforms">
+                <option value="single">Single Platform (iOS or Android)</option>
+                <option value="cross">Cross-Platform (iOS + Android)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Backend Requirements</label>
+              <select class="form-select" id="backend">
+                <option value="none">No Backend Needed</option>
+                <option value="simple">Simple Backend (API + Database)</option>
+                <option value="complex">Complex Backend (Multiple Services)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Design Requirements</label>
+              <select class="form-select" id="design">
+                <option value="basic">Basic UI (Template-based)</option>
+                <option value="custom">Custom UI/UX Design</option>
+                <option value="premium">Premium Design + Animations</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Features</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="auth" name="features" value="200" />
+                  <label for="auth">User Authentication</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="payments" name="features" value="300" />
+                  <label for="payments">Payment Integration</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="maps" name="features" value="250" />
+                  <label for="maps">Maps & Geolocation</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="notifications" name="features" value="150" />
+                  <label for="notifications">Push Notifications</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="chat" name="features" value="400" />
+                  <label for="chat">Real-time Chat</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="social" name="features" value="200" />
+                  <label for="social">Social Media Integration</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Timeline</label>
+              <select class="form-select" id="timeline">
+                <option value="standard">Standard (2-3 months)</option>
+                <option value="fast">Fast Track (1-2 months)</option>
+                <option value="extended">Extended (3+ months)</option>
+              </select>
+            </div>
+
+            <div class="price-result">
+              <div class="price-estimate" id="priceEstimate">$1,500 - $3,500</div>
+              <p class="price-note">
+                *This is an estimated range. Final pricing depends on detailed requirements and will be provided after
+                our free consultation.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Let's Build Your App Together</h2>
+          <p class="section-subtitle">
+            Ready to start your mobile app project? Get in touch for a free consultation and let's discuss how I can
+            help bring your vision to life.
+          </p>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3 style="margin-bottom: 2rem; color: var(--text-primary)">Get In Touch</h3>
+
+            <div class="contact-methods">
+              <a href="mailto:fgp555@gmail.com" class="contact-method">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <p>fgp555@gmail.com</p>
+                </div>
+              </a>
+
+              <a href="https://wa.me/51972328553" target="_blank" class="contact-method">
+                <div class="contact-icon">
+                  <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>WhatsApp</h4>
+                  <p>+51 972 328 553</p>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/franklingp/" target="_blank" class="contact-method">
+                <div class="contact-icon">
+                  <i class="fab fa-linkedin"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>LinkedIn</h4>
+                  <p>/in/franklingp</p>
+                </div>
+              </a>
+
+              <div class="contact-method" style="cursor: default">
+                <div class="contact-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                  <h4>Response Time</h4>
+                  <p>Within 24 hours</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-form">
+            <h3 style="margin-bottom: 2rem; color: var(--text-primary)">Project Brief</h3>
+
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Name *</label>
+                  <input type="text" class="form-input" id="name" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email *</label>
+                  <input type="email" class="form-input" id="email" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Company</label>
+                  <input type="text" class="form-input" id="company" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Budget Range</label>
+                  <select class="form-select" id="budget">
+                    <option value="">Select budget range</option>
+                    <option value="500-1500">$500 - $1,500</option>
+                    <option value="1500-3000">$1,500 - $3,000</option>
+                    <option value="3000-5000">$3,000 - $5,000</option>
+                    <option value="5000+">$5,000+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Project Description *</label>
+                <textarea
+                  class="form-textarea"
+                  id="description"
+                  placeholder="Tell me about your app idea, target audience, main features, and any specific requirements..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Timeline</label>
+                <select class="form-select" id="projectTimeline">
+                  <option value="">When do you need it?</option>
+                  <option value="asap">ASAP</option>
+                  <option value="1-2months">1-2 months</option>
+                  <option value="2-3months">2-3 months</option>
+                  <option value="3+months">3+ months</option>
+                  <option value="flexible">Flexible</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem">
+                <i class="fas fa-paper-plane"></i>
+                Send Project Brief
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#technologies">Technologies</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#calculator">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <p class="footer-text">
+          © 2024 Frank GP. Mobile App Developer specializing in React Native & Flutter development for startups and
+          entrepreneurs.
+        </p>
+      </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>
