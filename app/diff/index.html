@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <!-- <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" /> -->
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <!-- <script src="https://frank-gp.github.io/component/social.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/component/contact.js" defer></script> -->
+
+    <!-- lib -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/clipboard.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/highlight.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/youtube-embed.js"></script> -->
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <fgp_header></fgp_header>
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mergely/4.3.5/mergely.css" /><link rel="stylesheet" href="./style.css" />
+      <!-- partial:index.partial.html -->
+      <div class="demo-editor">
+        <div class="diffs">
+          <header>
+            <h1>Mergely Visualized Diff</h1>
+            <button id="prev" title="Previous diff">▲</button>
+            <button id="next" title="Next diff">▼</button>
+            <button id="wrap" title="Toggle line wrapping">↲</button>
+          </header>
+
+          <div class="compare-container">
+            <div class="mergely-resizer">
+              <div id="mergely"></div>
+            </div>
+          </div>
+
+          <footer>
+            <h1>Source files</h1>
+            <ul>
+              <li><a id="file1" href="https://gist.githubusercontent.com/quotient/c426a69bfa550d1a43a0/raw/645d996d8d23e48dc9b691a10238d690df845f4f/gistfile1.txt">File 1</a></li>
+              <li><a id="file2" href="https://gist.githubusercontent.com/quotient/a9baf2c58972aa22c621/raw/c8f6caf22d330cb34fc6f70ece44699312b2b7b4/gistfile1.txt">File 2</a></li>
+            </ul>
+          </footer>
+        </div>
+      </div>
+      <!-- partial -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mergely/4.3.5/mergely.js"></script>
+      <script src="./script.js"></script>
+    </main>
+  </body>
+  <fgp_footer></fgp_footer>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>Minute Timer</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+      }
+      #timer {
+        font-size: 48px;
+        margin-top: 20px;
+      }
+      #elapsedTime {
+        font-size: 20px;
+        margin-top: 10px;
+        color: gray;
+      }
+      section {
+        max-width: fit-content;
+        margin: auto;
+      }
+      #bellIcon {
+        font-size: 40px;
+        color: #f39c12;
+        margin-top: 20px;
+        display: none;
+      }
+      .shake {
+        animation: shake 0.6s infinite;
+      }
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(15deg);
+        }
+        50% {
+          transform: rotate(-15deg);
+        }
+        75% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+      #progressBar {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+    <div style="position: absolute; top: 10px; left: 20px">
+      <select id="languageSelect" onchange="setLanguage(this.value)">
+        <option value="en">🌐 English</option>
+        <option value="es">🌐 Español</option>
+      </select>
+    </div>
+
+    <main>
+      <section>
+        <h1>Minute Timer</h1>
+        <input type="number" id="minutesInput" placeholder="Minutes" min="0.1" step="0.1" />
+        <button onclick="startTimer()"><i class="fas fa-play"></i> Start</button>
+        <button onclick="stopAlarm()"><i class="fas fa-stop"></i> Stop Alarm</button>
+
+        <div id="timer">00:00:00</div>
+        <div id="elapsedTime">Elapsed: 00:00:00</div>
+
+        <progress id="progressBar" max="100" value="0"></progress>
+        <div id="bellIcon"><i class="fas fa-bell"></i></div>
+
+        <audio id="alarmSound" src="./keyboard-typing.mp3" preload="auto" loop></audio>
+      </section>
+    </main>
+
+    <script>
+      let countdown;
+      let totalSeconds = 0;
+      let elapsedSeconds = 0;
+      let currentLang = "en";
+
+      const translations = {
+        en: {
+          title: "Minute Timer",
+          placeholder: "Minutes",
+          start: "Start",
+          stop: "Stop Alarm",
+          notification: "Time's up!",
+          inputAlert: "Please enter a valid number of minutes.",
+        },
+        es: {
+          title: "Temporizador de Minutos",
+          placeholder: "Minutos",
+          start: "Iniciar",
+          stop: "Detener Alarma",
+          notification: "¡Tiempo terminado!",
+          inputAlert: "Por favor ingresa un número válido de minutos.",
+        },
+      };
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        document.querySelector("h1").textContent = t.title;
+        document.getElementById("minutesInput").placeholder = t.placeholder;
+        document.querySelector("button[onclick='startTimer()']").innerHTML = `<i class="fas fa-play"></i> ${t.start}`;
+        document.querySelector("button[onclick='stopAlarm()']").innerHTML = `<i class="fas fa-stop"></i> ${t.stop}`;
+        document.getElementById("elapsedLabel").textContent = t.elapsedLabel;
+      }
+
+      function formatTime(sec) {
+        const hrs = String(Math.floor(sec / 3600)).padStart(2, "0");
+        const mins = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
+        const secs = String(sec % 60).padStart(2, "0");
+        return `${hrs}:${mins}:${secs}`;
+      }
+
+      function startTimer() {
+        const minutes = parseFloat(document.getElementById("minutesInput").value);
+        if (isNaN(minutes) || minutes <= 0) {
+          alert(translations[currentLang].inputAlert);
+          return;
+        }
+
+        clearInterval(countdown);
+        document.getElementById("bellIcon").style.display = "none";
+        document.getElementById("bellIcon").classList.remove("shake");
+
+        totalSeconds = Math.floor(minutes * 60);
+        elapsedSeconds = 0;
+
+        countdown = setInterval(() => {
+          const remaining = totalSeconds - elapsedSeconds;
+          document.getElementById("timer").textContent = formatTime(remaining);
+          document.getElementById("progressBar").value = (elapsedSeconds / totalSeconds) * 100;
+          document.getElementById("elapsedTime").textContent = formatTime(elapsedSeconds);
+
+          if (remaining <= 0) {
+            clearInterval(countdown);
+            triggerAlarm();
+          }
+
+          elapsedSeconds++;
+        }, 1000);
+      }
+
+      function triggerAlarm() {
+        const bell = document.getElementById("bellIcon");
+        const audio = document.getElementById("alarmSound");
+
+        bell.style.display = "block";
+        bell.classList.add("shake");
+        audio.play();
+
+        if ("Notification" in window && Notification.permission === "granted") {
+          new Notification(translations[currentLang].notification);
+        }
+      }
+
+      function stopAlarm() {
+        const bell = document.getElementById("bellIcon");
+        const audio = document.getElementById("alarmSound");
+
+        clearInterval(countdown);
+        bell.classList.remove("shake");
+        bell.style.display = "none";
+        audio.pause();
+        audio.currentTime = 0;
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const isDark = html.getAttribute("data-theme") === "dark";
+        const newTheme = isDark ? "light" : "dark";
+
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        document.getElementById("themeIcon").className = newTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
+      }
+
+      function applySystemTheme() {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const html = document.documentElement;
+        html.setAttribute("data-theme", prefersDark ? "dark" : "light");
+        document.getElementById("themeIcon").className = prefersDark ? "fas fa-moon" : "fas fa-sun";
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Tema
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+          document.getElementById("themeIcon").className = savedTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
+        } else {
+          applySystemTheme();
+        }
+
+        // Notificaciones
+        if ("Notification" in window && Notification.permission !== "granted") {
+          Notification.requestPermission();
+        }
+
+        // Idioma
+        setLanguage(document.getElementById("languageSelect").value);
+      });
+    </script>
+  </body>
+</html>

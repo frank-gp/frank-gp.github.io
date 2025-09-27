@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>Mini-Postman</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      form,
+      .container {
+        max-width: 33em;
+        margin: auto;
+      }
+      input,
+      textarea {
+        width: 100%;
+      }
+      .btn_container {
+        position: sticky;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Mini-PostMan PRO</h1>
+      <form id="requestForm">
+        <label for="apiUrl">API URL:</label>
+        <input type="text" id="apiUrl" value="https://api.1rodemayo.com/crud/api" />
+        <br />
+        <br />
+
+        <label for="content-type">Select Content-Type:</label>
+        <select id="content-type" name="content-type">
+          <option value="application/json">Content-Type: application/json</option>
+          <option value="text/plain">Content-Type: text/plain</option>
+          <option value="application/x-www-form-urlencoded">Content-Type: application/x-www-form-urlencoded</option>
+        </select>
+        <br /><br />
+
+        <aside class="btn_container">
+          <button type="button" onclick="sendRequest('GET')">GET</button>
+          <button type="button" onclick="sendRequest('POST')">POST</button>
+          <button type="button" onclick="sendRequest('PUT')">PUT</button>
+          <button type="button" onclick="sendRequest('DELETE')">DELETE</button><br /><br />
+
+          <script>
+            let buttonAll = document.querySelectorAll("button");
+            buttonAll.forEach((element) => {
+              element.addEventListener("click", function () {
+                this.setAttribute("disabled", "");
+                this.setAttribute("aria-busy", "true");
+                // this.textContent = "Please wait…"
+              });
+            });
+
+            function removeLoading() {
+              buttonAll.forEach((element) => {
+                element.removeAttribute("disabled", "");
+                element.removeAttribute("aria-busy");
+              });
+            }
+          </script>
+        </aside>
+        <a href="https://api.1rodemayo.com/crud/reset" onclick="reset(event)">reset</a>
+        <a href="https://api.1rodemayo.com/crud/enable" target="_blank">enable</a>
+        <a href="https://api.1rodemayo.com/crud/disable" target="_blank">disable</a>
+
+        <div class="container">
+          <pre><code>{"id": 2,"name": "Peter Demo 2"}</code></pre>
+          <textarea name="" id="requestData" cols="30" rows="10" placeholder="requestData"></textarea>
+          <textarea name="" id="responseData" cols="30" rows="10" placeholder="responseData"></textarea>
+        </div>
+      </form>
+
+      <section class="demo container">
+        <hr />
+        <h2>code demo</h2>
+        <div class="">
+          <label for=""
+            >Content-Type: application/json<input type="text" name="" id="" readonly value='[{"name": " user 1"}]'
+          /></label>
+          <label for="">Content-Type: text/plain<input type="text" name="" id="" readonly value="text demo" /></label>
+          <label for=""
+            >Content-Type: application/x-www-form-urlencoded<input
+              type="text"
+              name=""
+              id=""
+              readonly
+              value="key1=value1&key2=value2"
+          /></label>
+          <label for="">api<input type="text" name="" id="" readonly value="https://jsonplaceholder.typicode.com/users" /></label>
+        </div>
+      </section>
+      <script>
+        function sendRequest(method) {
+          var contentType = document.getElementById("content-type").value;
+          var apiUrl = document.getElementById("apiUrl").value;
+          var requestData = document.getElementById("requestData").value;
+          // var contentId = document.getElementById("conte-id").value;
+
+          var requestOptions = {
+            method: method,
+            headers: {
+              "Content-Type": contentType,
+            },
+          };
+
+          // Check if requestData is non-empty and valid JSON
+          if (requestData.trim() !== "") {
+            try {
+              // Check if the selected content type is application/json
+              if (contentType === "application/json") {
+                try {
+                  // Parse requestData as JSON
+                  var requestDataJSON = JSON.parse(requestData);
+                } catch (error) {
+                  console.error("Error parsing JSON:", error);
+                  return; // Exit the function if there's an error
+                }
+              } else {
+                var requestDataJSON = requestData;
+              }
+
+              // Add body only if the method is not GET or HEAD
+              if (method !== "GET" && method !== "HEAD") {
+                requestOptions.body = JSON.stringify(requestDataJSON);
+              }
+            } catch (error) {
+              console.error("Error parsing JSON:", error);
+              return; // Exit the function if there's an error
+            }
+          }
+
+          // Append contentId to URL for DELETE request
+          // if (method === "DELETE" && contentId) {
+          //   apiUrl += "/" + contentId;
+          // }
+
+          fetch(apiUrl, requestOptions)
+            .then((response) => response.json()) // Change this if you're expecting different data
+            .then((data) => {
+              // Display response data in textarea
+              console.log(data);
+              document.getElementById("responseData").value = JSON.stringify(data, null, 2);
+            })
+            .catch((error) => console.error("Error:", error))
+            .finally(() => removeLoading());
+        }
+
+        function reset() {
+          event.preventDefault();
+          var url = "https://api.1rodemayo.com/crud/reset"; // Replace with your URL
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              // document.getElementById("contentContainer").innerHTML = data;
+              console.log(data);
+              document.getElementById("responseData").value = JSON.stringify(data, null, 2);
+            })
+            .catch((error) => console.error("Error fetching content:", error));
+        }
+      </script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin: 1em;
+    max-width: 25rem;
+    margin: 5vh auto;
+    padding: 2em;
+    border: 1px solid;
+  
+    & * {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+  
+    & > input,
+    & > textarea,
+    & > button {
+      padding: 1em;
+      border: 1px solid #0004;
+      outline: none;
+      color: #567;
+      background-color: #fff;
+    }
+  
+    & button {
+      cursor: pointer;
+    }
+  }
+  

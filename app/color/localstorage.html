@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="https://fgp.one/essential.css" /> -->
+    <title>Document</title>
+  </head>
+  <body class="bg1">
+    <form action="#">
+      <input type="text" name="text" id="text" autofocus value="#369" />
+      <input type="submit" value="value" />
+    </form>
+    <br />
+    <button onclick="resetLocal()">localStorage.clear()</button>
+    <script>
+      // https://blog.logrocket.com/localstorage-javascript-complete-guide/
+
+      let form = document.querySelector("form");
+
+      if (localStorage.getItem(0)) {
+        localStorage.getItem(0);
+      } else {
+        localStorage.setItem(0, 0);
+      }
+
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        if (localStorage.getItem(0)) {
+          //   console.log("exist");
+          let localStorageNum = localStorage.getItem(0);
+          let numberLocal = Number(localStorageNum) + 1;
+          localStorage.setItem(0, numberLocal);
+          console.log(numberLocal);
+          //   return numberLocal
+          let newDateGetTime = new Date().getTime();
+          let text = document.querySelector("input[type=text]").value;
+
+          localStorage.setItem(numberLocal, text);
+          location.reload();
+        } else {
+          //   console.log("no exist");
+          localStorage.setItem(0, 0);
+        }
+      };
+      localStorage.getItem(0);
+
+      const items = { ...localStorage };
+      //   console.log(items);
+      let objectKeys = Object.keys(items);
+      let objectValues = Object.values(items);
+      let objectEntries = Object.entries(items);
+
+      //   console.log(objectKeys);
+      //   console.log(objectValues);
+      //   console.log(objectEntries);
+
+      objectEntries.forEach((element) => {
+        // console.log(element);
+
+        let element1 = document.createElement("li");
+        element1.textContent = element;
+        document.body.appendChild(element1);
+      });
+
+      let resetLocal = () => {
+        window.localStorage.clear();
+        location.reload();
+      };
+
+      let list_ = document.querySelector("li");
+      list_.classList.add("display-none");
+    </script>
+    <style>
+      .display-none {
+        display: none;
+      }
+    </style>
+  </body>
+</html>

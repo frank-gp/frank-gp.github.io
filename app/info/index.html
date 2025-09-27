@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <!-- <script src="https://frank-gp.github.io/component/social.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/component/contact.js" defer></script> -->
+
+    <!-- lib -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/clipboard.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/highlight.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/youtube-embed.js"></script> -->
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <section class="currentDate"></section>
+      <script>
+        // ========== Current Date and Time... ==========
+        function currentDateTime() {
+          const currentDate = new Date();
+
+          // const hourOptions = { hour: "numeric", minute: "numeric", second: "numeric", hour12: false };
+          // var hour_minute_second = currentDate.toLocaleString(undefined, hourOptions);
+
+          currentDateHTML = /* html */ `
+          <p>Current Date and Time</p>
+          <h1>
+              ${new Date().toLocaleTimeString([], { hour12: false })}
+          </h1>
+          <h3>
+             ${currentDate.toLocaleString(undefined, { weekday: "long" })} 
+             ${currentDate.getDate()}
+             ${currentDate.toLocaleString(undefined, { month: "long" })} 
+             ${currentDate.getFullYear()} 
+          </h3> 
+          `;
+
+          document.querySelector(".currentDate").innerHTML = currentDateHTML;
+        }
+        currentDateTime();
+        setInterval(currentDateTime, 1000);
+        // ========== Current Date and Time. ==========
+      </script>
+
+      <section id="containerIP"></section>
+      <script>
+        // Function to send data to the DOM
+        function sendDataToDOM(data) {
+          const containerIP = document.querySelector("#containerIP");
+          containerIP.innerHTML = `
+  <p>IP Public: ${data.ip}</p>
+  <p>City: ${data.city}</p>
+  <p>Region: ${data.region}</p>
+  <p>Country: ${data.country_name}</p>
+  `;
+        }
+
+        // Retrieve IP address, city, region, and country
+        fetch("https://api.ipify.org?format=json")
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log("IP: " + data.ip);
+            fetch("https://ipapi.co/" + data.ip + "/json/")
+              .then((response) => response.json())
+              .then((data) => {
+                // console.log("City: " + data.city);
+                // console.log("Region: " + data.region);
+                // console.log("Country: " + data.country_name);
+                // Call the function to send data to the DOM
+                sendDataToDOM(data);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+        // ========== newIP_provider... ==========
+        // console.log("==========  ==========");
+
+        // Make a GET request to ipapi API
+        fetch("https://ipapi.co/json/")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("==========  ==========");
+            console.log(data.ip + " ==> (ip)");
+            console.log(data.network + " ==> (network)");
+            console.log(data.city + " ==> (city)");
+            console.log(data.country_name + " ==> (country_name)");
+            console.log(data.country_tld + " ==> (country_tld)");
+            console.log(data.timezone + " ==> (timezone)");
+            console.log(data.utc_offset + " ==> (utc_offset)");
+            console.log(data.country_calling_code + " ==> (country_calling_code)");
+            console.log(data.currency + " ==> (currency)");
+            console.log(data.currency_name + " ==> (currency_name)");
+            console.log(data.languages + " ==> (languages)");
+            console.log(data.country_population + " ==> (country_population)");
+            console.log(data.org + " ==> (org)");
+          })
+          .catch((error) => {
+            console.log(error); // Handle any errors that occur during the request
+          });
+        // ========== newIP_provider. ==========
+      </script>
+
+      <section class="consoleSection">
+        <section id="consoleLog"></section>
+        <script src="https://frank-gp.github.io/lib/console.js" sync></script>
+        <noscript>
+          <h1>JavaScript is disabled!</h1>
+        </noscript>
+        <script>
+          // ========== Browser... ==========
+          // Check if the browser is Internet Explorer
+          var isIE = false;
+          if (navigator.userAgent.indexOf("MSIE") !== -1 || navigator.appVersion.indexOf("Trident/") > -1) {
+            isIE = true;
+          }
+
+          // Get the browser name and version
+          var browserName = "";
+          var browserVersion = "";
+
+          if (isIE) {
+            browserName = "Internet Explorer";
+            // Extract the version number from the user agent string for IE
+            var ua = navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+            if (msie > 0) {
+              // IE 10 or older => return version number
+              browserVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
+            } else {
+              var trident = ua.indexOf("Trident/");
+              if (trident > 0) {
+                // IE 11 => return version number
+                var rv = ua.indexOf("rv:");
+                browserVersion = parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
+              }
+            }
+          } else {
+            // For modern browsers
+            var userAgent = navigator.userAgent;
+            var tem;
+            var match = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+
+            if (/trident/i.test(match[1])) {
+              tem = /\brv[ :]+(\d+)/g.exec(userAgent) || [];
+              browserName = "Internet Explorer";
+              browserVersion = parseInt(tem[1], 10);
+            }
+
+            if (match[1] === "Chrome") {
+              tem = userAgent.match(/\bOPR\/(\d+)/);
+              if (tem !== null) {
+                browserName = "Opera";
+                browserVersion = parseInt(tem[1], 10);
+              }
+            }
+
+            match = match[2] ? [match[1], match[2]] : [navigator.appName, navigator.appVersion, "-?"];
+            if ((tem = userAgent.match(/version\/(\d+)/i)) !== null) {
+              match.splice(1, 1, tem[1]);
+            }
+
+            browserName = match[0];
+            browserVersion = parseInt(match[1], 10);
+          }
+
+          // Output the browser name and version
+          console.log("Browser : " + browserName + " " + browserVersion);
+          console.log("Browser Resolution: " + window.innerWidth + "x" + window.innerHeight);
+
+          console.log("Internet: " + navigator.connection.effectiveType);
+
+          //dark/light
+          var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          console.log("Dark Mode: " + isDarkMode);
+
+          // ========== Browser. ==========
+
+          // ========== OS... ==========
+          // Check user agent for browser and operating system information
+          var userAgent = navigator.userAgent;
+
+          // Check operating system
+          var operatingSystem = "";
+          if (userAgent.indexOf("Win") !== -1) {
+            operatingSystem = "Windows";
+          } else if (userAgent.indexOf("Mac") !== -1) {
+            operatingSystem = "MacOS";
+          } else if (userAgent.indexOf("Android") !== -1) {
+            operatingSystem = "Android";
+          } else if (userAgent.indexOf("Linux") !== -1) {
+            operatingSystem = "Linux";
+          } else if (userAgent.indexOf("iOS") !== -1) {
+            operatingSystem = "iOS";
+          }
+
+          // ========== System... ==========
+          // Display the operating system
+          console.log("Operating System: " + operatingSystem);
+
+          // System Architecture
+          var is64Bit = navigator.userAgent.indexOf("WOW64") !== -1 || navigator.userAgent.indexOf("Win64") !== -1;
+          console.log("System Architecture: " + (is64Bit ? "64-bit" : "32-bit"));
+          // ========== System. ==========
+
+          // ========== screen... ==========
+          console.log("Screen Resolution (Device): " + screen.width + "x" + screen.height);
+
+          // ========== screen. ==========
+
+          // ========== OS. ==========
+
+          // Retrieve country name and timezone
+          console.log("Country Name: " + Intl.DateTimeFormat().resolvedOptions().timeZone);
+          console.log("Timezone: " + new Date().toString().match(/([A-Z]+[+-][0-9]+)/)[1]);
+
+          // ========== time_difference... ==========
+          var currentDateTime = new Date();
+          var utcOffset = currentDateTime.getTimezoneOffset();
+          var utcDifference = -utcOffset / 60; // Convert minutes to hours
+
+          console.log("UTC Difference: " + utcDifference + " hours");
+          // ========== time_difference. ==========
+
+          // ========== Enable Cookie?... ==========
+          var isJavaEnabled = navigator.javaEnabled();
+          console.log("Java Enabled: " + isJavaEnabled);
+          function areCookiesEnabled() {
+            // Set a test cookie
+            document.cookie = "testCookie=1";
+
+            // Check if the test cookie can be read
+            var cookiesEnabled = document.cookie.indexOf("testCookie") !== -1;
+
+            // Delete the test cookie
+            document.cookie = "testCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            return cookiesEnabled;
+          }
+
+          console.log("Cookies Enabled: " + areCookiesEnabled());
+
+          // ========== Enable Cookie?. ==========
+        </script>
+      </section>
+    </main>
+  </body>
+</html>

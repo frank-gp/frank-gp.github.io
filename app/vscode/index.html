@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://frank-gp.github.io/component/layout.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <meta property="og:image" content="https://i.postimg.cc/fbwLF9Ft/fb-cover-vscode-shortcode.webp" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VSCode Shortcuts - Interactive Guide</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="container-vscode">
+      <div class="header">
+        <h1><i class="fas fa-keyboard"></i> VSCode Shortcuts</h1>
+        <p>
+          Master Visual Studio Code with this interactive keyboard shortcuts guide. Check off shortcuts as you learn
+          them!
+        </p>
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="resetBtn" title="Reset all progress (Ctrl+Shift+R)">
+          <i class="fas fa-redo"></i> Reset Progress
+        </button>
+        <button class="btn" id="toggleAllBtn" title="Expand/collapse all sections">
+          <i class="fas fa-expand-arrows-alt"></i> Toggle All
+        </button>
+        <button class="btn" id="exportBtn" title="Export progress as JSON (Ctrl+E)">
+          <i class="fas fa-download"></i> Export Progress
+        </button>
+      </div>
+
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search shortcuts... (Ctrl+F to focus, Esc to clear)"
+          id="searchInput"
+        />
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0% completed</div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-number" id="totalShortcuts">0</span>
+          <span class="stat-label">Total Shortcuts</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="learnedShortcuts">0</span>
+          <span class="stat-label">Learned</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="importantShortcuts">0</span>
+          <span class="stat-label">Important</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="remainingShortcuts">0</span>
+          <span class="stat-label">Remaining</span>
+        </div>
+      </div>
+
+      <main id="shortcutsContainer">
+        <!-- Shortcuts will be generated here -->
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

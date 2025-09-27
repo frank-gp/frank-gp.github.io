@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini WebSocket Postman</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 2.5em;
+        font-weight: 300;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        opacity: 0.9;
+        font-size: 1.1em;
+      }
+
+      .main-content {
+        padding: 30px;
+      }
+
+      .connection-panel {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 30px;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .connection-panel:hover {
+        border-color: #4facfe;
+        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.1);
+      }
+
+      .input-group {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+
+      .input-group label {
+        font-weight: 600;
+        color: #495057;
+        min-width: 100px;
+      }
+
+      .input-group input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+      }
+
+      .input-group input:focus {
+        outline: none;
+        border-color: #4facfe;
+        box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+      }
+
+      .btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+      }
+
+      .btn-danger {
+        background: linear-gradient(90deg, #ff6b6b 0%, #ee5a24 100%);
+        color: white;
+      }
+
+      .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      }
+
+      .btn-success {
+        background: linear-gradient(90deg, #51cf66 0%, #40c057 100%);
+        color: white;
+      }
+
+      .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(81, 207, 102, 0.4);
+      }
+
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-disconnected {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .status-connected {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+
+      .status-connecting {
+        background: #fff3e0;
+        color: #ef6c00;
+      }
+
+      .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .message-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .send-section,
+      .log-section {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 25px;
+        border: 2px solid #e9ecef;
+      }
+
+      .section-title {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-icon {
+        width: 20px;
+        height: 20px;
+        fill: #4facfe;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-family: "Consolas", "Monaco", monospace;
+        font-size: 14px;
+        resize: vertical;
+        transition: border-color 0.3s ease;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: #4facfe;
+        box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+      }
+
+      #messageInput {
+        min-height: 120px;
+        margin-bottom: 15px;
+      }
+
+      #messagesLog {
+        min-height: 300px;
+        background: #1e1e1e;
+        color: #f8f8f2;
+        font-family: "Consolas", "Monaco", monospace;
+        font-size: 13px;
+        line-height: 1.4;
+        overflow-y: auto;
+        margin-bottom: 15px;
+      }
+
+      .log-entry {
+        padding: 5px 0;
+        border-bottom: 1px solid #333;
+      }
+
+      .log-time {
+        color: #6272a4;
+        font-size: 11px;
+      }
+
+      .log-sent {
+        color: #50fa7b;
+      }
+
+      .log-received {
+        color: #8be9fd;
+      }
+
+      .log-error {
+        color: #ff5555;
+      }
+
+      .log-info {
+        color: #f1fa8c;
+      }
+
+      .clear-log {
+        background: #6c757d;
+        color: white;
+      }
+
+      .clear-log:hover {
+        background: #5a6268;
+        transform: translateY(-1px);
+      }
+
+      @media (max-width: 768px) {
+        .message-panel {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .input-group {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .input-group label {
+          min-width: auto;
+        }
+      }
+
+      .json-formatter {
+        margin-top: 10px;
+      }
+
+      .format-btn {
+        background: #6c757d;
+        color: white;
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      .format-btn:hover {
+        background: #5a6268;
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🚀 Mini WebSocket Postman</h1>
+        <p>Herramienta profesional para pruebas de WebSocket</p>
+      </div>
+
+      <div class="main-content">
+        <div class="connection-panel">
+          <div class="input-group">
+            <label>URL:</label>
+            <input
+              type="text"
+              id="wsUrl"
+              placeholder="ws://localhost:8080 o wss://echo.websocket.org"
+              value="wss://echo.websocket.org/"
+            />
+            <span id="connectionStatus" class="status status-disconnected">
+              <span class="status-indicator" style="background-color: #c62828"></span>
+              Desconectado
+            </span>
+          </div>
+
+          <div class="input-group">
+            <button id="connectBtn" class="btn btn-primary">Conectar</button>
+            <button id="disconnectBtn" class="btn btn-danger" disabled>Desconectar</button>
+          </div>
+        </div>
+
+        <div class="message-panel">
+          <div class="send-section">
+            <h3 class="section-title">
+              <svg class="section-icon" viewBox="0 0 24 24">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+              </svg>
+              Enviar Mensaje
+            </h3>
+            <textarea id="messageInput" placeholder='{"message": "Hola WebSocket!", "type": "test"}'></textarea>
+            <div class="json-formatter">
+              <button id="formatJsonBtn" class="btn format-btn">📝 Formatear JSON</button>
+              <button id="sendBtn" class="btn btn-success" disabled>Enviar Mensaje</button>
+            </div>
+          </div>
+
+          <div class="log-section">
+            <h3 class="section-title">
+              <svg class="section-icon" viewBox="0 0 24 24">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+              </svg>
+              Log de Mensajes
+            </h3>
+            <div id="messagesLog"></div>
+            <button id="clearLogBtn" class="btn clear-log">🗑️ Limpiar Log</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class WebSocketTester {
+        constructor() {
+          this.ws = null;
+          this.isConnected = false;
+          this.initializeElements();
+          this.attachEventListeners();
+          this.addWelcomeMessage();
+        }
+
+        initializeElements() {
+          this.elements = {
+            wsUrl: document.getElementById("wsUrl"),
+            connectBtn: document.getElementById("connectBtn"),
+            disconnectBtn: document.getElementById("disconnectBtn"),
+            connectionStatus: document.getElementById("connectionStatus"),
+            messageInput: document.getElementById("messageInput"),
+            sendBtn: document.getElementById("sendBtn"),
+            messagesLog: document.getElementById("messagesLog"),
+            clearLogBtn: document.getElementById("clearLogBtn"),
+            formatJsonBtn: document.getElementById("formatJsonBtn"),
+          };
+        }
+
+        attachEventListeners() {
+          this.elements.connectBtn.addEventListener("click", () => this.connect());
+          this.elements.disconnectBtn.addEventListener("click", () => this.disconnect());
+          this.elements.sendBtn.addEventListener("click", () => this.sendMessage());
+          this.elements.clearLogBtn.addEventListener("click", () => this.clearLog());
+          this.elements.formatJsonBtn.addEventListener("click", () => this.formatJson());
+
+          // Enviar mensaje con Ctrl+Enter
+          this.elements.messageInput.addEventListener("keydown", (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+              this.sendMessage();
+            }
+          });
+
+          // Conectar con Enter en el campo URL
+          this.elements.wsUrl.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !this.isConnected) {
+              this.connect();
+            }
+          });
+        }
+
+        addWelcomeMessage() {
+          this.addLogEntry("info", "🎉 Mini WebSocket Postman iniciado correctamente");
+          this.addLogEntry("info", "💡 Tip: Usa Ctrl+Enter para enviar mensajes rápidamente");
+        }
+
+        connect() {
+          const url = this.elements.wsUrl.value.trim();
+
+          if (!url) {
+            this.addLogEntry("error", "❌ Por favor ingresa una URL válida");
+            return;
+          }
+
+          if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+            this.addLogEntry("info", "⚠️ Ya existe una conexión activa");
+            return;
+          }
+
+          this.updateConnectionStatus("connecting", "Conectando...");
+          this.addLogEntry("info", `🔄 Intentando conectar a: ${url}`);
+
+          try {
+            this.ws = new WebSocket(url);
+
+            this.ws.onopen = (event) => {
+              this.isConnected = true;
+              this.updateConnectionStatus("connected", "Conectado");
+              this.addLogEntry("info", `✅ Conectado exitosamente a ${url}`);
+              this.elements.connectBtn.disabled = true;
+              this.elements.disconnectBtn.disabled = false;
+              this.elements.sendBtn.disabled = false;
+              this.elements.wsUrl.disabled = true;
+            };
+
+            this.ws.onmessage = (event) => {
+              this.addLogEntry("received", `📥 Recibido: ${event.data}`);
+            };
+
+            this.ws.onclose = (event) => {
+              this.isConnected = false;
+              this.updateConnectionStatus("disconnected", "Desconectado");
+
+              if (event.wasClean) {
+                this.addLogEntry("info", `🔌 Conexión cerrada correctamente (código: ${event.code})`);
+              } else {
+                this.addLogEntry("error", `💥 Conexión perdida inesperadamente (código: ${event.code})`);
+              }
+
+              this.resetButtons();
+            };
+
+            this.ws.onerror = (error) => {
+              this.addLogEntry("error", `❌ Error de WebSocket: ${error.message || "Error desconocido"}`);
+              this.updateConnectionStatus("disconnected", "Error");
+              this.resetButtons();
+            };
+          } catch (error) {
+            this.addLogEntry("error", `❌ Error al crear WebSocket: ${error.message}`);
+            this.updateConnectionStatus("disconnected", "Error");
+            this.resetButtons();
+          }
+        }
+
+        disconnect() {
+          if (this.ws) {
+            this.addLogEntry("info", "🔌 Cerrando conexión...");
+            this.ws.close(1000, "Desconexión manual");
+            this.ws = null;
+          }
+          this.resetButtons();
+        }
+
+        sendMessage() {
+          if (!this.isConnected || !this.ws || this.ws.readyState !== WebSocket.OPEN) {
+            this.addLogEntry("error", "❌ No hay conexión activa");
+            return;
+          }
+
+          const message = this.elements.messageInput.value.trim();
+          if (!message) {
+            this.addLogEntry("error", "❌ El mensaje no puede estar vacío");
+            return;
+          }
+
+          try {
+            this.ws.send(message);
+            this.addLogEntry("sent", `📤 Enviado: ${message}`);
+          } catch (error) {
+            this.addLogEntry("error", `❌ Error al enviar mensaje: ${error.message}`);
+          }
+        }
+
+        formatJson() {
+          try {
+            const text = this.elements.messageInput.value.trim();
+            if (!text) return;
+
+            const parsed = JSON.parse(text);
+            const formatted = JSON.stringify(parsed, null, 2);
+            this.elements.messageInput.value = formatted;
+
+            this.addLogEntry("info", "✨ JSON formateado correctamente");
+          } catch (error) {
+            this.addLogEntry("error", `❌ Error al formatear JSON: ${error.message}`);
+          }
+        }
+
+        updateConnectionStatus(status, text) {
+          const statusElement = this.elements.connectionStatus;
+          const indicator = statusElement.querySelector(".status-indicator");
+
+          statusElement.className = `status status-${status}`;
+          statusElement.innerHTML = `<span class="status-indicator"></span>${text}`;
+
+          const newIndicator = statusElement.querySelector(".status-indicator");
+          switch (status) {
+            case "connected":
+              newIndicator.style.backgroundColor = "#2e7d32";
+              break;
+            case "connecting":
+              newIndicator.style.backgroundColor = "#ef6c00";
+              break;
+            default:
+              newIndicator.style.backgroundColor = "#c62828";
+          }
+        }
+
+        resetButtons() {
+          this.elements.connectBtn.disabled = false;
+          this.elements.disconnectBtn.disabled = true;
+          this.elements.sendBtn.disabled = true;
+          this.elements.wsUrl.disabled = false;
+        }
+
+        addLogEntry(type, message) {
+          const now = new Date();
+          const timeStr = now.toLocaleTimeString("es-ES", {
+            hour12: false,
+            millisecond: true,
+          });
+
+          const logEntry = document.createElement("div");
+          logEntry.className = `log-entry log-${type}`;
+          logEntry.innerHTML = `
+                    <span class="log-time">[${timeStr}]</span> ${message}
+                `;
+
+          this.elements.messagesLog.appendChild(logEntry);
+          this.elements.messagesLog.scrollTop = this.elements.messagesLog.scrollHeight;
+        }
+
+        clearLog() {
+          this.elements.messagesLog.innerHTML = "";
+          this.addLogEntry("info", "🧹 Log limpiado");
+        }
+      }
+
+      // Inicializar la aplicación cuando el DOM esté listo
+      document.addEventListener("DOMContentLoaded", () => {
+        new WebSocketTester();
+      });
+    </script>
+  </body>
+</html>

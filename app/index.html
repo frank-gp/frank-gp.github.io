@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+
+    <!-- SEO -->
+    <title>Frank GP — Web Applications</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Collection of useful web applications for development and productivity" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Web Applications" />
+    <meta property="og:description" content="Collection of useful web applications for development and productivity" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+
+    <style>
+      .wp-content {
+        padding: 2rem 1rem;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .dark {
+        color: white;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 3rem;
+        font-weight: 300;
+      }
+
+      .search-container {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        position: relative;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        color: white;
+        placeholder-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .search-input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .search-input:focus {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .apps-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        padding: 0 1rem;
+      }
+
+      .app-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      .app-card:hover::before {
+        left: 100%;
+      }
+
+      .app-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .app-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .app-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        text-transform: capitalize;
+      }
+
+      .app-description {
+        font-size: 0.9rem;
+        opacity: 0.85;
+        line-height: 1.4;
+      }
+
+      .app-url {
+        font-size: 0.8rem;
+        opacity: 0.7;
+        margin-top: 0.5rem;
+        font-family: monospace;
+        word-break: break-all;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 2rem;
+        opacity: 0.7;
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 768px) {
+        .apps-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .app-card {
+          padding: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main class="wp-content dark">
+      <h1>Web Applications</h1>
+      <p class="subtitle">Collection of useful tools for development and productivity</p>
+
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search applications..." id="searchInput" />
+      </div>
+
+      <div class="apps-grid" id="appsGrid"></div>
+      <div class="no-results hidden" id="noResults">No applications found matching your search.</div>
+    </main>
+
+    <script>
+      // Enhanced application data with descriptions and icons
+      const applications = [
+        {
+          name: "calendar",
+          description: "Manage schedules and events with an intuitive calendar interface",
+          icon: "📅",
+        },
+        {
+          name: "color",
+          description: "Color picker and palette generator for design projects",
+          icon: "🎨",
+        },
+        {
+          name: "cloud",
+          description: "Cloud storage manager and file synchronization tool",
+          icon: "☁️",
+        },
+        {
+          name: "diff",
+          description: "Compare text files and highlight differences between versions",
+          icon: "⚖️",
+        },
+        {
+          name: "html-entities",
+          description: "Encode and decode HTML entities for web development",
+          icon: "🏷️",
+        },
+        {
+          name: "info",
+          description: "System information and diagnostic tools",
+          icon: "ℹ️",
+        },
+        {
+          name: "json-converter",
+          description: "Convert and format JSON data with validation",
+          icon: "📋",
+        },
+        {
+          name: "media",
+          description: "Media player and converter for various file formats",
+          icon: "🎵",
+        },
+        {
+          name: "mini-postman",
+          description: "Lightweight API testing and HTTP request tool",
+          icon: "🚀",
+        },
+        {
+          name: "qr",
+          description: "Generate and decode QR codes for various purposes",
+          icon: "📱",
+        },
+        {
+          name: "quote",
+          description: "Daily inspirational quotes and citation generator",
+          icon: "💬",
+        },
+        {
+          name: "ratio-calc",
+          description: "Calculate aspect ratios and proportions for design",
+          icon: "📐",
+        },
+        {
+          name: "snippet",
+          description: "Code snippet manager and syntax highlighter",
+          icon: "💻",
+        },
+        {
+          name: "thumbnail",
+          description: "Generate thumbnails and resize images efficiently",
+          icon: "🖼️",
+        },
+        {
+          name: "timer",
+          description: "Pomodoro timer and productivity tracking tool",
+          icon: "⏱️",
+        },
+        {
+          name: "typing",
+          description: "Typing speed test and keyboard practice exercises",
+          icon: "⌨️",
+        },
+        {
+          name: "vscode",
+          description: "Visual Studio Code online editor and extensions",
+          icon: "📝",
+        },
+      ];
+
+      const baseUrl = "https://frank-gp.github.io/app/";
+      const appsGrid = document.getElementById("appsGrid");
+      const searchInput = document.getElementById("searchInput");
+      const noResults = document.getElementById("noResults");
+
+      // Function to create app card HTML
+      function createAppCard(app) {
+        const url = baseUrl + app.name;
+        return `
+          <a href="${url}" target="_blank" class="app-card" data-name="${app.name.toLowerCase()}">
+            <div class="app-icon">${app.icon}</div>
+            <div class="app-title">${app.name.replace(/-/g, " ")}</div>
+            <div class="app-description">${app.description}</div>
+            <div class="app-url">${url}</div>
+          </a>
+        `;
+      }
+
+      // Function to render applications
+      function renderApps(apps) {
+        if (apps.length === 0) {
+          appsGrid.innerHTML = "";
+          noResults.classList.remove("hidden");
+          return;
+        }
+
+        noResults.classList.add("hidden");
+        appsGrid.innerHTML = apps.map(createAppCard).join("");
+
+        // Add staggered animation
+        const cards = appsGrid.querySelectorAll(".app-card");
+        cards.forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.1}s`;
+          card.style.animation = "fadeInUp 0.6s ease forwards";
+        });
+      }
+
+      // Function to filter applications
+      function filterApps(searchTerm) {
+        const filtered = applications.filter(
+          (app) =>
+            app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            app.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        renderApps(filtered);
+      }
+
+      // Search functionality
+      searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.trim();
+        filterApps(searchTerm);
+      });
+
+      // Initial render
+      renderApps(applications);
+
+      // Add CSS animation keyframes
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Add keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "/" && !searchInput.matches(":focus")) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === "Escape" && searchInput.matches(":focus")) {
+          searchInput.blur();
+          searchInput.value = "";
+          renderApps(applications);
+        }
+      });
+    </script>
+  </body>
+</html>

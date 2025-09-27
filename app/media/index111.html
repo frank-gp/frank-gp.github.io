@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <style>
+        body {
+          font-size: 1.5vw;
+        }
+        main h2 {
+          background-color: #fff;
+          color: #0008;
+          padding: 1em;
+          font-size: 1.5em;
+        }
+        @media (max-width: 80rem) {
+          body {
+            background-color: blue;
+            font-size: 1.75vw;
+          }
+        }
+        @media (max-width: 60rem) {
+          body {
+            background-color: green;
+            font-size: 2.25vw;
+          }
+        }
+        @media (max-width: 40rem) {
+          body {
+            background-color: red;
+            font-size: 3vw;
+          }
+        }
+      </style>
+      <h2>Width <span id="innerWidth"></span></h2>
+
+      <script>
+        (function funcResize() {
+          document.querySelector("#innerWidth").innerHTML = window.innerWidth;
+          window.addEventListener("resize", funcResize);
+        })();
+      </script>
+    </main>
+  </body>
+</html>

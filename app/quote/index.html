@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <!-- <script src="https://frank-gp.github.io/component/social.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/component/contact.js" defer></script> -->
+
+    <!-- lib -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/clipboard.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/highlight.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/youtube-embed.js"></script> -->
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <style>
+        .textarea_container {
+          display: flex;
+          height: 70vh;
+          gap: 0.1em;
+        }
+      </style>
+
+      <h2>Replace Quotes</h2>
+      <section class="textarea_container">
+        <textarea id="inputTextArea" rows="4" cols="50" placeholder="Enter your text..." oninput="replaceQuotes()"></textarea><br />
+        <textarea id="outputTextArea" rows="4" cols="50" placeholder="Replaced text..." readonly></textarea>
+      </section>
+      <script>
+        function replaceQuotes() {
+          let input = document.getElementById("inputTextArea").value;
+          let replacedStr = input.replace(/"/g, "'");
+          document.getElementById("outputTextArea").value = replacedStr;
+        }
+      </script>
+    </main>
+  </body>
+</html>

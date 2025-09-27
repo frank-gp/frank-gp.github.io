@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://frank-gp.github.io/component/layout.js" type="module"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <style>
+        @import url("https://frank-gp.github.io/icon/icomoon/style.css");
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+        }
+        main {
+          display: flex;
+          /* flex-direction: column; */
+          gap: 0.3em;
+          flex-wrap: wrap;
+        }
+        .color:first-child {
+          flex: 1 1 100%;
+          aspect-ratio: 2/1;
+        }
+        .color {
+          flex: 1 0 calc(100% / 4);
+          /* width: calc((100% / 3) - (1em * 3)); */
+          /* height: calc(100vh / 3); */
+          aspect-ratio: 1/1;
+          /* aspect-ratio: 16/9; */
+          /* border-top: 1px solid #fff; */
+          /* margin: 1px; */
+          /* gap: 1px; */
+          background-color: beige;
+        }
+        .controls {
+          /* position: fixed; */
+          /* top: 1vh; */
+          /* width: 100%; */
+          text-align: center;
+        }
+        .controls .mixer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 2em;
+          background-color: ivory;
+          width: 10em;
+          padding: 2em 3em 3em;
+          margin: auto;
+        }
+        .input_container {
+          flex: 0 1;
+          align-self: start;
+        }
+        input[type="range"][orient="vertical"] {
+          writing-mode: bt-lr;
+          -webkit-appearance: slider-vertical;
+          width: 1em;
+          height: 15em;
+          padding: 0 0.5em;
+          cursor: pointer;
+          /* font-size: inherit; */
+          /* font-weight: 700; */
+        }
+        .plus {
+          font-size: 2em;
+          background-color: #fff;
+          display: inline-flex;
+          padding: 0.5em;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 1px 1px 5px 1px #0004;
+          width: 2em;
+          aspect-ratio: 1/1;
+          justify-content: center;
+          align-items: center;
+        }
+        .plus:hover {
+          transform: scale(1.1);
+        }
+        .newColor {
+          position: absolute;
+          text-align: center;
+          width: 100%;
+          color: #777;
+          bottom: -0.3em;
+        }
+      </style>
+      <section class="controls"></section>
+      <section class="controls">
+        <h2 class="plus"><i class="icon-add"></i></h2>
+        <h2 class="clipboard newColor">#<span>6</span><span>2</span><span>A</span></h2>
+
+        <aside class="mixer">
+          <div class="input_container">
+            <i>R</i>
+            <input id="inputRed" type="range" min="0" value="6" max="15" step="1" orient="vertical" data-num="0" />
+          </div>
+
+          <div class="input_container">
+            <i>G</i>
+            <input id="inputGreen" type="range" min="0" value="2" max="15" step="1" orient="vertical" data-num="1" />
+          </div>
+
+          <div class="input_container">
+            <i>B</i>
+            <input id="inputBlue" type="range" min="0" value="10" max="15" step="1" orient="vertical" data-num="2" />
+          </div>
+        </aside>
+      </section>
+      <main>
+        <section class="color"></section>
+        <!-- <section class="color"></section> -->
+        <!-- <section class="color"></section> -->
+      </main>
+      <script>
+        let plus = document.querySelector(".plus");
+        plus.onclick = () => {
+          let section = document.createElement("section");
+          section.classList.add("color");
+          section.style.backgroundColor = bgColor();
+          let main = document.querySelector("main");
+          main.insertAdjacentElement("afterbegin", section);
+        };
+      </script>
+
+      <script>
+        const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+
+        let inputAll = document.querySelectorAll(".mixer input");
+        let spanAll = document.querySelectorAll(".newColor span");
+
+        inputAll.forEach((item1) => {
+          item1.oninput = function () {
+            console.log(item1.dataset.num); //1
+            spanAll[item1.dataset.num].textContent = hex[item1.value];
+            let sectionColor = document.querySelector("section.color");
+            sectionColor.style.backgroundColor = bgColor();
+
+            bgColor();
+          };
+        });
+
+        let bgColor = () => {
+          let bgColorHex = `#${hex[inputAll[0].value]}${hex[inputAll[1].value]}${hex[inputAll[2].value]}`;
+          let plus = document.querySelector(".plus");
+          // plus.style.backgroundColor = bgColorHex;
+          plus.style.color = bgColorHex;
+          //   document.body.style.backgroundColor = bgColorHex;
+          //   document.querySelector(".clipboard").style.color = bgColorHex;
+          //   document.querySelector(".url a").style.color = bgColorHex;
+          //   document.querySelector("h1").style.color = bgColorHex;
+
+          return bgColorHex;
+        };
+        bgColor();
+        //   console.log(bgColor())
+
+        setTimeout(() => {
+          document.querySelector("h1").style.display = "none";
+          document.querySelector(".url a").style.display = "none";
+        }, 500);
+      </script>
+    </main>
+  </body>
+</html>

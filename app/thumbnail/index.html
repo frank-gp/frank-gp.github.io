@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://frank-gp.github.io/component/layout.js" type="module"></script>
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <title>YouTube Thumbnail Manager | Frank GP Developer</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      img {
+        width: 100%;
+      }
+      input {
+        outline: none;
+        padding: 0.3em 1em;
+        border-radius: 5em;
+        border: thin solid #000;
+      }
+      .form {
+        margin: 1em;
+      }
+      #imgURL {
+        width: 100%;
+      }
+      .image-container {
+        display: flex;
+        align-items: center;
+        margin: 0.3em;
+        padding: 0.3em;
+        background-color: #fff1;
+      }
+      #imagesContainer {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .image-container img {
+        width: 200px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .button {
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 5px;
+      }
+      .delete-btn {
+        background-color: #f44336;
+      }
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        position: relative;
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+      }
+      .modal-content img {
+        width: 100%;
+      }
+      .close-btn,
+      .prev-btn,
+      .next-btn {
+        position: absolute;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .close-btn {
+        top: 10px;
+        right: 10px;
+      }
+      .prev-btn {
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .next-btn {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .close-btn,
+      .prev-btn,
+      .next-btn {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>YouTube Thumbnail Manager</h1>
+
+      <section class="form">
+        <label>
+          youtube ID
+          <input id="youtubeID" value="41VZhwrXAKI" placeholder="youtube ID" />
+          <button id="myBtn" onclick="addImage()">Send</button>
+        </label>
+        <hr />
+        <br />
+        <input id="imgURL" value="https://i.ytimg.com/vi_webp/41VZhwrXAKI/maxresdefault.webp" />
+      </section>
+
+      <div id="imagesContainer"></div>
+
+      <!-- Modal for image preview -->
+      <div id="modal" class="modal" onclick="handleOutsideClick(event)">
+        <div class="modal-content">
+          <button class="close-btn" onclick="closeModal()"><i class="icon-close"></i></button>
+          <button class="prev-btn" onclick="prevImage()"><i class="icon-arrow-left"></i></button>
+          <button class="next-btn" onclick="nextImage()"><i class="icon-arrow-right"></i></button>
+          <img id="modalImage" src="" alt="Preview" />
+        </div>
+      </div>
+
+      <script>
+        const youtubeIDInput = document.querySelector("#youtubeID");
+        const imagesContainer = document.querySelector("#imagesContainer");
+        const modal = document.getElementById("modal");
+        const modalImage = document.getElementById("modalImage");
+        let currentIndex = 0;
+        let youtubeIDs = [];
+
+        // Load images from localStorage on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          loadImages();
+        });
+
+        function loadImages() {
+          imagesContainer.innerHTML = "";
+          youtubeIDs = JSON.parse(localStorage.getItem("youtubeIDs")) || [];
+          youtubeIDs.forEach((id, index) => {
+            createImageElement(id, index);
+          });
+        }
+
+        function addImage() {
+          const youtubeID = youtubeIDInput.value;
+          if (youtubeID) {
+            youtubeIDs.push(youtubeID);
+            localStorage.setItem("youtubeIDs", JSON.stringify(youtubeIDs));
+            createImageElement(youtubeID, youtubeIDs.length - 1);
+          }
+        }
+
+        function createImageElement(youtubeID, index) {
+          const imageUrl = `https://i.ytimg.com/vi_webp/${youtubeID}/maxresdefault.webp`;
+          const div = document.createElement("div");
+          div.className = "image-container";
+          div.innerHTML = `
+            <img src="${imageUrl}" alt="YouTube Thumbnail" onclick="openModal(${index})">
+            <section class="buttons">
+              <button class="button" onclick="copyUrl('${imageUrl}')"><i class="icon-copy"></i></button>
+              <button class="button" onclick="openInNewTab('${youtubeID}')"><i class="icon-open"></i></button>
+              <button class="button delete-btn" onclick="deleteImage(${index})"><i class="icon-trash"></i></button>
+            </section>
+          `;
+          imagesContainer.appendChild(div);
+        }
+
+        function deleteImage(index) {
+          youtubeIDs.splice(index, 1);
+          localStorage.setItem("youtubeIDs", JSON.stringify(youtubeIDs));
+          loadImages();
+        }
+
+        function copyUrl(url) {
+          navigator.clipboard
+            .writeText(url)
+            .then(() => console.log("URL copiada al portapapeles"))
+            .catch((err) => console.error("Error al copiar la URL: ", err));
+        }
+
+        function openInNewTab(youtubeID) {
+          window.open(`https://youtu.be/${youtubeID}`, "_blank");
+        }
+
+        function openModal(index) {
+          currentIndex = index;
+          modalImage.src = `https://i.ytimg.com/vi_webp/${youtubeIDs[currentIndex]}/maxresdefault.webp`;
+          modal.style.display = "flex";
+        }
+
+        function closeModal() {
+          modal.style.display = "none";
+          modalImage.src = "";
+        }
+
+        function handleOutsideClick(event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        }
+
+        function prevImage() {
+          currentIndex = (currentIndex - 1 + youtubeIDs.length) % youtubeIDs.length;
+          modalImage.src = `https://i.ytimg.com/vi_webp/${youtubeIDs[currentIndex]}/maxresdefault.webp`;
+        }
+
+        function nextImage() {
+          currentIndex = (currentIndex + 1) % youtubeIDs.length;
+          modalImage.src = `https://i.ytimg.com/vi_webp/${youtubeIDs[currentIndex]}/maxresdefault.webp`;
+        }
+      </script>
+    </main>
+  </body>
+</html>

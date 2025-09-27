@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://asset.fgp.one/file/fgp-favicon-256px.webp" sizes="256x256" />
+    <meta property="og:image" content="https://asset.fgp.one/file/fgp-fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+
+    <title>3 Digit Hex Colors Generator Code</title>
+    <meta name="description" content="Generate hexadecimal color codes using true randomness, originating from atmospheric noise." />
+  </head>
+  <body>
+    <!-- <input type="range" orient="vertical" /> -->
+
+    <style>
+      * {
+        /* border: 1px dashed #0808; */
+        box-sizing: border-box;
+        font-family: monospace;
+        margin: 0;
+      }
+      body {
+        /* text-align: center; */
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* font-size: 1.5em; */
+        flex-direction: column;
+        text-align: center;
+        /* background-color: #458; */
+        color: #555;
+        overflow-y: hidden;
+        position: fixed;
+        width: 100%;
+      }
+      i {
+        font-style: normal;
+      }
+      h1 {
+        filter: invert();
+        position: absolute;
+        bottom: 1em;
+      }
+      h2 {
+        font-size: 3em;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+        color: indianred;
+      }
+      input[type="range"][orient="vertical"] {
+        writing-mode: bt-lr;
+        -webkit-appearance: slider-vertical;
+        width: 1em;
+        height: 15em;
+        padding: 0 0.5em;
+        cursor: pointer;
+        /* font-size: inherit; */
+        /* font-weight: 700; */
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        margin-top: -8.9px;
+        width: 26px;
+        height: 29px;
+        background: #44ab7d;
+        border: 0.5px solid #000000;
+        cursor: pointer;
+        -webkit-appearance: none;
+      }
+
+      .controls {
+        display: inline-flex;
+        gap: 1.3em;
+        flex-direction: column;
+        justify-content: center;
+        background-color: beige;
+        background-color: rgb(26, 26, 53);
+        border: 1em solid white;
+        text-align: center;
+        margin: 2em;
+        padding: 2em;
+      }
+      .controls aside {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+      }
+      .input_container {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2em;
+      }
+      .clipboard {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: #cc0000;
+      }
+    </style>
+    <h1>3 Digit Hex Colors Generator</h1>
+    <section class="controls">
+      <h2 class="clipboard">#<span>6</span><span>2</span><span>A</span></h2>
+
+      <aside>
+        <div class="input_container">
+          <i style="color: red">R</i>
+          <input id="inputRed" type="range" min="0" value="6" max="15" step="1" orient="vertical" data-num="0" />
+          <i style="color: cyan">C</i>
+        </div>
+
+        <div class="input_container">
+          <i style="color: green">G</i>
+          <input id="inputGreen" type="range" min="0" value="2" max="15" step="1" orient="vertical" data-num="1" />
+          <i style="color: magenta">M</i>
+        </div>
+
+        <div class="input_container">
+          <i style="color: blue">B</i>
+          <input id="inputBlue" type="range" min="0" value="10" max="15" step="1" orient="vertical" data-num="2" />
+          <i style="color: yellow">Y</i>
+        </div>
+      </aside>
+    </section>
+
+    <section>
+      <style>
+        .url a {
+          /* font-size: 2em; */
+          position: absolute;
+          right: 1em;
+          bottom: 1em;
+          /* color: cornflowerblue; */
+          filter: invert();
+        }
+      </style>
+      <h3 class="url"><a href="https://bit.ly/hex-3">https://bit.ly/hex-3</a></h3>
+    </section>
+
+    <script>
+      const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+
+      let inputAll = document.querySelectorAll("input");
+      let spanAll = document.querySelectorAll("span");
+
+      inputAll.forEach((item1) => {
+        item1.oninput = function () {
+          console.log(item1.dataset.num); //1
+          spanAll[item1.dataset.num].textContent = hex[item1.value];
+          bgColor();
+        };
+      });
+
+      let bgColor = () => {
+        let bgColorHex = `#${hex[inputAll[0].value]}${hex[inputAll[1].value]}${hex[inputAll[2].value]}`;
+        document.body.style.backgroundColor = bgColorHex;
+        document.querySelector(".clipboard").style.color = bgColorHex;
+        document.querySelector(".url a").style.color = bgColorHex;
+        document.querySelector("h1").style.color = bgColorHex;
+      };
+      bgColor();
+
+      setTimeout(() => {
+        document.querySelector("h1").style.display = "none";
+        document.querySelector(".url a").style.display = "none";
+      }, 500);
+    </script>
+    <script>
+      // ========== clipboard... ==========
+      const _clipboard = document.querySelectorAll("h2.clipboard");
+      const _pre = document.querySelectorAll("pre");
+
+      _clipboard.forEach((item) => {
+        item.addEventListener("click", () => {
+          navigator.clipboard.writeText(item.textContent);
+          console.log(item.textContent);
+        });
+      });
+
+      _pre.forEach((item) => {
+        item.addEventListener("click", () => {
+          navigator.clipboard.writeText(item.textContent);
+          console.log(item.textContent);
+        });
+      });
+      // ========== clipboard. ==========
+
+      const styleSheet = document.createElement("style");
+      styleSheet.innerHTML = /* css */ `/*  */
+.clipboard,
+pre {
+  cursor: pointer;
+  position: relative;
+}
+.clipboard:hover::before,
+pre:hover::before {
+  content: "Copy";
+  position: absolute;
+  left: 100%;
+  font-size: 0.5em;
+  top: 25%;
+  background-color: #000c;
+  color: white;
+  padding: 0 0.5em;
+}
+.clipboard:active::before,
+pre:active::before {
+  content: "Copied!";
+}
+`;
+      document.head.appendChild(styleSheet);
+    </script>
+    <style>
+      .topPage {
+        width: 100%;
+        width: 50%;
+        height: 50vh;
+        background-color: #f8e;
+        position: absolute;
+        /* top: 0; */
+        left: 0;
+        height: 100vh;
+        z-index: -1;
+      }
+      .result {
+        position: absolute;
+        top: 1em;
+        background-color: #fff;
+        display: none;
+      }
+    </style>
+    <aside class="topPage"></aside>
+    <h2 class="result"></h2>
+    <script>
+      function getRandomItem(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        const item = arr[randomIndex];
+        return item;
+      }
+
+      const redRandom = getRandomItem(hex);
+      const greenRandom = getRandomItem(hex);
+      const blueRandom = getRandomItem(hex);
+      let bcTopPage = `#${redRandom}${greenRandom}${blueRandom}`;
+      console.log(redRandom);
+      console.log(greenRandom);
+      console.log(blueRandom);
+
+      let topPage = document.querySelector(".topPage");
+      let result = document.querySelector(".result");
+      topPage.style.backgroundColor = bcTopPage;
+      result.style.color = bcTopPage;
+      result.textContent = bcTopPage;
+
+      // setTimeout(() => {
+      //   result.style.display = "block";
+      // }, 10000);
+    </script>
+
+    <style>
+      progress {
+        /* width: 100%; */
+        position: absolute;
+        bottom: 15vh;
+        /* background-color: #fff; */
+        color: peru;
+      }
+      .view {
+        font-size: 3em;
+        position: absolute;
+        top: 1em;
+        cursor: pointer;
+      }
+      .next {
+        font-size: 3em;
+        position: fixed;
+        bottom: 15%;
+        /* top: 1em; */
+        cursor: pointer;
+        display: none;
+      }
+    </style>
+    <progress value="0" max="100" id="progressBar"></progress>
+    <i class="view">👀</i>
+    <i class="next">➡️</i>
+
+    <script>
+      let view = document.querySelector(".view");
+      let next = document.querySelector(".next");
+
+      next.addEventListener("click", () => {
+        location.reload();
+      });
+      function eye() {
+        result.style.display = "block";
+        document.getElementById("progressBar").style.display = "none";
+        view.style.display = "none";
+        next.style.display = "block";
+      }
+
+      view.addEventListener("click", eye);
+
+      var timeleft = 100;
+      var downloadTimer = setInterval(function () {
+        if (timeleft <= 0) {
+          eye();
+          clearInterval(downloadTimer);
+        }
+        document.getElementById("progressBar").value = 100 - timeleft;
+        timeleft -= 1;
+      }, 1000);
+    </script>
+
+    <!-- <script>
+      UST_CT = [];
+      UST = {
+        s: Date.now(),
+        addTag: function (tag) {
+          UST_CT.push(tag);
+        },
+      };
+      UST.addEvent = UST.addTag;
+    </script>
+    <script src="https://s.fgp.one/server/ust.min.js?v=4.2.0" async></script> -->
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <!-- <script src="https://frank-gp.github.io/component/social.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/component/contact.js" defer></script> -->
+
+    <!-- lib -->
+    <!-- <script src="https://frank-gp.github.io/lib/clipboard.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/highlight.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/youtube-embed.js"></script> -->
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main class="wp-content dark">
+      <h1>Web Library</h1>
+      <style>
+        .linkContainer {
+          max-width: 30rem;
+          margin: auto;
+          /* text-align: left; */
+          display: flex;
+          flex-direction: column;
+          gap: 0.5em;
+        }
+      </style>
+      <section class="linkContainer"></section>
+      <script>
+        // Assuming you have an array of links
+        const array = [
+          "btn-bootstrap.css",
+          "btn.css",
+          "dark.css",
+          "essential.css",
+          "form.css",
+          "clipboard.js",
+          "console.js",
+          "footer.js",
+          "github.js",
+          "header.js",
+          "highlight.js",
+          "img-generator.js",
+          "instagram.js",
+          "ligthbox.js",
+          "loader-backup.js",
+          "loader.js",
+          "mouse.js",
+          "share.js",
+          "shortener.js",
+          "sidebar.js",
+          "toggle.js",
+          "whatsapp.js",
+          "youtube-embed.js",
+          "youtube-embed_v1.js",
+          "youtube.js",
+        ];
+
+        let base_url = "https://frank-gp.github.io/lib/";
+        array.forEach((item) => {
+          // Create the <a> element using template string
+          let url = base_url + item;
+          const anchor = `<a href="` + url + `" target="_blank">` + url + `</a>`;
+
+          // Append the <a> element to the container
+          document.querySelector(".linkContainer").insertAdjacentHTML("beforeend", anchor);
+        });
+      </script>
+    </main>
+  </body>
+</html>

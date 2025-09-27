@@ -12,7 +12,7 @@ tmp
 *.sh
 .vite
 /img
-/lib
+# /lib
 /backup
 /.vscode
 /temp

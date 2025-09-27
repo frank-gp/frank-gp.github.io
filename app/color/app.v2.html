@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://frank-gp.github.io/component/layout.js" type="module"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        /* border: 1px dashed #808; */
+      }
+
+      main {
+        font-size: 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .hexGenerator {
+        display: flex;
+        gap: 2em;
+        text-align: center;
+        flex-direction: column;
+        color: #536;
+        align-items: center;
+      }
+      .sliders_container {
+        display: flex;
+        gap: 1em;
+        flex-direction: column;
+        transform: rotate(270deg);
+        /* align-items: center; */
+        /* justify-content: center; */
+        width: 15rem;
+        background-color: #fffc;
+        padding: 1.5em 2em;
+        box-shadow: 3px 3px 3px #0002;
+      }
+      .sliders_container div {
+        display: inline-flex;
+        align-self: center;
+        justify-content: center;
+        gap: 1em;
+      }
+      .sliders_container span {
+        transform: rotate(90deg);
+      }
+      .h2_container {
+        background-color: #fff;
+        margin-bottom: 5em;
+        padding: 2em;
+        display: grid;
+        gap: 1em;
+        box-shadow: 3px 3px 3px #0002;
+        border-radius: 0.5em;
+        border: 1px solid #0002;
+        min-width: 20rem;
+      }
+
+      .hexGenerator .btn-app {
+        aspect-ratio: 1/1;
+        background-color: #fff;
+      }
+      .btn-app i {
+        font-size: 1.5em;
+      }
+      .hexGenerator h2:hover {
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .hexGenerator h2:active {
+        content: "copied";
+        background-color: white;
+        opacity: 1;
+        color: #000;
+        position: relative;
+      }
+      .hexGenerator h2:active:after {
+        content: "✅ copied...";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 1em;
+        position: absolute;
+        inset: 0;
+        color: #000;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hexGenerator">
+        <div class="h2_container">
+          <h2 class="colorDec"></h2>
+          <h2 class="colorHex"></h2>
+          <h2 class="colorHex3dig"></h2>
+        </div>
+        <div class="sliders_container">
+          <div>
+            <span>C</span>
+            <input type="range" class="red" min="0" max="255" value="34" />
+            <span>R</span>
+          </div>
+          <div>
+            <span>M</span>
+            <input type="range" class="green" min="0" max="255" value="34" />
+            <span>G</span>
+          </div>
+          <div>
+            <span>Y</span>
+            <input type="range" class="blue" min="0" max="255" value="34" />
+            <span>B</span>
+          </div>
+        </div>
+        <br />
+        <div>
+          <button class="btn btn-app" onclick="regenerateRandomColor()"><i class="icon-refresh"></i></button>
+        </div>
+      </section>
+    </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Run this code when the page is fully loaded
+        regenerateRandomColor();
+      });
+
+      const sliders = document.querySelectorAll(".sliders_container input");
+
+      sliders.forEach((slider) => {
+        slider.addEventListener("input", updateColor);
+      });
+
+      function updateColor() {
+        const red = document.querySelector(".red").value;
+        const green = document.querySelector(".green").value;
+        const blue = document.querySelector(".blue").value;
+
+        const hexColor = rgbToHex(red, green, blue);
+        console.log(hexColor.red.charAt(0));
+        document.querySelector(".colorDec").textContent = `rgb(${red}, ${green}, ${blue})`;
+        document.querySelector(".colorHex").textContent = `#${hexColor.red}${hexColor.green}${hexColor.blue}`;
+        document.querySelector(".colorHex3dig").textContent = `#${hexColor.red.charAt(0)}${hexColor.green.charAt(0)}${hexColor.blue.charAt(0)}`;
+        document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+      }
+
+      function rgbToHex(r, g, b) {
+        let red = parseInt(r, 10).toString(16);
+        let green = parseInt(g, 10).toString(16);
+        let blue = parseInt(b, 10).toString(16);
+
+        red = red.length === 1 ? "0" + red : red;
+        green = green.length === 1 ? "0" + green : green;
+        blue = blue.length === 1 ? "0" + blue : blue;
+
+        return { red, green, blue };
+      }
+
+      function regenerateRandomColor() {
+        // Generate random RGB values
+        const randomRed = Math.floor(Math.random() * 256);
+        const randomGreen = Math.floor(Math.random() * 256);
+        const randomBlue = Math.floor(Math.random() * 256);
+
+        // Update sliders and color
+        document.querySelector(".red").value = randomRed;
+        document.querySelector(".green").value = randomGreen;
+        document.querySelector(".blue").value = randomBlue;
+
+        updateColor();
+      }
+    </script>
+    <script>
+      // Function to copy text content to clipboard
+      function copyToClipboard(element) {
+        const textContent = element.textContent;
+        const textarea = document.createElement("textarea");
+        textarea.value = textContent;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+
+      // Select all elements with class "link" and attach the click event
+      const codeElements = document.querySelectorAll("h2");
+      codeElements.forEach((codeElement) => {
+        codeElement.onclick = function () {
+          copyToClipboard(this);
+        };
+      });
+    </script>
+    <style></style>
+  </body>
+</html>

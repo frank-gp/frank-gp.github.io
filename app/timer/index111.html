@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>Minute Timer</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+      }
+      #timer {
+        font-size: 48px;
+        margin-top: 20px;
+      }
+      section {
+        max-width: fit-content;
+        margin: auto;
+      }
+      #bellIcon {
+        font-size: 40px;
+        color: #f39c12;
+        margin-top: 20px;
+        display: none;
+      }
+      .shake {
+        animation: shake 0.6s infinite;
+      }
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(15deg);
+        }
+        50% {
+          transform: rotate(-15deg);
+        }
+        75% {
+          transform: rotate(10deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+      #progressBar {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      #elapsedTime {
+        font-size: 20px;
+        margin-top: 10px;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+    <div style="position: absolute; top: 10px; left: 20px">
+      <select id="languageSelect" onchange="setLanguage(this.value)">
+        <option value="en">🌐 English</option>
+        <option value="es">🌐 Español</option>
+      </select>
+    </div>
+
+    <main>
+      <section>
+        <h1>Minute Timer</h1>
+        <input type="number" id="minutesInput" placeholder="Minutes" min="0.1" step="0.1" />
+        <button onclick="startTimer()"><i class="fas fa-play"></i> Start</button>
+        <button onclick="stopAlarm()"><i class="fas fa-stop"></i> Stop Alarm</button>
+
+        <div id="timer">00:00:00</div>
+        <div id="elapsedTime">Elapsed: 00:00:00</div>
+
+        <progress id="progressBar" max="100" value="0"></progress>
+        <div id="bellIcon"><i class="fas fa-bell"></i></div>
+
+        <audio id="alarmSound" src="./keyboard-typing.mp3" preload="auto" loop></audio>
+      </section>
+    </main>
+
+    <script>
+      let countdown;
+      let totalSeconds = 0;
+      let currentLang = "en";
+
+      const translations = {
+        en: {
+          title: "Minute Timer",
+          placeholder: "Minutes",
+          start: "Start",
+          stop: "Stop Alarm",
+          notification: "Time's up!",
+          inputAlert: "Please enter a valid number of minutes.",
+        },
+        es: {
+          title: "Temporizador de Minutos",
+          placeholder: "Minutos",
+          start: "Iniciar",
+          stop: "Detener Alarma",
+          notification: "¡Tiempo terminado!",
+          inputAlert: "Por favor ingresa un número válido de minutos.",
+        },
+      };
+
+      function setLanguage(lang) {
+        currentLang = lang;
+
+        document.querySelector("h1").textContent = translations[lang].title;
+        document.getElementById("minutesInput").placeholder = translations[lang].placeholder;
+        document.querySelector(
+          "button[onclick='startTimer()']"
+        ).innerHTML = `<i class="fas fa-play"></i> ${translations[lang].start}`;
+        document.querySelector(
+          "button[onclick='stopAlarm()']"
+        ).innerHTML = `<i class="fas fa-stop"></i> ${translations[lang].stop}`;
+      }
+
+      function startTimer() {
+        clearInterval(countdown);
+        stopAlarm();
+
+        const minutes = parseFloat(document.getElementById("minutesInput").value);
+        if (isNaN(minutes) || minutes <= 0) {
+          alert(translations[currentLang].inputAlert);
+          return;
+        }
+
+        totalSeconds = Math.round(minutes * 60);
+        const endTime = Date.now() + totalSeconds * 1000;
+
+        updateDisplay(totalSeconds);
+        document.getElementById("bellIcon").style.display = "none";
+
+        countdown = setInterval(() => {
+          const secondsLeft = Math.round((endTime - Date.now()) / 1000);
+
+          if (secondsLeft <= 0) {
+            clearInterval(countdown);
+            updateDisplay(0);
+            document.getElementById("alarmSound").play();
+            document.getElementById("bellIcon").style.display = "block";
+            document.getElementById("bellIcon").classList.add("shake");
+            if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
+
+            if (Notification.permission === "granted") {
+              new Notification(translations[currentLang].notification);
+            }
+
+            return;
+          }
+
+          updateDisplay(secondsLeft);
+          updateProgress(secondsLeft);
+        }, 1000);
+      }
+
+      function updateDisplay(seconds) {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        document.getElementById("timer").textContent = `${String(hrs).padStart(2, "0")}:${String(mins).padStart(
+          2,
+          "0"
+        )}:${String(secs).padStart(2, "0")}`;
+      }
+
+      function updateProgress(secondsLeft) {
+        const progress = ((totalSeconds - secondsLeft) / totalSeconds) * 100;
+        document.getElementById("progressBar").value = progress;
+      }
+
+      function stopAlarm() {
+        const sound = document.getElementById("alarmSound");
+        const bell = document.getElementById("bellIcon");
+        sound.pause();
+        sound.currentTime = 0;
+        bell.classList.remove("shake");
+        bell.style.display = "none";
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const icon = document.getElementById("themeIcon");
+
+        if (html.getAttribute("data-theme") === "dark") {
+          html.setAttribute("data-theme", "light");
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        } else {
+          html.setAttribute("data-theme", "dark");
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        }
+      }
+
+      // Inicializa idioma por defecto en inglés
+      setLanguage("en");
+
+      // Opcional: solicitar permiso para notificaciones
+      if ("Notification" in window) {
+        if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+          Notification.requestPermission();
+        }
+      }
+
+      // Detectar el tema preferido del sistema
+      function detectSystemTheme() {
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.documentElement.setAttribute("data-theme", "dark");
+          document.getElementById("themeIcon").className = "fas fa-sun"; // icono para modo oscuro activo
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+          document.getElementById("themeIcon").className = "fas fa-moon"; // icono para modo claro activo
+        }
+      }
+
+      // Ejecutar al cargar la página
+      detectSystemTheme();
+
+      // Escuchar cambios en el sistema para actualizar el tema en vivo
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+        detectSystemTheme();
+      });
+
+      // Toggle manual del tema (puedes usar tu función toggleDarkMode)
+      function toggleDarkMode() {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        if (currentTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "light");
+          document.getElementById("themeIcon").className = "fas fa-moon";
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+          document.getElementById("themeIcon").className = "fas fa-sun";
+        }
+      }
+    </script>
+  </body>
+</html>

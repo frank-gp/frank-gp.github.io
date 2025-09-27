@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+
+    <!-- SEO -->
+    <title>VSCode Snippet Generator - Frank GP</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Create custom VSCode snippets with live preview and advanced features" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="VSCode Snippet Generator - Frank GP" />
+    <meta property="og:description" content="Create custom VSCode snippets with live preview and advanced features" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+
+    <style>
+      :root {
+        --bg-primary: #1e1e1e;
+        --bg-secondary: #252526;
+        --bg-tertiary: #2d2d30;
+        --bg-quaternary: #3c3c3c;
+        --text-primary: #cccccc;
+        --text-secondary: #969696;
+        --accent: #007acc;
+        --accent-hover: #1177bb;
+        --success: #4ec9b0;
+        --warning: #dcdcaa;
+        --error: #f44747;
+        --border: #3e3e42;
+        --shadow: rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      main {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, var(--accent), var(--success));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .header p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px var(--shadow);
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .btn.primary:hover {
+        background: var(--accent-hover);
+      }
+
+      .btn.success {
+        background: var(--success);
+        border-color: var(--success);
+        color: var(--bg-primary);
+      }
+
+      .btn.danger {
+        background: var(--error);
+        border-color: var(--error);
+      }
+
+      .editor-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        height: 70vh;
+      }
+
+      .editor-panel {
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .panel-header {
+        background: var(--bg-tertiary);
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .panel-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .form-container {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-group.inline {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .form-group label {
+        font-weight: 500;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+      }
+
+      .form-input {
+        background: var(--bg-primary);
+        border: 2px solid var(--border);
+        border-radius: 6px;
+        padding: 0.75rem;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1);
+      }
+
+      .form-textarea {
+        background: var(--bg-primary);
+        border: 2px solid var(--border);
+        border-radius: 6px;
+        padding: 1rem;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        font-family: "Courier New", monospace;
+        resize: none;
+        flex: 1;
+        min-height: 200px;
+        transition: all 0.3s ease;
+      }
+
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1);
+      }
+
+      .output-container {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .output-textarea {
+        background: var(--bg-primary);
+        border: 2px solid var(--border);
+        border-radius: 6px;
+        padding: 1rem;
+        color: var(--success);
+        font-size: 0.9rem;
+        font-family: "Courier New", monospace;
+        resize: none;
+        flex: 1;
+        overflow-y: auto;
+        transition: all 0.3s ease;
+      }
+
+      .output-textarea:focus {
+        outline: none;
+        border-color: var(--success);
+        box-shadow: 0 0 0 3px rgba(78, 201, 176, 0.1);
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .controls .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      .language-select {
+        background: var(--bg-primary);
+        border: 2px solid var(--border);
+        border-radius: 6px;
+        padding: 0.5rem;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      .language-select:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .placeholder-info {
+        background: var(--bg-quaternary);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-left: 4px solid var(--warning);
+      }
+
+      .placeholder-info h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--warning);
+        font-size: 0.9rem;
+      }
+
+      .placeholder-info ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .preview-section {
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        margin-top: 2rem;
+      }
+
+      .preview-header {
+        background: var(--bg-tertiary);
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .preview-content {
+        padding: 1.5rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .snippet-preview {
+        background: var(--bg-primary);
+        border-radius: 6px;
+        padding: 1rem;
+        margin-top: 1rem;
+        border: 1px solid var(--border);
+        white-space: pre-wrap;
+        overflow-x: auto;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: var(--success);
+        color: var(--bg-primary);
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        box-shadow: 0 4px 20px var(--shadow);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      @media (max-width: 768px) {
+        .editor-container {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+
+        .form-group.inline {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .controls {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <div class="header">
+        <h1><i class="fas fa-code"></i> VSCode Snippet Generator</h1>
+        <p>Create custom Visual Studio Code snippets with live preview and advanced features</p>
+      </div>
+
+      <div class="nav-links">
+        <a class="btn" target="_blank" href="https://fgp.one/vscode-snippet/">
+          <i class="fas fa-external-link-alt"></i> Examples
+        </a>
+        <a class="btn" target="_blank" href="https://snippet-generator.app/">
+          <i class="fas fa-external-link-alt"></i> snippet-generator.app
+        </a>
+        <a class="btn" href="./"> <i class="fas fa-code"></i> snippet </a>
+        <a class="btn" href="./vscode-extension"> <i class="fas fa-puzzle-piece"></i> vscode-extension </a>
+        <a class="btn" href="body.html"> <i class="fas fa-file-code"></i> body </a>
+        <a class="btn" href="full.html"> <i class="fas fa-file-alt"></i> full </a>
+      </div>
+
+      <div class="editor-container">
+        <!-- Input Panel -->
+        <div class="editor-panel">
+          <div class="panel-header">
+            <div class="panel-title"><i class="fas fa-edit"></i> Snippet Configuration</div>
+            <div class="controls">
+              <button class="btn" onclick="clearAll()"><i class="fas fa-trash"></i> Clear</button>
+              <button class="btn" onclick="loadTemplate()"><i class="fas fa-file-import"></i> Template</button>
+            </div>
+          </div>
+          <div class="form-container">
+            <div class="form-group">
+              <label for="nameInput">Snippet Name:</label>
+              <input
+                type="text"
+                id="nameInput"
+                class="form-input"
+                placeholder="My Custom Snippet"
+                value="fgp_snippets"
+              />
+            </div>
+
+            <div class="form-group inline">
+              <div style="flex: 0">
+                <label for="scopeInput">Language Scope:</label>
+                <select id="scopeInput" class="form-input language-select">
+                  <option value="javascript">JavaScript</option>
+                  <option value="typescript">TypeScript</option>
+                  <option value="html">HTML</option>
+                  <option value="css">CSS</option>
+                  <option value="python">Python</option>
+                  <option value="java">Java</option>
+                  <option value="csharp">C#</option>
+                  <option value="cpp">C++</option>
+                  <option value="php">PHP</option>
+                  <option value="go">Go</option>
+                  <option value="rust">Rust</option>
+                  <option value="markdown">Markdown</option>
+                  <option value="json">JSON</option>
+                  <option value="yaml">YAML</option>
+                  <option value="">All Languages</option>
+                </select>
+              </div>
+              <div style="flex: 0">
+                <label for="prefixInput">Trigger Prefix:</label>
+                <input type="text" id="prefixInput" class="form-input" placeholder="mysnippet" value="fgp_snippets" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="descriptionInput">Description:</label>
+              <input
+                type="text"
+                id="descriptionInput"
+                class="form-input"
+                placeholder="Brief description of your snippet"
+                value="fgp_snippets"
+              />
+            </div>
+
+            <div class="form-group" style="flex: 1">
+              <label for="codeInput">Snippet Body:</label>
+              <textarea id="codeInput" class="form-textarea" placeholder="Enter your code here..."></textarea>
+            </div>
+
+            <div class="placeholder-info">
+              <h4><i class="fas fa-info-circle"></i> Placeholder Syntax:</h4>
+              <ul>
+                <li><code>${1:placeholder}</code> - Tab stop with placeholder text</li>
+                <li><code>$1</code> - Simple tab stop</li>
+                <li><code>${1|option1,option2|}</code> - Choice selection</li>
+                <li><code>$0</code> - Final cursor position</li>
+                <li><code>${CLIPBOARD}</code> - Clipboard content</li>
+                <li><code>${TM_SELECTED_TEXT}</code> - Selected text</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="editor-panel">
+          <div class="panel-header">
+            <div class="panel-title"><i class="fas fa-file-code"></i> Generated Snippet</div>
+            <div class="controls">
+              <button class="btn primary" onclick="copyToClipboard()"><i class="fas fa-copy"></i> Copy</button>
+              <button class="btn success" onclick="downloadSnippet()"><i class="fas fa-download"></i> Download</button>
+            </div>
+          </div>
+          <div class="output-container">
+            <textarea id="jsonOutput" class="output-textarea" readonly></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="preview-section">
+        <div class="preview-header">
+          <div class="panel-title"><i class="fas fa-eye"></i> Snippet Preview</div>
+        </div>
+        <div class="preview-content">
+          <p>This is how your snippet will appear when triggered in VSCode:</p>
+          <div class="snippet-preview" id="snippetPreview">
+            <em>Enter code to see preview...</em>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+      // Global state
+      let snippetData = {
+        name: "fgp_snippets",
+        scope: "javascript",
+        prefix: "fgp_snippets",
+        description: "fgp_snippets",
+        body: "",
+      };
+
+      // DOM elements
+      const elements = {
+        nameInput: document.getElementById("nameInput"),
+        scopeInput: document.getElementById("scopeInput"),
+        prefixInput: document.getElementById("prefixInput"),
+        descriptionInput: document.getElementById("descriptionInput"),
+        codeInput: document.getElementById("codeInput"),
+        jsonOutput: document.getElementById("jsonOutput"),
+        snippetPreview: document.getElementById("snippetPreview"),
+        toast: document.getElementById("toast"),
+      };
+
+      // Initialize app
+      function init() {
+        loadFromLocalStorage();
+        addEventListeners();
+        updateSnippet();
+        console.log("VSCode Snippet Generator initialized! 🚀");
+      }
+
+      // Add event listeners
+      function addEventListeners() {
+        Object.values(elements).forEach((element) => {
+          if (
+            element &&
+            (element.tagName === "INPUT" || element.tagName === "TEXTAREA" || element.tagName === "SELECT")
+          ) {
+            element.addEventListener("input", updateSnippet);
+            element.addEventListener("change", updateSnippet);
+          }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener("keydown", (e) => {
+          if (e.ctrlKey || e.metaKey) {
+            switch (e.key) {
+              case "s":
+                e.preventDefault();
+                downloadSnippet();
+                break;
+              case "Enter":
+                e.preventDefault();
+                copyToClipboard();
+                break;
+              case "k":
+                e.preventDefault();
+                clearAll();
+                break;
+            }
+          }
+        });
+      }
+
+      // Load data from localStorage
+      function loadFromLocalStorage() {
+        const saved = localStorage.getItem("vscode-snippet-generator");
+        if (saved) {
+          try {
+            const data = JSON.parse(saved);
+            Object.assign(snippetData, data);
+
+            elements.nameInput.value = snippetData.name || "";
+            elements.scopeInput.value = snippetData.scope || "javascript";
+            elements.prefixInput.value = snippetData.prefix || "";
+            elements.descriptionInput.value = snippetData.description || "";
+            elements.codeInput.value = snippetData.body || "";
+          } catch (error) {
+            console.error("Error loading from localStorage:", error);
+          }
+        }
+      }
+
+      // Save data to localStorage
+      function saveToLocalStorage() {
+        try {
+          localStorage.setItem("vscode-snippet-generator", JSON.stringify(snippetData));
+        } catch (error) {
+          console.error("Error saving to localStorage:", error);
+        }
+      }
+
+      // Update snippet data and outputs
+      function updateSnippet() {
+        // Update snippet data
+        snippetData.name = elements.nameInput.value.trim() || "Untitled Snippet";
+        snippetData.scope = elements.scopeInput.value;
+        snippetData.prefix = elements.prefixInput.value.trim() || "snippet";
+        snippetData.description = elements.descriptionInput.value.trim() || "Custom snippet";
+        snippetData.body = elements.codeInput.value;
+
+        // Generate JSON output
+        generateJSON();
+
+        // Update preview
+        updatePreview();
+
+        // Save to localStorage
+        saveToLocalStorage();
+      }
+
+      // Generate JSON snippet
+      function generateJSON() {
+        let bodyLines = snippetData.body.split("\n");
+
+        // Process each line for proper escaping
+        bodyLines = bodyLines.map((line) => {
+          // Escape backslashes first
+          line = line.replace(/\\/g, "\\\\");
+          // Escape quotes
+          line = line.replace(/"/g, '\\"');
+          // Handle tab characters
+          line = line.replace(/\t/g, "\\t");
+          return line;
+        });
+
+        const snippet = {
+          [snippetData.name]: {
+            scope: snippetData.scope,
+            prefix: snippetData.prefix,
+            body: bodyLines,
+            description: snippetData.description,
+          },
+        };
+
+        // Remove empty scope if not specified
+        if (!snippetData.scope) {
+          delete snippet[snippetData.name].scope;
+        }
+
+        let jsonString = JSON.stringify(snippet, null, 2);
+
+        // Remove outer braces for VSCode snippets file format
+        const lines = jsonString.split("\n");
+        jsonString = lines.slice(1, -1).join("\n").replace(/^  /gm, "");
+
+        elements.jsonOutput.value = jsonString;
+      }
+
+      // Update preview
+      function updatePreview() {
+        if (!snippetData.body.trim()) {
+          elements.snippetPreview.innerHTML = "<em>Enter code to see preview...</em>";
+          return;
+        }
+
+        // Simulate how the snippet would look with placeholder highlighting
+        let preview = snippetData.body;
+
+        // Highlight placeholders
+        preview = preview.replace(
+          /\$\{(\d+)(:([^}]+))?\}/g,
+          '<span style="background: rgba(0, 122, 204, 0.3); padding: 2px 4px; border-radius: 3px;">$3</span>'
+        );
+        preview = preview.replace(
+          /\$(\d+)/g,
+          '<span style="background: rgba(0, 122, 204, 0.3); padding: 2px 4px; border-radius: 3px;">cursor</span>'
+        );
+
+        // Handle special variables
+        preview = preview.replace(
+          /\$\{CLIPBOARD\}/g,
+          '<span style="background: rgba(78, 201, 176, 0.3); padding: 2px 4px; border-radius: 3px;">clipboard</span>'
+        );
+        preview = preview.replace(
+          /\$\{TM_SELECTED_TEXT\}/g,
+          '<span style="background: rgba(78, 201, 176, 0.3); padding: 2px 4px; border-radius: 3px;">selected</span>'
+        );
+
+        elements.snippetPreview.innerHTML = preview;
+      }
+
+      // Copy to clipboard
+      async function copyToClipboard() {
+        try {
+          await navigator.clipboard.writeText(elements.jsonOutput.value);
+          showToast("Snippet copied to clipboard! 📋", "success");
+        } catch (error) {
+          // Fallback for older browsers
+          elements.jsonOutput.select();
+          document.execCommand("copy");
+          showToast("Snippet copied to clipboard! 📋", "success");
+        }
+      }
+
+      // Download snippet as file
+      function downloadSnippet() {
+        const content = elements.jsonOutput.value;
+        const filename = `${snippetData.prefix || "snippet"}.code-snippets`;
+
+        const blob = new Blob([content], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        link.click();
+
+        URL.revokeObjectURL(url);
+        showToast(`Downloaded ${filename} 💾`, "success");
+      }
+
+      // Clear all fields
+      function clearAll() {
+        if (confirm("Are you sure you want to clear all fields? This action cannot be undone.")) {
+          elements.nameInput.value = "";
+          elements.scopeInput.value = "javascript";
+          elements.prefixInput.value = "";
+          elements.descriptionInput.value = "";
+          elements.codeInput.value = "";
+
+          updateSnippet();
+          showToast("All fields cleared! 🗑️", "info");
+        }
+      }
+
+      // Load template
+      function loadTemplate() {
+        const template = {
+          name: "React Component",
+          scope: "javascript,typescript",
+          prefix: "rfc",
+          description: "React Functional Component",
+          body: `import React from 'react';\n\nconst \${1:ComponentName} = () => {\n  return (\n    <div>\n      \${2:Content}\n    </div>\n  );\n};\n\nexport default \${1:ComponentName};\$0`,
+        };
+
+        elements.nameInput.value = template.name;
+        elements.scopeInput.value = template.scope;
+        elements.prefixInput.value = template.prefix;
+        elements.descriptionInput.value = template.description;
+        elements.codeInput.value = template.body;
+
+        updateSnippet();
+        showToast("Template loaded! 📝", "info");
+      }
+
+      // Show toast notification
+      function showToast(message, type = "success") {
+        elements.toast.textContent = message;
+        elements.toast.className = `toast show ${type}`;
+
+        setTimeout(() => {
+          elements.toast.classList.remove("show");
+        }, 3000);
+      }
+
+      // Initialize when DOM is loaded
+      document.addEventListener("DOMContentLoaded", init);
+
+      // Also initialize if DOM is already loaded
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    </script>
+  </body>
+</html>

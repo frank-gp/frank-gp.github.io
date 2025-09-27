@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+    <style>
+      .textarea_container {
+        display: flex;
+        gap: 0.2em;
+      }
+      .input_container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+      }
+      section textarea {
+        flex: 1 1 auto;
+        height: 75vh;
+        background-color: rebeccapurple;
+        color: white;
+        padding: 1em;
+      }
+      section {
+        margin-top: 1em;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 60rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <h1>Create custom snippets for VSCode Extension</h1>
+      <img src="https://i.postimg.cc/3RC1bQwF/SNIPPETS.jpg" alt="" />
+      <section>
+        <a class="btn icon-public" target="_blank" href="https://fgp.one/vscode-snippet/">Examples</a>
+        <a class="btn icon-public" target="_blank" href="https://snippet-generator.app/">snippet-generator.app</a>
+        <hr />
+        <a class="btn icon-code" href="../">snippet</a>
+        <a class="btn icon-code" href="body.html">body</a>
+        <a class="btn icon-code" href="full.html">full</a>
+      </section>
+      <section class="input_container">
+        <div>
+          <label for="demoInput">Name:</label>
+          <input type="text" id="demoInput" oninput="convertCodeToJson()" value="fgp_snippets" />
+        </div>
+        <!-- <div>
+          <label for="scopeInput">Scope:</label>
+          <input type="text" id="scopeInput" oninput="convertCodeToJson()" value="javascript" />
+        </div> -->
+        <div>
+          <label for="prefixInput">Prefix:</label>
+          <input type="text" id="prefixInput" oninput="convertCodeToJson()" value="fgp_snippets" />
+        </div>
+        <div>
+          <label for="descriptionInput">Description:</label>
+          <input type="text" id="descriptionInput" oninput="convertCodeToJson()" value="fgp_snippets" />
+        </div>
+      </section>
+      <section class="textarea_container">
+        <textarea id="codeInput" oninput="convertCodeToJson()"></textarea>
+        <textarea id="jsonOutput" readonly onclick="copyToClipboard()"></textarea>
+      </section>
+    </main>
+
+    <script>
+      // Function to convert code to the JSON snippet format
+      function convertCodeToJson() {
+        const name = document.getElementById("demoInput").value;
+        // const scope123 = document.getElementById("scopeInput").value;
+        const prefix = document.getElementById("prefixInput").value;
+        const description = document.getElementById("descriptionInput").value;
+        const code = document.getElementById("codeInput").value.split("\n");
+
+        // Define the structure of the snippet JSON
+        const snippetObject = {
+          [name]: {
+            prefix: prefix,
+            body: code,
+            description: description,
+          },
+        };
+
+        // Convert to JSON string, remove first `{` and last `}`
+        let jsonString = JSON.stringify(snippetObject, null, 2);
+        // jsonString = jsonString.slice(1, -1); // Remove the first `{` and the last `}`
+        jsonString = jsonString.slice(1, -1).trim(); // Remove `{}`, then trim spaces
+
+        // Output the modified JSON into the textarea
+        document.getElementById("jsonOutput").value = jsonString;
+      }
+
+      function copyToClipboard() {
+        const outputElement = document.getElementById("jsonOutput");
+
+        // Copy content to clipboard
+        navigator.clipboard
+          .writeText(outputElement.value)
+          .then(() => {
+            alert("Copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+          });
+      }
+    </script>
+  </body>
+</html>

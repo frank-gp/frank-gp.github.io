@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://fgp.one/favicon.webp" sizes="256x256" />
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+    <!-- <script src="https://frank-gp.github.io/component/social.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/component/contact.js" defer></script> -->
+
+    <!-- lib -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/clipboard.js" defer></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/highlight.js"></script> -->
+    <!-- <script src="https://frank-gp.github.io/lib/js/youtube-embed.js"></script> -->
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <script src="https://frank-gp.github.io/lib/js/loader.js"></script>
+
+      <header-component></header-component>
+
+      <!-- https://frank-gp.github.io/app/snippet/body.html -->
+      <header>
+        <!-- <img src='https://fgp.one/media/vscode-snippet.webp' alt='vscode-snippet' /> -->
+      </header>
+      <main>
+        <a href="ratio9.html" class="btn">ratio9</a>
+        <style>
+          main * {
+            text-align: center;
+            font-size: 1.5em;
+          }
+          .desktop {
+            aspect-ratio: 16/9;
+            height: 100%;
+            background-color: bisque;
+            margin: 1em auto;
+            max-width: 20rem;
+          }
+        </style>
+        <section>
+          <h1>16:9 Ratio Calculator</h1>
+          <div class="desktop"></div>
+          <hr />
+          <label>width</label>
+          <input type="number" value="16" oninput="myFunction('width')" />
+          <br />
+          <hr />
+          <label>height</label>
+          <input type="number" value="9" oninput="myFunction('height')" />
+          <hr />
+        </section>
+        <section>
+          <p>3840 <b>2160</b></p>
+          <p>2560 <b>1440</b></p>
+          <p>1920 <b>1080</b></p>
+          <p>1280 <b>720</b></p>
+          <p>853 <b>480</b></p>
+          <p>640 <b>360</b></p>
+          <p>426 <b>240</b></p>
+          <p>256 <b>144</b></p>
+        </section>
+
+        <script>
+          let [widthInput, heightInput] = document.querySelectorAll("input");
+
+          function myFunction(inputType) {
+            if (inputType === "width") {
+              heightInput.value = (9 / 16) * widthInput.value;
+            } else if (inputType === "height") {
+              widthInput.value = (16 / 9) * heightInput.value;
+            }
+          }
+
+          //   console.log(calcWidth(90));
+        </script>
+      </main>
+      <script>
+        var h1Content = document.querySelector("h1").textContent;
+        document.querySelector("title").textContent = h1Content;
+      </script>
+      <fgp-lib>
+        <!-- <script src='https://f-gp.github.io/lib/highlight.js' type='module'></script> -->
+        <!-- <script src='https://frank-gp.github.io/lib/js/clipboard.js' defer></script> -->
+        <!-- <script src='https://frank-gp.github.io/web-component/youtube-embed.js' defer></script> -->
+      </fgp-lib>
+
+      <footer-component></footer-component>
+    </main>
+  </body>
+</html>

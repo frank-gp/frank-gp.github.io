@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="icon" href="https://frank-gp.github.io/favicon.ico" sizes="256x256" /> -->
+    <meta name="theme-color" content="#347" />
+    <meta name="author" content="Frank GP" />
+    <meta name="site_locale" content="en_PE" />
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" /> -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+
+    <!-- component -->
+    <script src="https://frank-gp.github.io/component/header.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/footer.js" type="module"></script>
+    <script src="https://frank-gp.github.io/component/stat.js" type="module"></script>
+
+    <!-- SEO -->
+    <title>Frank GP — Developer</title>
+    <meta name="robots" content="index" />
+    <meta name="description" content="Research, design and development" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Frank GP — Android Developer" />
+    <meta property="og:description" content="Research, design and development" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://frank-gp.github.io" />
+    <meta property="og:image" content="https://fgp.one/fb-cover.webp" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="fb:app_id" content="1526445401046904" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/component/loader.js"></script>
+
+    <main>
+      <style>
+        body {
+          /* font-size: 1.5vw; */
+          margin: 0 auto !important;
+        }
+        body::after {
+          content: attr(data-device);
+          background: #000;
+          color: #fff;
+          padding: 0.5em 1em;
+          font-size: 1rem;
+          text-align: center;
+        }
+
+        main h2 {
+          background-color: #fff;
+          color: #0008;
+          padding: 0.8em 1em;
+          font-size: 2.2em;
+        }
+        .rem_color {
+          color: indianred;
+        }
+        .device_color {
+          color: #fff;
+          background-color: indigo;
+        }
+        @media (max-width: 80rem) {
+          body > main {
+            /* background-color: blue; */
+            font-size: 1.5vw;
+          }
+        }
+        @media (max-width: 60rem) {
+          body > main {
+            /* background-color: green; */
+            font-size: 2vw;
+          }
+        }
+        @media (max-width: 40rem) {
+          body > main {
+            /* background-color: red; */
+            font-size: 3vw;
+          }
+        }
+        @keyframes vibrate {
+          0% {
+            transform: translate(0);
+          }
+          20% {
+            transform: translate(-2px, 2px);
+          }
+          40% {
+            transform: translate(-2px, -2px);
+          }
+          60% {
+            transform: translate(2px, 2px);
+          }
+          80% {
+            transform: translate(2px, -2px);
+          }
+          100% {
+            transform: translate(0);
+          }
+        }
+        .vibrate {
+          animation: vibrate 0.3s linear;
+          /* animation: vibrate 0.1s linear infinite; */
+        }
+      </style>
+      <h2 class="device_color">Device: <span id="device"></span></h2>
+      <h2>Width <span id="innerWidth_px"></span>px</h2>
+      <h2 class="rem_color">Width <span id="innerWidth_rem"></span>rem</h2>
+      <h2>Height: <span id="innerHeight_px"></span>px</h2>
+      <h2>Height: <span id="innerHeight_rem"></span>rem</h2>
+
+      <script>
+        function updateDeviceLabel() {
+          const rem = window.innerWidth / 16;
+          let device = "Desktop";
+          if (rem <= 40) device = "Mobile";
+          else if (rem <= 60) device = "Tablet";
+          else if (rem <= 80) device = "Laptop";
+
+          document.body.setAttribute("data-device", device);
+          document.querySelector("#innerWidth_px").innerHTML = window.innerWidth;
+          document.querySelector("#innerWidth_rem").innerHTML = window.innerWidth / 16;
+          document.querySelector("#innerHeight_px").innerHTML = window.innerHeight;
+          document.querySelector("#innerHeight_rem").innerHTML = window.innerHeight / 16;
+          document.querySelector("#device").innerHTML = device;
+        }
+
+        updateDeviceLabel();
+        window.addEventListener("resize", updateDeviceLabel);
+
+        const target = document.querySelector(".rem_color");
+
+        // setInterval(() => {
+        //   if (!target) return;
+
+        //   target.classList.add("vibrate");
+
+        //   setTimeout(() => {
+        //     target.classList.remove("vibrate");
+        //   }, 500); // quitar después de .5 segundo
+        // }, 6000); // cada 6 segundos
+      </script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://frank-gp.github.io/icon/icomoon/style.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/component/global.css" />
+    <link rel="stylesheet" href="https://frank-gp.github.io/wp-assets/style/wp-content.css" />
+
+    <!-- JS -->
+    <script src="https://frank-gp.github.io/component/head.js"></script>
+    <script src="https://frank-gp.github.io/component/header.js"></script>
+    <script src="https://frank-gp.github.io/component/footer.js"></script>
+
+    <!-- stat -->
+    <script src='https://frank-gp.github.io/stats/send.js' type='module'></script>
+
+    <!-- SEO -->
+    <title>Frank GP — Android Developer</title>
+    <meta name="description" content="Design and Developer Android" />
+    <meta property="og:image" content="https://i0.wp.com/fgp.one/media/fgp-fb-cover.webp" />
+  </head>
+
+  <body>
+    <script src="https://frank-gp.github.io/lib/js/loader.js"></script>
+
+    <header-component></header-component>
+
+    <!-- https://frank-gp.github.io/app/snippet/body.html -->
+    <header>
+      <!-- <img src='https://fgp.one/media/vscode-snippet.webp' alt='vscode-snippet' /> -->
+    </header>
+    <main>
+      <a href="index.html" class="btn">index</a>
+
+      <style>
+        input[type="range"] {
+          width: 90vh;
+          transform: rotate(-90deg);
+          position: fixed;
+          top: 50vh;
+          right: -40vh;
+          z-index: 1;
+        }
+        :root {
+          font-size: 2em;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        }
+      </style>
+      <h1>RATIO 9 Slider</h1>
+
+      <div id="slider-container">
+        <input type="range" id="slider" min="0" max="2160" step="9" value="9" oninput="updateValue()" />
+      </div>
+
+      <h2 id="outputWidth">Width: 16</h2>
+      <h2 id="outputHeight">Height: 9</h2>
+
+      <script>
+        function updateValue() {
+          var slider = document.getElementById("slider");
+          var outputWidth = document.getElementById("outputWidth");
+          var outputHeight = document.getElementById("outputHeight");
+          outputWidth.textContent = "Width: " + (16 / 9) * slider.value;
+          outputHeight.textContent = "Height: " + slider.value;
+        }
+        updateValue();
+      </script>
+    </main>
+    <script>
+      var h1Content = document.querySelector("h1").textContent;
+      document.querySelector("title").textContent = h1Content;
+    </script>
+    <fgp-lib>
+      <!-- <script src='https://f-gp.github.io/lib/highlight.js' type='module'></script> -->
+      <!-- <script src='https://frank-gp.github.io/lib/js/clipboard.js' defer></script> -->
+      <!-- <script src='https://frank-gp.github.io/web-component/youtube-embed.js' defer></script> -->
+    </fgp-lib>
+
+    <footer-component></footer-component>
+  </body>
+</html>
