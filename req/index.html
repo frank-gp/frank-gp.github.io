@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>¿Quieres ser mi novia? 💕</title>
+    <title>¿Quieres ser mi novia?</title>
     <style>
       * {
         margin: 0;
@@ -207,22 +207,22 @@
 
     <div class="container">
       <div class="question">
-        <h1>💕 ¿Quieres ser mi novia? 💕</h1>
+        <h1>¿Quieres ser mi novia?</h1>
         <p class="subtitle">Esta es la pregunta más importante de mi vida...</p>
-        <p>Mi corazón late solo por ti 💖</p>
 
         <div class="buttons-container">
-          <button class="btn btn-yes" id="yesBtn">¡SÍ! 💕</button>
-          <button class="btn btn-no" id="noBtn">No 💔</button>
+          <button class="btn btn-yes" id="yesBtn">¡SÍ!</button>
+          <button class="btn btn-no" id="noBtn">No</button>
         </div>
       </div>
     </div>
 
     <div class="success-message" id="successMessage">
-      <h2>¡ERES INCREÍBLE! 🎉💕</h2>
+      <h2>¡Qué lindo decir que sí! 💕✨</h2>
       <p>
-        ¡Acabas de hacerme la persona más feliz del mundo! 💖<br />
-        Te amo con todo mi corazón y no puedo esperar a vivir esta hermosa aventura juntos. 🌟
+        Gracias por animarte conmigo.<br />
+        Me hace muy feliz empezar esta nueva etapa juntos,<br />
+        con calma, risas y muchas ganas de ver qué construimos. 💛
       </p>
     </div>
 
@@ -294,14 +294,19 @@
       });
 
       // Evento click del botón Sí
+      let heartsInterval; // variable global
+
       yesBtn.addEventListener("click", () => {
         document.body.style.background = "linear-gradient(135deg, #56ab2f, #a8e6cf, #ffeaa7, #fab1a0)";
         successMessage.style.display = "block";
 
-        // Crear más corazones para celebrar
+        // Explosión inicial de corazones
         for (let i = 0; i < 50; i++) {
           setTimeout(() => createHeart(), i * 100);
         }
+
+        // 💕 Corazones continuos SOLO después del "Sí"
+        heartsInterval = setInterval(createHeart, 800);
       });
 
       // Crear corazones flotantes
@@ -321,7 +326,7 @@
       }
 
       // Crear corazones iniciales
-      setInterval(createHeart, 800);
+      // setInterval(createHeart, 800);
 
       // Intentar hacer clic en el botón No (será muy difícil)
       noBtn.addEventListener("click", () => {

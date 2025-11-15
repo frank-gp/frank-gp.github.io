@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Contact</title>
+    <link rel="stylesheet" href="./style.css?5" />
+  </head>
+  <body>
+    <div class="center">
+      <h1>Captcha Validator</h1>
+      <h2>Write the number to show the email</h2>
+      <div id="captchaBackground">
+        <span id="captcha">captcha text</span>
+        <input id="textBox" type="number" name="text" autocomplete="off" />
+        <div id="buttons">
+          <!-- <form autocomplete="off"> -->
+          <input class="btn" id="submit" type="submit" />
+          <!-- </form> -->
+          <button class="btn" id="refresh" type="submit">Refresh</button>
+        </div>
+        <span id="output"></span>
+      </div>
+    </div>
+
+    <auto-close>
+      <button id="times">&times; Close</button>
+      <script>
+        let times = document.getElementById("times");
+
+        function fClose() {
+          self.close();
+        }
+
+        times.addEventListener("click", fClose);
+
+        //
+
+        setTimeout("self.close()", 10000);
+      </script>
+    </auto-close>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

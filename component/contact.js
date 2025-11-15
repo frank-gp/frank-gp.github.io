@@ -816,7 +816,7 @@ function ContactFunction() {
     try {
       // Determine URL based on environment
       const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-      const url = isLocal ? "http://localhost:3000/api/email/submit" : "https://fgp.one/api/email/submit";
+      const url = isLocal ? "http://localhost:3000/api/email/submit" : "https://frankgp.com/api/email/submit";
 
       const response = await fetch(url, {
         method: "POST",
