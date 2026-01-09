@@ -32,7 +32,7 @@ function statFn() {
         org,
       } = ipData;
 
-      fetch("https://frankgp.com/api/stat/track", {
+      fetch("https://app.frankgp.com/api/stat/track", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
